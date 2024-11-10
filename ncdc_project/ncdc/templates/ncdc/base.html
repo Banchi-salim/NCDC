@@ -1,0 +1,244 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}NCDC{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'ncdc/css/base.css' %}">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+<!-- Navbar -->
+<header>
+    <nav class="navbar">
+        <a href="#" class="logo">Logo</a>
+        <ul class="nav-menu">
+            <li><a href="index.html">Home</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropbtn">About</a>
+                <div class="dropdown-content">
+                    <a href="aboutNCDC.html">About NCDC</a>
+                    <a href="Department.html">Department</a>
+                    <a href="of.html">Office of the DG</a>
+                </div>
+            </li>
+            <li><a href="#">Publications</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropbtn">Diseases</a>
+                <div class="dropdown-content">
+                    <a href="disease.html">A-Z</a>
+                </div>
+            </li>
+            <li><a href="#">News</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropbtn">Training</a>
+                <div class="dropdown-content">
+                    <a href="training1.html">Training 1</a>
+                    <a href="training2.html">Training 2</a>
+                </div>
+            </li>
+            <li><a href="#">Projects</a></li>
+            <li><a href="#">Jobs</a></li>
+            <li><a href="#">Dashboard</a></li>
+            <li><a href="#">e-Learning</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">Library</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropbtn">Videos</a>
+                <div class="dropdown-content">
+                    <a href="video1.html">Video 1</a>
+                    <a href="video2.html">Video 2</a>
+                </div>
+            </li>
+        </ul>
+        <div class="hamburger" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </nav>
+</header>
+<!-- Main Content -->
+<main>
+    {% block content %}{% endblock %}
+</main>
+
+<!-- HTML -->
+<footer class="footer">
+    <div class="footer-main">
+        <div class="footer-section">
+            <h2 class="footer-heading">Contacts</h2>
+            <div class="contact-info">
+                <p><i class="location-icon"></i> Plot 801, Ebitu Ukiwe Street, Jabi, Abuja, Nigeria</p>
+                <p><i class="phone-icon"></i> 6232 (Toll-Free Call Centre)</p>
+                <p><i class="email-icon"></i> info@ncdc.gov.ng</p>
+            </div>
+        </div>
+
+        <div class="footer-section">
+            <h2 class="footer-heading">Social Media</h2>
+            <div class="social-links">
+                <p><i class="facebook-icon"></i> @NCDCgov</p>
+                <p><i class="twitter-icon"></i> @NCDCgov</p>
+                <p><i class="youtube-icon"></i> NCDC</p>
+                <p><i class="instagram-icon"></i> NCDCgov</p>
+                <p><i class="telegram-icon"></i> t.me/NCDCgov (Telegram)</p>
+            </div>
+            <a href="#" class="newsletter-btn">Subscribe to Newsletter</a>
+        </div>
+
+        <div class="footer-section">
+            <h2 class="footer-heading">Mandate of NCDC</h2>
+            <p class="mandate-text">
+                The Nigeria Centre for Disease Control and Prevention (NCDC) was established in the year 2011 in
+                response to the challenges of public health emergencies and to enhance Nigeria's preparedness and
+                response to epidemics through prevention, detection and control of communicable diseases.
+            </p>
+            <a href="#" class="terms-link">Terms and Conditions</a>
+        </div>
+    </div>
+
+    <div class="connect-centre">
+        <h2 class="connect-heading">Connect Centre</h2>
+        <div class="connect-info">
+            <div class="connect-item">
+                <i class="phone-icon"></i>
+                <span>Toll Free Number: 6232</span>
+            </div>
+            <div class="connect-item">
+                <i class="whatsapp-icon"></i>
+                <span>Whatsapp: +234 708 711 0839</span>
+            </div>
+            <div class="connect-item">
+                <i class="sms-icon"></i>
+                <span>SMS Number: +234 809 955 5577</span>
+            </div>
+        </div>
+        <p style="text-align:center;">&copy; {{ current_year }} Nigeria Centre for Disease Control. All rights reserved.</p>
+    </div>
+</footer>
+
+<style>
+    /* Footer Styles */
+    .footer {
+        font-family: Arial, sans-serif;
+        color: white;
+    }
+
+    .footer-main {
+        background-color: darkgreen;
+        padding: 40px 5%;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 40px;
+    }
+
+    .footer-heading {
+        font-size: 24px;
+        margin: 0 0 20px 0;
+        color: white;
+    }
+
+    .footer-section {
+        padding-right: 20px;
+    }
+
+    /* Contact Info Styles */
+    .contact-info p,
+    .social-links p {
+        margin: 10px 0;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    /* Newsletter Button */
+    .newsletter-btn {
+        display: inline-block;
+        background-color: #1a5c1a;
+        color: white;
+        padding: 10px 20px;
+        text-decoration: none;
+        border-radius: 5px;
+        margin-top: 20px;
+    }
+
+    .newsletter-btn:hover {
+        background-color: #134013;
+    }
+
+    /* Mandate Section */
+    .mandate-text {
+        line-height: 1.6;
+        margin-bottom: 20px;
+    }
+
+    .terms-link {
+        color: white;
+        text-decoration: none;
+    }
+
+    .terms-link:hover {
+        text-decoration: underline;
+    }
+
+    /* Connect Centre Section */
+    .connect-centre {
+        background-color: #b8860b;
+        padding: 20px 5%;
+    }
+
+    .connect-heading {
+        font-size: 24px;
+        margin: 0 0 20px 0;
+    }
+
+    .connect-info {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 30px;
+        justify-content: space-around;
+    }
+
+    .connect-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    /* Icon placeholders - Replace with actual icons */
+    [class*="-icon"] {
+        width: 20px;
+        height: 20px;
+        display: inline-block;
+        background-color: rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .footer-main {
+            grid-template-columns: 1fr;
+        }
+
+        .connect-info {
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .footer-section {
+            padding-right: 0;
+        }
+    }
+</style>
+<script>
+    function toggleMenu() {
+    const navMenu = document.querySelector(".nav-menu");
+    navMenu.classList.toggle("active");
+    }
+
+</script>
+{% block extra_js %}{% endblock %}
+</body>
+</html>
