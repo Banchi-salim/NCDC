@@ -32,6 +32,7 @@ body {
 .nav-menu a, .dropbtn {
     color: white;
     font-size:16px
+    font-weight: regular;
     padding: 14px 16px;
     text-decoration: none;
     display: block;
