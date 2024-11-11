@@ -6,14 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}NCDC{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'ncdc/css/base.css' %}">
-    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %} " type="image/x-icon">
+    <link rel="shortcut icon" href="{% static 'ncdc/images/favicon.ico' %} " type="image/x-icon">
     {% block extra_css %}{% endblock %}
 </head>
 <body>
 <!-- Navbar -->
 <header>
     <nav class="navbar">
-        <a href="#" class="logo">Logo</a>
+        <img src="{% static 'ncdc/images/logo.png' %}" style="width:100px; height:100px; margin:10px;">
         <ul class="nav-menu">
             <li><a href="{% url 'home'%}">Home</a></li>
             <li class="dropdown">
