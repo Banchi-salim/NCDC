@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-j3c==(+bsnhrbl+s^bq&bebmd6pflv(b#c3ouffj&!0$_5^q6n
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['82.180.154.35', '127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -76,8 +76,12 @@ WSGI_APPLICATION = 'ncdc_project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'ncdc',
+        'USER':'mouhdbuharii',
+        'PASSWORD':'Mouhdbuharii',
+        'HOST':'localhost',
+        'PORT':'3306',
     }
 }
 
@@ -117,13 +121,15 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # This is where collectstatic will place all static files
+STATIC_ROOT = '/var/www/NCDC/ncdc_project/staticfiles' # This is where collectstatic will place all static files
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'ncdc/static'),  # Path to your app's static directory
 ]
 
-
+MEDIA_URL = '/media/'
+MEDIA_ROOT = '/var/www/NCDC/ncdc_project/media'
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
