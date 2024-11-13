@@ -80,6 +80,54 @@ section {
     text-align: left;
 }
 
+/* Section Styling */
+.mission-vision-functions-section {
+    display: flex;
+    justify-content: space-around;
+    background-color: #204d40; /* Dark green background */
+    padding: 40px 20px;
+    gap: 20px;
+    flex-wrap: wrap;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+/* Card Styling */
+.card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 20px;
+    max-width: 300px;
+    flex: 1 1 300px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    animation: slideUp 1.5s ease-in-out;
+}
+
+.card h3 {
+    font-size: 1.5rem;
+    color: #204d40; /* Matching the section background */
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.card p {
+    font-size: 0.9rem;
+    color: #555;
+    line-height: 1.6;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+
 /* Animations */
 @keyframes fadeIn {
     from { opacity: 0; }
@@ -146,3 +194,26 @@ section {
         font-size: 0.85rem;
     }
 }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .mission-vision-functions-section {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card {
+        max-width: 90%;
+    }
+}
+
+@media (max-width: 480px) {
+    .card h3 {
+        font-size: 1.3rem;
+    }
+
+    .card p {
+        font-size: 0.85rem;
+    }
+}
+s
