@@ -86,7 +86,8 @@
         {% for blog in blogs %}
         "{{ blog.id }}": {
             title: "{{ blog.title|escapejs }}",
-            image: "{{ blog.image.url if blog.image else '' }}",
+            image: "image: "{% if blog.image %}{{ blog.image.url }}{% else %}{% static 'path/to/default/image.jpg' %}{% endif %}",
+",
             content: "{{ blog.content|escapejs }}"
         },
         {% endfor %}
