@@ -216,4 +216,97 @@ section {
         font-size: 0.85rem;
     }
 }
-s
+/* About Organization Section */
+.about-organization {
+    padding: 40px 20px;
+    background-color: #ffffff;
+    color: #204d40;
+    text-align: center;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+.about-organization h2 {
+    font-size: 1.8rem;
+    color: #204d40;
+    margin-bottom: 20px;
+}
+
+.about-organization p {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 0 auto 20px;
+}
+
+/* Blog Slider Section */
+.blog-section {
+    padding: 40px 20px;
+    background-color: #204d40;
+    color: #ffffff;
+    text-align: left;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+.blog-section h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+}
+
+.blog-slider {
+    display: flex;
+    overflow-x: auto;
+    gap: 20px;
+}
+
+.blog-card {
+    flex: 0 0 300px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    text-align: center;
+}
+
+.blog-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px 8px 0 0;
+}
+
+.blog-card h3 {
+    font-size: 1.2em;
+    margin: 15px 0 10px;
+}
+
+.blog-card p {
+    font-size: 0.9em;
+    color: #555;
+    margin: 0 0 15px;
+}
+
+.blog-card a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .about-organization h2, .blog-section h2 {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .about-organization p, .blog-card p {
+        font-size: 0.85rem;
+    }
+}
+
