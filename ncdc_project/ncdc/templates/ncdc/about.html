@@ -61,11 +61,7 @@
     <section class="blog-slider">
         {% for blog in blogs %}
         <div class="blog-card">
-            {% if blog.image %}
-            <img src="{{ blog.image.url }}" alt="{{ blog.title }}">
-            {% else %}
-            <img src="{% static 'path/to/default/image.jpg' %}" alt="{{ blog.title }}">
-            {% endif %}
+            <img src="{% if blog.image %}{{ blog.image.url }}{% else %}{% static 'path/to/default/image.jpg' %}{% endif %}" alt="{{ blog.title }}">
             <h3>{{ blog.title }}</h3>
             <p>{{ blog.excerpt }}</p>
             <button onclick="openModal('{{ blog.id }}')">Read more</button>
