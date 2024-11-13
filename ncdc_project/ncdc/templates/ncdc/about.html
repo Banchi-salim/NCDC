@@ -28,7 +28,8 @@
 <section class="mission-vision-functions-section">
     <div class="card">
         <h3>MISSION</h3>
-        <p>To protect the health of Nigerians through evidence-based prevention, integrated disease surveillance and response activities, using a one health approach, guided by research and led by a skilled workforce.</p>
+        <p>To protect the health of Nigerians through evidence-based prevention, integrated disease surveillance and
+            response activities, using a one health approach, guided by research and led by a skilled workforce.</p>
     </div>
     <div class="card">
         <h3>VISION</h3>
@@ -36,12 +37,43 @@
     </div>
     <div class="card">
         <h3>CORE FUNCTIONS</h3>
-        <p>Prevent, detect, and control diseases of public health importance. Coordinate surveillance systems to collect, analyse and interpret data on diseases of public health importance. Support states in responding to small outbreaks and lead the response to large disease outbreaks. Develop and maintain a network of reference and specialised laboratories. Conduct, collate, synthesise, and disseminate public health research to inform policy. Lead Nigeria’s engagement with the international community on diseases...</p>
+        <p>Prevent, detect, and control diseases of public health importance. Coordinate surveillance systems to
+            collect, analyse and interpret data on diseases of public health importance. Support states in responding to
+            small outbreaks and lead the response to large disease outbreaks. Develop and maintain a network of
+            reference and specialised laboratories. Conduct, collate, synthesise, and disseminate public health research
+            to inform policy. Lead Nigeria’s engagement with the international community on diseases...</p>
     </div>
 </section>
+<section class="about-organization">
+    <h2>Organisation of the Nigeria Centre for Disease Control and Prevention</h2>
+    <p>The NCDC under the leadership of the Director General has a staff size of over 500. At the national level, this
+        comprises staff working across three sites - the Headquarters and National Reference Laboratory (NRL), located
+        in Abuja as well as the Central Public Health Laboratory (CPHL) in Lagos State, a campus of the NRL. At the
+        subnational level, there are State Surveillance Officers across the 36 States of the federation and the Federal
+        Capital Territory (FCT).</p>
+    <p>The NCDC currently operates through seven departments. These include: Public Health Laboratory Services Health
+        Emergency Preparedness and Response Planning, Research and Statistics, Surveillance and Epidemiology,
+        Administration and Human Resources, Finance and Accounts, Subnational Support Department.</p>
+</section>
 
+<section class="blog-section">
+    <h2>NCDC Blog</h2>
+    <section class="blog-slider">
+        {% for blog in blogs %}
+        <div class="blog-card">
+            {% if blog.image %}
+            <img src="{{ blog.image.url }}" alt="{{ blog.title }}">
+            {% else %}
+            <img src="{% static 'path/to/default/image.jpg' %}" alt="{{ blog.title }}"> <!-- Optional: default image -->
+            {% endif %}
+            <h3>{{ blog.title }}</h3>
+            <p>{{ blog.excerpt }}</p>
+            <a href="{% url 'blog_detail' blog.id %}">Read more</a>
+        </div>
+        {% endfor %}
+    </section>
 
-
+</section>
 {% endblock %}
 
 
