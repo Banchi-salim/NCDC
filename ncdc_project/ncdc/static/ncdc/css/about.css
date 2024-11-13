@@ -10,7 +10,7 @@
 }
 
 .hero-overlay {
-    background-color: rgba(0, 50, 40, 0.6); /* Overlay color with transparency */
+    /*background-color: rgba(0, 50, 40, 0.6);*/ /* Overlay color with transparency */
     width: 100%;
     height: 100%;
     display: flex;
