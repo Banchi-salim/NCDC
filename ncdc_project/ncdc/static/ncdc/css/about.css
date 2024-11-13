@@ -1,16 +1,24 @@
+/* General Section Styling */
+section {
+    width: 100%;
+    padding: 20px;
+}
+
+/* Hero Section */
 .hero-section {
     position: relative;
-    background-image: url("{% static 'ncdc/images/about_hero.png' %}"); /* Adjust the path as needed */
+    background-image: url("{% static 'ncdc/images/Section1.png' %}");
     background-size: cover;
     background-position: center;
-    height: 300px; /* Adjust height as needed */
+    height: 300px;
     display: flex;
     align-items: center;
     justify-content: center;
+    animation: fadeIn 1.5s ease-in-out;
 }
 
 .hero-overlay {
-    /*background-color: rgba(0, 50, 40, 0.6);*/ /* Overlay color with transparency */
+    background-color: rgba(0, 50, 40, 0.6);
     width: 100%;
     height: 100%;
     display: flex;
@@ -20,7 +28,120 @@
 
 .hero-overlay h1 {
     color: white;
-    font-size: 2.5rem; /* Adjust font size as needed */
+    font-size: 2.5rem;
     font-weight: bold;
     margin: 0;
+    animation: slideInFromLeft 1.5s ease-in-out;
+}
+
+/* About Section */
+.about-section {
+    background-color: #f5f5f5;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+.hierarchy-container {
+    margin-bottom: 20px;
+    animation: zoomIn 1.5s ease-in-out;
+}
+
+.hierarchy-container img {
+    max-width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.hierarchy-container h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.about-text h3 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #2d572c;
+    margin-bottom: 10px;
+    animation: slideInFromRight 1.5s ease-in-out;
+}
+
+.about-text p {
+    color: #555;
+    font-size: 1rem;
+    max-width: 700px;
+    line-height: 1.6;
+    margin: 0 auto;
+    animation: fadeInText 2s ease-in-out;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideInFromLeft {
+    from { transform: translateX(-100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideInFromRight {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes zoomIn {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes fadeInText {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero-section {
+        height: 200px;
+    }
+
+    .hero-overlay h1 {
+        font-size: 1.8rem;
+    }
+
+    .about-section {
+        padding: 20px;
+    }
+
+    .about-text h3 {
+        font-size: 1.5rem;
+    }
+
+    .about-text p {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-overlay h1 {
+        font-size: 1.5rem;
+    }
+
+    .hierarchy-container h2 {
+        font-size: 1.5rem;
+    }
+
+    .about-text h3 {
+        font-size: 1.3rem;
+    }
+
+    .about-text p {
+        font-size: 0.85rem;
+    }
 }
