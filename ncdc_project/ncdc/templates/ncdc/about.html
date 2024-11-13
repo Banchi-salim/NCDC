@@ -64,16 +64,62 @@
             {% if blog.image %}
             <img src="{{ blog.image.url }}" alt="{{ blog.title }}">
             {% else %}
-            <img src="{% static 'path/to/default/image.jpg' %}" alt="{{ blog.title }}"> <!-- Optional: default image -->
+            <img src="{% static 'path/to/default/image.jpg' %}" alt="{{ blog.title }}">
             {% endif %}
             <h3>{{ blog.title }}</h3>
             <p>{{ blog.excerpt }}</p>
-            <a href="{% url 'blog_detail' blog.id %}">Read more</a>
+            <button onclick="openModal('{{ blog.id }}')">Read more</button>
         </div>
         {% endfor %}
     </section>
 
+    <!-- Modal Structure -->
+    <div id="blogModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h3 id="modalTitle"></h3>
+            <img id="modalImage" src="" alt="">
+            <p id="modalContent"></p>
+        </div>
+    </div>
 </section>
+<script>
+    function openModal(blogId) {
+    // Fetch blog data dynamically (for demo purposes, replace this with your actual data source)
+    const blogs = {
+        {% for blog in blogs %}
+        "{{ blog.id }}": {
+            title: "{{ blog.title|escapejs }}",
+            image: "{{ blog.image.url if blog.image else '' }}",
+            content: "{{ blog.content|escapejs }}"
+        },
+        {% endfor %}
+    };
+
+    const blog = blogs[blogId];
+    if (blog) {
+        document.getElementById("modalTitle").innerText = blog.title;
+        document.getElementById("modalImage").src = blog.image || "{% static 'path/to/default/image.jpg' %}";
+        document.getElementById("modalContent").innerText = blog.content;
+
+        // Display the modal
+        document.getElementById("blogModal").style.display = "block";
+    }
+}
+
+function closeModal() {
+    document.getElementById("blogModal").style.display = "none";
+}
+
+// Close modal when clicking outside of it
+window.onclick = function(event) {
+    const modal = document.getElementById("blogModal");
+    if (event.target === modal) {
+        modal.style.display = "none";
+    }
+}
+
+</script>
 {% endblock %}
 
 
