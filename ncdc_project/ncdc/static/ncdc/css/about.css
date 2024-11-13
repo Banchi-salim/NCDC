@@ -1,0 +1,26 @@
+.hero-section {
+    position: relative;
+    background-image: url("{% static 'ncdc/images/Section1.png' %}"); /* Adjust the path as needed */
+    background-size: cover;
+    background-position: center;
+    height: 300px; /* Adjust height as needed */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-overlay {
+    background-color: rgba(0, 50, 40, 0.6); /* Overlay color with transparency */
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-overlay h1 {
+    color: white;
+    font-size: 2.5rem; /* Adjust font size as needed */
+    font-weight: bold;
+    margin: 0;
+}
