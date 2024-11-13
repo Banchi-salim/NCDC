@@ -1,6 +1,6 @@
 .hero-section {
     position: relative;
-    background-image: url("{% static 'ncdc/images/Section1.png' %}"); /* Adjust the path as needed */
+    background-image: url("{% static 'ncdc/images/about_hero.png' %}"); /* Adjust the path as needed */
     background-size: cover;
     background-position: center;
     height: 300px; /* Adjust height as needed */
