@@ -8,11 +8,12 @@
 /* Profile Section */
 .profile-section {
     display: flex;
-    gap:180px;
+    gap:240px;
     align-items: center;
     color: white;
     border-radius: 0px, 0px, 12px, 12px;
     padding: 40px;
+    padding-top: 120px;
     margin-bottom: 300px;
     overflow: hidden;
     animation: fadeIn 1s ease-in-out;
