@@ -22,4 +22,4 @@ def leadership(request):
 
 
 def office_of_dg(request):
-    return render(request, 'office_of_dg.html')
+    return render(request, 'ncdc/dg.html')
