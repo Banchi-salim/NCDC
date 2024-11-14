@@ -5,8 +5,10 @@
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'ncdc/css/departments.css' %}"> {% endblock %}
 {% block content %}
+<section class="hero" style="background-image:url({%static 'ncdc/images/department_hero.png'%})">
+
+</section>
 <section class="departments-section">
-    <h2>Departments</h2>
     <div class="departments-grid">
         {% for department in departments %}
         <div class="department-card" onclick="openDepartmentModal('{{ department.id }}')">
