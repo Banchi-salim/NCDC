@@ -3,6 +3,11 @@
     width:100%;
     height:1660px;
     color: #1d3b32;
+
+}
+
+/* Profile Section */
+.profile-section {
     display: flex;
     align-items: center;
     color: white;
@@ -11,11 +16,6 @@
     margin-bottom: 40px;
     overflow: hidden;
     animation: fadeIn 1s ease-in-out;
-}
-
-/* Profile Section */
-.profile-section {
-
 }
 
 .profile-image {
