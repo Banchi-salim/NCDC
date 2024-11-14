@@ -85,36 +85,44 @@
 
 <script>
     function openBlogModal(blogId) {
-        const blogs = {
-            {% for blog in blogs %}
-            "{{ blog.id }}": {
-                title: "{{ blog.title|escapejs }}",
-                image: "{% if blog.image %}{{ blog.image.url }}{% else %}{% static 'path/to/default/image.jpg' %}{% endif %}",
-                content: "{{ blog.content|escapejs }}"
-            },
-            {% endfor %}
-        };
+    // Fetch blog data dynamically from Django template (replace this with your actual data source)
+    const blogs = {
+        {% for blog in blogs %}
+        "{{ blog.id }}": {
+            title: "{{ blog.title|escapejs }}",
+            image: "{% if blog.image %}{{ blog.image.url }}{% else %}{% static 'path/to/default/image.jpg' %}{% endif %}",
+            content: "{{ blog.content|escapejs }}"
+        },
+        {% endfor %}
+    };
 
-        const blog = blogs[blogId];
-        if (blog) {
-            document.getElementById("modalTitle").innerText = blog.title;
-            document.getElementById("modalImage").src = blog.image;
-            document.getElementById("modalContent").innerText = blog.content;
+    // Check if the blog with blogId exists before displaying modal
+    const blog = blogs[blogId];
+    if (blog) {
+        document.getElementById("modalTitle").innerText = blog.title;
+        document.getElementById("modalImage").src = blog.image;
+        document.getElementById("modalImage").alt = blog.title;
+        document.getElementById("modalContent").innerText = blog.content;
 
-            document.getElementById("blogModal").style.display = "block";
-        }
+        // Display the modal
+        document.getElementById("blogModal").style.display = "block";
+    } else {
+        console.error(`Blog with ID ${blogId} not found.`);
     }
+}
 
-    function closeModal() {
-        document.getElementById("blogModal").style.display = "none";
-    }
+function closeModal() {
+    document.getElementById("blogModal").style.display = "none";
+}
 
-    window.onclick = function(event) {
-        const modal = document.getElementById("blogModal");
-        if (event.target === modal) {
-            modal.style.display = "none";
-        }
+// Close modal when clicking outside of it
+window.onclick = function(event) {
+    const modal = document.getElementById("blogModal");
+    if (event.target === modal) {
+        modal.style.display = "none";
     }
+}
+
 </script>
 
 {% endblock %}
