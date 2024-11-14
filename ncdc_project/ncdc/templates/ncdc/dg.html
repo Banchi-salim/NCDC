@@ -57,7 +57,7 @@
      <div class="blog-section">
         <h2>Director General's Blog</h2>
         <button class="blog-button">Blog</button>
-        <section class="blog-slider">
+        <section class="blog-cards">
             {% for blog in blogs %}
             <div class="blog-card">
                 <img src="{% if blog.image %}{{ blog.image.url }}{% else %}{% static 'path/to/default/image.jpg' %}{% endif %}"
