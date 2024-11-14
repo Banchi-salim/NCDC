@@ -58,8 +58,7 @@
     <section class="blog-slider">
         {% for blog in blogs %}
         <div class="blog-card">
-            <img src="{% if blog.image %}{{ blog.image.url }}{% else %}{% static 'path/to/default/image.jpg' %}{% endif %}"
-                 alt="{{ blog.title }}">
+            <img src="{% if blog.image %}{{ blog.image.url }}{% else %}{% static 'path/to/default/image.jpg' %}{% endif %}" alt="{{ blog.title }}">
             <h3>{{ blog.title }}</h3>
             <p>{{ blog.excerpt }}</p>
             <button onclick="openModal('{{ blog.id }}')">Read more</button>
@@ -72,57 +71,62 @@
         <div class="modal-content">
             <div class="modal-header">
                 <span class="close" onclick="closeModal()">&times;</span>
-                <span id="modalTitle">{{ blog.title }}</span>
+                <h3 id="modalTitle"></h3>
             </div>
             <div class="modal-body">
                 <img id="modalImage" class="modal-image" src="" alt="">
                 <div class="modal-text">
-                    <p id="modalContent">
-                        <!-- Full blog post content goes here -->
-                    </p>
+                    <p id="modalContent"></p>
                 </div>
             </div>
         </div>
     </div>
-
 </section>
+
 <script>
     function openModal(blogId) {
-    // Fetch blog data dynamically from Django template (replace with your actual data source)
-    const blogs = {
-        {% for blog in blogs %}
-        "{{ blog.id }}": {
-            title: "{{ blog.title|escapejs }}",
-            image: "{% if blog.image %}{{ blog.image.url }}{% else %}{% static 'path/to/default/image.jpg' %}{% endif %}",
-            content: "{{ blog.content|escapejs }}"
-        },
-        {% endfor %}
-    };
+        // Fetch blog data dynamically (for demo purposes, replace this with your actual data source)
+        const blogs = {
+            {% for blog in blogs %}
+            "{{ blog.id }}": {
+                title: "{{ blog.title|escapejs }}",
+                image: "{% if blog.image %}{{ blog.image.url }}{% else %}{% static 'path/to/default/image.jpg' %}{% endif %}",
+                content: "{{ blog.content|escapejs }}"
+            },
+            {% endfor %}
+        };
 
-    const blog = blogs[blogId];
-    if (blog) {
-        document.getElementById("modalTitle").innerText = blog.title;
-        document.getElementById("modalImage").src = blog.image;
-        document.getElementById("modalContent").innerText = blog.content;
+        // Retrieve the blog data using the blogId
+        const blog = blogs[blogId];
 
-        // Display the modal
-        document.getElementById("blogModal").style.display = "block";
+        // Check if the blog data exists
+        if (blog) {
+            // Populate the modal elements with the blog data
+            document.getElementById("modalTitle").innerText = blog.title;
+            document.getElementById("modalImage").src = blog.image;
+            document.getElementById("modalImage").alt = blog.title;
+            document.getElementById("modalContent").innerText = blog.content;
+
+            // Display the modal
+            document.getElementById("blogModal").style.display = "block";
+        } else {
+            console.error(`Blog with ID ${blogId} not found.`);
+        }
     }
-}
 
-function closeModal() {
-    document.getElementById("blogModal").style.display = "none";
-}
-
-// Close modal when clicking outside of it
-window.onclick = function(event) {
-    const modal = document.getElementById("blogModal");
-    if (event.target === modal) {
-        modal.style.display = "none";
+    function closeModal() {
+        document.getElementById("blogModal").style.display = "none";
     }
-}
 
+    // Close modal when clicking outside of it
+    window.onclick = function(event) {
+        const modal = document.getElementById("blogModal");
+        if (event.target === modal) {
+            modal.style.display = "none";
+        }
+    }
 </script>
+
 {% endblock %}
 
 
