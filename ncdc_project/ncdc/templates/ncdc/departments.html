@@ -12,9 +12,9 @@
         <div class="department-card" onclick="openDepartmentModal('{{ department.id }}')">
             <div class="department-image">
                 <img src="{% if department.image %}{{ department.image.url }}{% else %}{% static 'path/to/default/image.jpg' %}{% endif %}"
-                     alt="{{ department.name }}">
+                     alt="{{ departments.name }}">
             </div>
-            <div class="department-footer">{{department.name}}</div>
+            <div class="department-footer"><h3>{{department.name}}</h3></div>
         </div>
         {% endfor %}
     </div>
