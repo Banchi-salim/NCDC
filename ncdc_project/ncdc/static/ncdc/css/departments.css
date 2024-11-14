@@ -1,3 +1,14 @@
+.hero-section {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
 .departments-section {
     text-align: center;
     padding: 80px;
