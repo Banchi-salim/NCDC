@@ -38,6 +38,13 @@
 }
 
 /* Office Section */
+.office {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px; /* Optional padding for spacing */
+}
+
 .office-section {
     background-color: #ffffff;
     width:60%;
@@ -67,6 +74,7 @@
     justify-content: space-between;
     padding: 40px;
     background-color: #eaf1ed;
+    height: 800px;
 }
 
 .dg-blog-intro {
