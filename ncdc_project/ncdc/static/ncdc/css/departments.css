@@ -37,16 +37,19 @@
 /* Modal Styles */
 .modal {
     display: none;
-    position: absolute;
-    top: 30%;
-    left: 10%;
-    width: 100%;
-    height: 100%;
+    position: fixed; /* Fixed positioning to keep it centered on screen */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Center horizontally and vertically */
+    width: 90%;
+    max-width: 600px;
+    max-height: 90vh; /* Limit max height to prevent it from overflowing */
     z-index: 1000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow-y: auto; /* Enable scrolling for the modal on smaller screens */
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    overflow-y: auto; /* Enable scrolling inside the modal */
+    padding: 20px;
 }
 
 .modal-content {
