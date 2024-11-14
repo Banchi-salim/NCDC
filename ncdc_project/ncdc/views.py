@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Blog
+from .models import Blog, Department
 
 
 # Create your views here.
@@ -13,7 +13,8 @@ def about(request):
 
 
 def deparments(request):
-    return render(request, 'ncdc/departments.html')
+    departments = Department.objects.all()
+    return render(request, 'departments.html', {'departments': departments})
 
 
 def leadership(request):
