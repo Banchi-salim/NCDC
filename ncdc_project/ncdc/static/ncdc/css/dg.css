@@ -1,25 +1,26 @@
 /* General Styles */
 .dg-section {
     width:100%;
-    height:2660px;
+    height:1614px;
     background-color: #1d3b32;
 }
 
 /* Profile Section */
 .profile-section {
     display: flex;
+    gap:180px;
     align-items: center;
     color: white;
     border-radius: 0px, 0px, 12px, 12px;
     padding: 40px;
-    margin-bottom: 40px;
+    margin-bottom: 300px;
     overflow: hidden;
     animation: fadeIn 1s ease-in-out;
 }
 
 .profile-image {
-    width: 200px;
-    height: auto;
+    width: 400px;
+    height: 400px;
     border-radius: 8px;
     margin-right: 20px;
     animation: slideIn 1s ease-in-out;
@@ -39,6 +40,8 @@
 /* Office Section */
 .office-section {
     background-color: #ffffff;
+    width:60%
+    height:800px;
     padding: 30px;
     border-radius: 12px;
     margin-bottom: 40px;
