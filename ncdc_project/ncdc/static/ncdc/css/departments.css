@@ -1,6 +1,6 @@
 .departments-section {
     text-align: center;
-    padding: 40px;
+    padding: 80px;
 }
 
 .departments-section h2 {
@@ -32,12 +32,6 @@
     width: 100%;
     height: auto;
     display: block;
-}
-
-.department-footer {
-    background-color: #1d3b32; /* Dark green */
-    height: 30px;
-    border-radius: 0 0 8px 8px;
 }
 
 /* Modal Styles */
