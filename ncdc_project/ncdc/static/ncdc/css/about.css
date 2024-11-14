@@ -315,6 +315,7 @@ section {
 
 .modal-content {
     background-color: #fff;
+    display: flex;
     margin: 10% auto;
     padding: 20px;
     width: 80%;
