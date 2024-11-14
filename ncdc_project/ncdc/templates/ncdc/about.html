@@ -78,13 +78,12 @@
 </section>
 <script>
     function openModal(blogId) {
-    // Fetch blog data dynamically (for demo purposes, replace this with your actual data source)
+    // Fetch blog data dynamically from Django template (replace with your actual data source)
     const blogs = {
         {% for blog in blogs %}
         "{{ blog.id }}": {
             title: "{{ blog.title|escapejs }}",
-            image: "image: "{% if blog.image %}{{ blog.image.url }}{% else %}{% static 'path/to/default/image.jpg' %}{% endif %}",
-",
+            image: "{% if blog.image %}{{ blog.image.url }}{% else %}{% static 'path/to/default/image.jpg' %}{% endif %}",
             content: "{{ blog.content|escapejs }}"
         },
         {% endfor %}
@@ -93,7 +92,7 @@
     const blog = blogs[blogId];
     if (blog) {
         document.getElementById("modalTitle").innerText = blog.title;
-        document.getElementById("modalImage").src = blog.image || "{% static 'path/to/default/image.jpg' %}";
+        document.getElementById("modalImage").src = blog.image;
         document.getElementById("modalContent").innerText = blog.content;
 
         // Display the modal
