@@ -22,4 +22,5 @@ def leadership(request):
 
 
 def office_of_dg(request):
-    return render(request, 'ncdc/dg.html')
+    blogs = Blog.objects.all()[:3]
+    return render(request, 'ncdc/dg.html', {'blogs':blogs})
