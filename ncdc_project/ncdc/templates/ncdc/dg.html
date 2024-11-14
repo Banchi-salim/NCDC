@@ -62,8 +62,7 @@
     <div class="dg-blog-cards">
         {% for blog in blogs %}
         <div class="blog-card" onclick="openBlogModal('{{ blog.id }}')">
-            <img src="{% if blog.image %}{{ blog.image.url }}{% else %}{% static 'path/to/default/image.jpg' %}{% endif %}"
-                 alt="{{ blog.title }}">
+            <img src="{% if blog.image %}{{ blog.image.url }}{% else %}{% static 'path/to/default/image.jpg' %}{% endif %}" alt="{{ blog.title }}">
         </div>
         {% endfor %}
     </div>
