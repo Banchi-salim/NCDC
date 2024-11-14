@@ -14,7 +14,7 @@
                 <img src="{% if department.image %}{{ department.image.url }}{% else %}{% static 'path/to/default/image.jpg' %}{% endif %}"
                      alt="{{ department.name }}">
             </div>
-            <div class="department-footer"></div>
+            <div class="department-footer">{{department.name}}</div>
         </div>
         {% endfor %}
     </div>
