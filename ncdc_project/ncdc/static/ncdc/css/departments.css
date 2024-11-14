@@ -38,6 +38,8 @@
     background-color: #1d3b32; /* Dark green */
     height: 30px;
     border-radius: 0 0 8px 8px;
+    position: absolute;
+    bottom: 0px;
 }
 
 /* Modal Styles */
@@ -88,7 +90,7 @@
 }
 
 .modal-image {
-    width: 40%;
+    width: 100%;
     border-radius: 8px;
     flex-shrink: 0; /* Prevent the image from shrinking */
 }
@@ -100,6 +102,7 @@
     max-height: 100%;
     overflow-y: auto; /* Allow scrolling if the text is too long */
 }
+
 
 /* Responsive Media Queries */
 @media (max-width: 768px) {
