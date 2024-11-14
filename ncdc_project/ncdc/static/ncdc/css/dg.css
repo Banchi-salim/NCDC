@@ -7,6 +7,8 @@ body {
 }
 
 .dg-section {
+    width:100%;
+    height:1660px;
     padding: 40px;
     color: #1d3b32;
 }
@@ -40,6 +42,7 @@ body {
 .profile-text p {
     font-size: 1rem;
     margin-top: 10px;
+    text-align:justify;
 }
 
 /* Office Section */
