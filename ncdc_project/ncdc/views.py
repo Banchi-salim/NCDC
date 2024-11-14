@@ -8,3 +8,6 @@ def index(request):
 def about(request):
     blogs = Blog.objects.all()[:3]
     return render(request, 'ncdc/about.html', {'blogs': blogs})
+
+def deparments(request):
+    return render(request, 'ncdc/departments.html')
