@@ -14,7 +14,7 @@ def about(request):
 
 def deparments(request):
     departments = Department.objects.all()
-    return render(request, 'departments.html', {'departments': departments})
+    return render(request, 'ncdc/departments.html', {'departments': departments})
 
 
 def leadership(request):
