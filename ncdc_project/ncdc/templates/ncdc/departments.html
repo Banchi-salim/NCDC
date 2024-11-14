@@ -20,7 +20,7 @@
     </div>
 
     <!-- Modal Structure -->
-    <div id="departmentModal" class="modal">
+    <div id="departmentModal" class="modal" style="display:none;">
         <div class="modal-content">
             <div class="modal-header">
                 <span class="close" onclick="closeModal()">&times;</span>
@@ -38,41 +38,42 @@
 
 <script>
     function openDepartmentModal(departmentId) {
-        // Sample data structure for departments (replace this with your actual data source)
-        const departments = {
-            {% for department in departments %}
-            "{{ department.id }}": {
-                name: "{{ department.name|escapejs }}",
-                image: "{% if department.image %}{{ department.image.url }}{% else %}{% static 'path/to/default/image.jpg' %}{% endif %}",
-                description: "{{ department.description|escapejs }}"
-            },
-            {% endfor %}
-        };
+    const departments = {
+        {% for department in departments %}
+        "{{ department.id }}": {
+            name: "{{ department.name|escapejs }}",
+            image: "{% if department.image %}{{ department.image.url }}{% else %}{% static 'path/to/default/image.jpg' %}{% endif %}",
+            description: "{{ department.description|escapejs }}"
+        },
+        {% endfor %}
+    };
 
-        const department = departments[departmentId];
-        if (department) {
-            document.getElementById("modalTitle").innerText = department.name;
-            document.getElementById("modalImage").src = department.image;
-            document.getElementById("modalImage").alt = department.name;
-            document.getElementById("modalContent").innerText = department.description;
+    const department = departments[departmentId];
+    if (department) {
+        document.getElementById("modalTitle").innerText = department.name;
+        document.getElementById("modalImage").src = department.image;
+        document.getElementById("modalImage").alt = department.name;
+        document.getElementById("modalContent").innerText = department.description;
 
-            document.getElementById("departmentModal").style.display = "block";
-        } else {
-            console.error(`Department with ID ${departmentId} not found.`);
-        }
+        // Display the modal
+        document.getElementById("departmentModal").style.display = "block";
+    } else {
+        console.error(`Department with ID ${departmentId} not found.`);
     }
+}
 
-    function closeModal() {
-        document.getElementById("departmentModal").style.display = "none";
-    }
+function closeModal() {
+    document.getElementById("departmentModal").style.display = "none";
+}
 
-    // Close modal when clicking outside of it
-    window.onclick = function(event) {
-        const modal = document.getElementById("departmentModal");
-        if (event.target === modal) {
-            modal.style.display = "none";
-        }
+// Close modal when clicking outside of it
+window.onclick = function(event) {
+    const modal = document.getElementById("departmentModal");
+    if (event.target === modal) {
+        modal.style.display = "none";
     }
+}
+
 </script>
 
 {% endblock %}
