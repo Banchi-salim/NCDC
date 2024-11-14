@@ -124,6 +124,38 @@ body {
     transform: scale(1.05);
 }
 
+.blog-card {
+    flex: 0 0 300px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    text-align: center;
+}
+
+.blog-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px 8px 0 0;
+}
+
+.blog-card h3 {
+    font-size: 1.2em;
+    margin: 15px 0 10px;
+}
+
+.blog-card p {
+    font-size: 0.9em;
+    color: #555;
+    margin: 0 0 15px;
+}
+
+.blog-card a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
 /* Modal Styles */
 .modal {
     display: none;
