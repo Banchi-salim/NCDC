@@ -58,7 +58,8 @@
     <section class="blog-slider">
         {% for blog in blogs %}
         <div class="blog-card">
-            <img src="{% if blog.image %}{{ blog.image.url }}{% else %}{% static 'path/to/default/image.jpg' %}{% endif %}" alt="{{ blog.title }}">
+            <img src="{% if blog.image %}{{ blog.image.url }}{% else %}{% static 'path/to/default/image.jpg' %}{% endif %}"
+                 alt="{{ blog.title }}">
             <h3>{{ blog.title }}</h3>
             <p>{{ blog.excerpt }}</p>
             <button onclick="openModal('{{ blog.id }}')">Read more</button>
@@ -69,12 +70,21 @@
     <!-- Modal Structure -->
     <div id="blogModal" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <h3 id="modalTitle"></h3>
-            <img id="modalImage" src="" alt="">
-            <p id="modalContent"></p>
+            <div class="modal-header">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <span id="modalTitle">{{ blog.title }}</span>
+            </div>
+            <div class="modal-body">
+                <img id="modalImage" class="modal-image" src="" alt="">
+                <div class="modal-text">
+                    <p id="modalContent">
+                        <!-- Full blog post content goes here -->
+                    </p>
+                </div>
+            </div>
         </div>
     </div>
+
 </section>
 <script>
     function openModal(blogId) {
