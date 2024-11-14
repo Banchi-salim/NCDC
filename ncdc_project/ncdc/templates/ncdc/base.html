@@ -17,12 +17,12 @@
         <ul class="nav-menu">
             <li><a href="{% url 'home'%}">Home</a></li>
             <li class="dropdown">
-                <a href="" class="dropbtn">About</a>
+                <a href="#" class="dropbtn">About</a>
                 <div class="dropdown-content">
-                    <a href="{% url 'about'%}">NCDC</a>
-                    <a href="{% url 'departments'%}">Department</a>
-                    <a href="Department.html">Leadership</a>
-                    <a href="of.html">Office of the DG</a>
+                    <a href="{% url 'about' %}">NCDC</a>
+                    <a href="{% url 'departments' %}">Department</a>
+                    <a href="{% url 'leadership' %}">Leadership</a>
+                    <a href="{% url 'office_of_dg' %}">Office of the DG</a>
                 </div>
             </li>
             <li><a href="#">Publications</a></li>
@@ -117,7 +117,8 @@
                 <span>SMS Number: +234 809 955 5577</span>
             </div>
         </div>
-        <p style="text-align:center;">&copy; {{ current_year }} Nigeria Centre for Disease Control. All rights reserved.</p>
+        <p style="text-align:center;">&copy; {{ current_year }} Nigeria Centre for Disease Control. All rights
+            reserved.</p>
     </div>
 </footer>
 
