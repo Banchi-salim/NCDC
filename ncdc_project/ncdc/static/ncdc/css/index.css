@@ -240,14 +240,15 @@
 
 .partnerships{
     width:100%;
-    height:472px;
+    height:600px;
     background-color: #004d40;
     display:flex;
+    gap:40px;
 }
 
 .our_partners{
     padding-top:10px;
-    padding-left:80px;
+    padding-left:500px;
 }
 
 .partner_side_image img{
@@ -272,8 +273,7 @@
 
 .slideshow-container-parastatals{
      width:100%;
-     height:100px;
-     margin:10px;
+     height:200px;
 }
 
 .slideshow-container-parastatals {
@@ -292,6 +292,7 @@
 
 .slideshow-slide1 img {
     width: 100%;
+    height: 200px;
     border-radius: 5px;
     object-fit: cover;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -315,6 +316,7 @@
 
 .slideshow-slide2 {
     width: 100%;
+    margin-top:20px;
     transition: transform 0.5s ease;
 }
 
