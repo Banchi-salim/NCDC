@@ -66,6 +66,27 @@
     {% block content %}{% endblock %}
 </main>
 
+
+<!-- AI Chatbot Icon and Chatbox -->
+<div id="chatbot-icon" onclick="toggleChatbot()">
+    <img src="{% static 'path/to/ai-icon.png' %}" alt="AI Chatbot"/>
+</div>
+
+<div id="chatbot-box" class="chatbot-hidden">
+    <div class="chatbot-header">
+        <span>Chat with NCDC AI</span>
+        <button onclick="toggleChatbot()">×</button>
+    </div>
+    <div id="chatbot-content" class="chatbot-content">
+        <div id="chatbot-messages"></div>
+    </div>
+    <div class="chatbot-input">
+        <input type="text" id="chatbot-input-field" placeholder="Ask me anything about health..."
+               onkeypress="handleKeyPress(event)">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+</div>
+
 <!-- HTML -->
 <footer class="footer">
     <div class="footer-main">
@@ -240,6 +261,60 @@
     const navMenu = document.querySelector(".nav-menu");
     navMenu.classList.toggle("active");
     }
+
+    // Toggle the chatbot visibility
+function toggleChatbot() {
+    const chatbotBox = document.getElementById("chatbot-box");
+    chatbotBox.classList.toggle("chatbot-hidden");
+}
+
+// Handle Enter key press to send message
+function handleKeyPress(event) {
+    if (event.key === "Enter") {
+        sendMessage();
+    }
+}
+
+// Send user message to the API
+async function sendMessage() {
+    const inputField = document.getElementById("chatbot-input-field");
+    const message = inputField.value.trim();
+
+    if (message === "") return;
+
+    // Display user message
+    displayMessage(message, "user");
+    inputField.value = "";
+
+    // Send message to the backend to process with ChatGPT
+    try {
+        const response = await fetch("{% url 'chatbot_api' %}", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRFToken": "{{ csrf_token }}"
+            },
+            body: JSON.stringify({ message: message })
+        });
+
+        const data = await response.json();
+        displayMessage(data.reply, "bot");
+    } catch (error) {
+        displayMessage("Sorry, I couldn't connect to the AI server.", "bot");
+        console.error("Error:", error);
+    }
+}
+
+// Display message in the chat
+function displayMessage(text, sender) {
+    const messagesContainer = document.getElementById("chatbot-messages");
+    const messageElement = document.createElement("div");
+    messageElement.classList.add("chatbot-message", sender);
+    messageElement.textContent = text;
+    messagesContainer.appendChild(messageElement);
+    messagesContainer.scrollTop = messagesContainer.scrollHeight; // Scroll to the latest message
+}
+
 
 </script>
 {% block extra_js %}{% endblock %}
