@@ -3,6 +3,7 @@ from . import views
 
 urlpatterns = [
     path('', views.index, name='home'),
+    path("chatbot-api/", views.chatbot_api, name="chatbot_api"),
     path('about', views.about, name='about'),
     path('deparments', views.deparments, name='departments'),
     path('leadership', views.heads_of_departments, name='leadership'),  # Add this if needed
