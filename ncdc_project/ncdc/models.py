@@ -23,3 +23,13 @@ class Department(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class HeadOfDepartment(models.Model):
+    name = models.CharField(max_length=100)
+    department = models.CharField(max_length=100)
+    image = models.ImageField(upload_to='hod_images/', blank=True, null=True)
+    description = models.TextField()
+
+    def __str__(self):
+        return f"{self.name} - {self.department}"
