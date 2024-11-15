@@ -81,7 +81,8 @@
         <div id="chatbot-messages"></div>
     </div>
     <div class="chatbot-input">
-        <input type="text" id="chatbot-input-field" placeholder="Ask me anything about health..."
+        <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+        <input type="text" id="chatbot-input-field" placeholder="Ask me anything about diseases"
                onkeypress="handleKeyPress(event)">
         <button onclick="sendMessage()">Send</button>
     </div>
@@ -286,19 +287,31 @@ async function sendMessage() {
     displayMessage(message, "user");
     inputField.value = "";
 
-    // Send message to the backend to process with ChatGPT
     try {
+        // Fetch CSRF token dynamically if not directly available
+        const csrfToken = getCsrfToken();
+
+        // Send message to the backend to process with ChatGPT
         const response = await fetch("{% url 'chatbot_api' %}", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "X-CSRFToken": "{{ csrf_token }}"
+                "X-CSRFToken": csrfToken
             },
             body: JSON.stringify({ message: message })
         });
 
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
         const data = await response.json();
-        displayMessage(data.reply, "bot");
+
+        if (data && data.reply) {
+            displayMessage(data.reply, "bot");
+        } else {
+            displayMessage("Sorry, I didn't understand that.", "bot");
+        }
     } catch (error) {
         displayMessage("Sorry, I couldn't connect to the AI server.", "bot");
         console.error("Error:", error);
@@ -314,6 +327,16 @@ function displayMessage(text, sender) {
     messagesContainer.appendChild(messageElement);
     messagesContainer.scrollTop = messagesContainer.scrollHeight; // Scroll to the latest message
 }
+
+// Utility function to retrieve CSRF token
+function getCsrfToken() {
+    const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+    if (!csrfToken) {
+        console.error("CSRF token not found. Ensure your HTML includes a CSRF token.");
+    }
+    return csrfToken;
+}
+
 </script>
 {% block extra_js %}{% endblock %}
 </body>
