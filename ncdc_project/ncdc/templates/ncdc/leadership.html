@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Heads of Departments{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'ncdc/css/leadership.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="hod-section">
+    <h2>Heads of Departments</h2>
+    <div class="hod-grid">
+        {% for hod in hods %}
+        <div class="hod-card" onclick="openHodModal({{ hod.id }})">
+            <div class="hod-image">
+                <img src="{% if hod.image %}{{ hod.image.url }}{% else %}{% static 'path/to/default/image.jpg' %}{% endif %}"
+                     alt="{{ hod.name }}">
+            </div>
+            <div class="hod-footer">
+                <p>{{ hod.name }}</p>
+                <span>{{ hod.department }}</span>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<!-- Modal Structure -->
+<div id="hodModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h3 id="modalTitle"></h3>
+        <img id="modalImage" src="" alt="">
+        <p id="modalDescription"></p>
+        <div class="modal-buttons">
+            <button onclick="prevHod()">Previous</button>
+            <button onclick="nextHod()">Next</button>
+        </div>
+    </div>
+</div>
+
+<script src="{% static 'js/hod.js' %}"></script>
+<script>
+    let currentHodIndex = 0;
+const hodsData = [
+    {% for hod in hods %}
+    {
+        id: "{{ hod.id }}",
+        name: "{{ hod.name|escapejs }}",
+        department: "{{ hod.department|escapejs }}",
+        image: "{% if hod.image %}{{ hod.image.url }}{% else %}{% static 'path/to/default/image.jpg' %}{% endif %}",
+        description: "{{ hod.description|escapejs }}"
+    },
+    {% endfor %}
+];
+
+function openHodModal(hodId) {
+    const hodIndex = hodsData.findIndex(h => h.id === hodId.toString());
+    if (hodIndex !== -1) {
+        currentHodIndex = hodIndex;
+        displayHodModal();
+    }
+}
+
+function displayHodModal() {
+    const hod = hodsData[currentHodIndex];
+    document.getElementById("modalTitle").innerText = `${hod.name} - ${hod.department}`;
+    document.getElementById("modalImage").src = hod.image;
+    document.getElementById("modalDescription").innerText = hod.description;
+    document.getElementById("hodModal").style.display = "flex";
+}
+
+function closeModal() {
+    document.getElementById("hodModal").style.display = "none";
+}
+
+function nextHod() {
+    currentHodIndex = (currentHodIndex + 1) % hodsData.length;
+    displayHodModal();
+}
+
+function prevHod() {
+    currentHodIndex = (currentHodIndex - 1 + hodsData.length) % hodsData.length;
+    displayHodModal();
+}
+
+// Close modal when clicking outside of it
+window.onclick = function(event) {
+    const modal = document.getElementById("hodModal");
+    if (event.target === modal) {
+        closeModal();
+    }
+}
+
+</script>
+{% endblock %}
