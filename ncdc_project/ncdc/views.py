@@ -1,12 +1,12 @@
 from django.shortcuts import render
 from .models import Blog, Department, HeadOfDepartment
 import openai
-from django.conf import settings
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 import json
+from .secrets import OPENAI_API_KEY
 
-openai.api_key = settings.OPENAI_API_KEY
+openai.api_key = OPENAI_API_KEY
 
 
 @csrf_exempt
