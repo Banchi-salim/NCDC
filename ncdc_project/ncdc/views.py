@@ -1,12 +1,14 @@
-import requests
-from django.shortcuts import render
-from django.views.decorators.csrf import csrf_exempt
-from .models import Blog, Department, HeadOfDepartment
-from django.http import JsonResponse
 import json
 
+import requests
+from django.http import JsonResponse
+from django.shortcuts import render
+from django.views.decorators.csrf import csrf_exempt
 
-@csrf_exempt  # Ensure you have CSRF protection in production; this is for testing
+from .models import Blog, Department, HeadOfDepartment
+
+
+@csrf_exempt
 def chatbot_api(request):
     if request.method == "POST":
         try:
