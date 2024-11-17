@@ -4,7 +4,6 @@ from django.views.decorators.csrf import csrf_exempt
 from .models import Blog, Department, HeadOfDepartment
 from django.http import JsonResponse
 import json
-from .secrets import OPENAI_API_KEY
 
 
 @csrf_exempt  # Ensure you have CSRF protection in production; this is for testing
