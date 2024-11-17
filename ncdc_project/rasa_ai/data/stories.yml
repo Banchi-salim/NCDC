@@ -1,30 +1,20 @@
 version: "3.1"
 
 stories:
+  - story: greet and ask about health
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: ask_health_issue
+      - action: utter_ask_health_issue
 
-- story: happy path
-  steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: mood_great
-  - action: utter_happy
+  - story: ask about disease prevention
+    steps:
+      - intent: ask_disease_prevention
+      - action: utter_ask_disease_prevention
 
-- story: sad path 1
-  steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: mood_unhappy
-  - action: utter_cheer_up
-  - action: utter_did_that_help
-  - intent: affirm
-  - action: utter_happy
-
-- story: sad path 2
-  steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: mood_unhappy
-  - action: utter_cheer_up
-  - action: utter_did_that_help
-  - intent: deny
-  - action: utter_goodbye
+  - story: ask about disease information
+    steps:
+      - intent: ask_disease_information
+      - action: utter_ask_disease_information
+>>>>>>> a66b8e049a4b58b69a1ff05cab90ca8efc2bf7dc

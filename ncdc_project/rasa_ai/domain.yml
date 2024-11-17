@@ -2,32 +2,22 @@ version: "3.1"
 
 intents:
   - greet
-  - goodbye
-  - affirm
-  - deny
-  - mood_great
-  - mood_unhappy
-  - bot_challenge
+  - ask_health_issue
+  - ask_disease_prevention
 
 responses:
   utter_greet:
-  - text: "Hey! How are you?"
+    - text: "Hello! How can I assist you today?"
 
-  utter_cheer_up:
-  - text: "Here is something to cheer you up:"
-    image: "https://i.imgur.com/nGF1K8f.jpg"
+  utter_ask_health_issue:
+    - text: "Could you provide more details about the health issue you're facing?"
 
-  utter_did_that_help:
-  - text: "Did that help you?"
+  utter_ask_disease_information:
+    - text: "Sure! Please tell me which disease you want to know about."
 
-  utter_happy:
-  - text: "Great, carry on!"
-
-  utter_goodbye:
-  - text: "Bye"
-
-  utter_iamabot:
-  - text: "I am a bot, powered by Rasa."
+  utter_ask_disease_prevention:
+    - text: "Here are some tips to prevent diseases: Stay hydrated, eat healthily, and exercise regularly."
+>>>>>>> a66b8e049a4b58b69a1ff05cab90ca8efc2bf7dc
 
 session_config:
   session_expiration_time: 60
