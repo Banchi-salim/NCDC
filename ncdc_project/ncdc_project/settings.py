@@ -19,6 +19,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
+RASA_SERVER_URL = "http://localhost:5005/webhooks/rest/webhook"
+
+
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-j3c==(+bsnhrbl+s^bq&bebmd6pflv(b#c3ouffj&!0$_5^q6n'
 
@@ -76,12 +79,8 @@ WSGI_APPLICATION = 'ncdc_project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'ncdc',
-        'USER':'mouhdbuharii',
-        'PASSWORD':'Mouhd@pass@123',
-        'HOST':'localhost',
-        'PORT':'3306',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
