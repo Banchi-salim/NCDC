@@ -1,0 +1,69 @@
+version: "3.1"
+
+nlu:
+  - intent: greet
+    examples: |
+      - hey
+      - hello
+      - hi
+      - hello there
+      - good morning
+      - good evening
+      - moin
+      - hey there
+      - let's go
+      - hey dude
+      - goodmorning
+      - goodevening
+      - good afternoon
+
+  - intent: goodbye
+    examples: |
+      - cu
+      - good by
+      - cee you later
+      - good night
+      - bye
+      - goodbye
+      - have a nice day
+      - see you around
+      - bye bye
+      - see you later
+
+  - intent: affirm
+    examples: |
+      - yes
+      - y
+      - indeed
+      - of course
+      - that sounds good
+      - correct
+
+  - intent: deny
+    examples: |
+      - no
+      - n
+      - never
+      - I don't think so
+      - don't like that
+      - no way
+      - not reallynlu:
+
+  - intent: ask_health_issue
+    examples: |
+      - I have a fever
+      - I'm coughing a lot
+
+  - intent: ask_disease_prevention
+    examples: |
+      - How can I prevent malaria?
+      - Tips for preventing diseases
+
+  - intent: ask_disease_information
+    examples: |
+      - Tell me about malaria
+      - What are the symptoms of diabetes?
+      - Can you give me information about tuberculosis?
+      - What is cholera?
+      - How does HIV affect the body?
+      - I need details about asthma

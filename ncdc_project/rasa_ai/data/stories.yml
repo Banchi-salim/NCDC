@@ -1,0 +1,19 @@
+version: "3.1"
+
+stories:
+  - story: greet and ask about health
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: ask_health_issue
+      - action: utter_ask_health_issue
+
+  - story: ask about disease prevention
+    steps:
+      - intent: ask_disease_prevention
+      - action: utter_ask_disease_prevention
+
+  - story: ask about disease information
+    steps:
+      - intent: ask_disease_information
+      - action: utter_ask_disease_information

@@ -1,0 +1,23 @@
+version: "3.1"
+
+intents:
+  - greet
+  - ask_health_issue
+  - ask_disease_prevention
+
+responses:
+  utter_greet:
+    - text: "Hello! How can I assist you today?"
+
+  utter_ask_health_issue:
+    - text: "Could you provide more details about the health issue you're facing?"
+
+  utter_ask_disease_information:
+    - text: "Sure! Please tell me which disease you want to know about."
+
+  utter_ask_disease_prevention:
+    - text: "Here are some tips to prevent diseases: Stay hydrated, eat healthily, and exercise regularly."
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
