@@ -144,9 +144,6 @@
     </div>
 </footer>
 
-<style>
-
-</style>
 <script>
     function toggleMenu() {
     const navMenu = document.querySelector(".nav-menu");
@@ -231,6 +228,63 @@ function getCsrfToken() {
         console.error("CSRF token not found. Ensure your HTML includes a CSRF token.");
     }
     return csrfToken;
+}
+
+    // function for alert
+    document.addEventListener("DOMContentLoaded", () => {
+    if (navigator.geolocation) {
+        // Check if the location permission is already granted
+        navigator.permissions.query({ name: "geolocation" }).then((result) => {
+            if (result.state === "granted") {
+                trackUserLocation(); // Automatically track if permission is granted
+            } else if (result.state === "prompt") {
+                // Ask for permission if not granted
+                requestLocationPermission();
+            }
+        });
+    } else {
+        alert("Geolocation is not supported by your browser.");
+    }
+});
+
+function requestLocationPermission() {
+    navigator.geolocation.getCurrentPosition(
+        (position) => {
+            sendLocationToServer(position.coords.latitude, position.coords.longitude);
+        },
+        (error) => {
+            alert("Location access is required for personalized alerts.");
+        }
+    );
+}
+
+function trackUserLocation() {
+    navigator.geolocation.getCurrentPosition(
+        (position) => {
+            sendLocationToServer(position.coords.latitude, position.coords.longitude);
+        },
+        (error) => {
+            console.error("Error retrieving location:", error);
+        }
+    );
+}
+
+function sendLocationToServer(lat, lng) {
+    fetch("/update-location/", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "X-CSRFToken": document.querySelector("[name=csrfmiddlewaretoken]").value,
+        },
+        body: JSON.stringify({ latitude: lat, longitude: lng }),
+    })
+        .then((response) => response.json())
+        .then((data) => {
+            if (data.alert) {
+                alert(data.alert); // Display the alert to the user
+            }
+        })
+        .catch((error) => console.error("Error sending location:", error));
 }
 
 </script>

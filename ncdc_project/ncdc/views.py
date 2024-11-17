@@ -5,7 +5,7 @@ from django.http import JsonResponse
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 
-from .models import Blog, Department, HeadOfDepartment
+from .models import *
 
 
 @csrf_exempt
@@ -37,6 +37,7 @@ def chatbot_api(request):
             return JsonResponse({"error": "Server error", "details": str(e)}, status=500)
     return JsonResponse({"error": "Invalid request method"}, status=400)
 
+
 # Create your views here.
 def index(request):
     return render(request, 'ncdc/index.html')
@@ -60,3 +61,23 @@ def heads_of_departments(request):
 def office_of_dg(request):
     blogs = Blog.objects.all()[:3]
     return render(request, 'ncdc/dg.html', {'blogs': blogs})
+
+
+def update_location(request):
+    if request.method == "POST":
+        data = json.loads(request.body)
+        latitude = data.get("latitude")
+        longitude = data.get("longitude")
+
+        # Logic to check if there's an outbreak near the user's location
+        nearby_alert = DiseaseAlert.objects.filter(
+            latitude__range=(latitude - 0.5, latitude + 0.5),
+            longitude__range=(longitude - 0.5, longitude + 0.5)
+        ).first()
+
+        if nearby_alert:
+            return JsonResponse({"alert": f"Outbreak Alert: {nearby_alert.title}"})
+
+        return JsonResponse({"alert": None})
+
+    return JsonResponse({"error": "Invalid request method."}, status=400)
