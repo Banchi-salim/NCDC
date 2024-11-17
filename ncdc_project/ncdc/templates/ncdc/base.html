@@ -81,7 +81,7 @@
         <div id="chatbot-messages"></div>
     </div>
     <div class="chatbot-input">
-        <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+        {% csrf_token %}
         <input type="text" id="chatbot-input-field" placeholder="Ask me anything about diseases"
                onkeypress="handleKeyPress(event)">
         <button onclick="sendMessage()">Send</button>
@@ -288,11 +288,10 @@ async function sendMessage() {
     inputField.value = "";
 
     try {
-        // Fetch CSRF token dynamically if not directly available
         const csrfToken = getCsrfToken();
 
-        // Send message to the backend to process with ChatGPT
-        const response = await fetch("{% url 'chatbot_api' %}", {
+        // Send message to the backend
+        const response = await fetch("/chatbot-api/", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -336,6 +335,7 @@ function getCsrfToken() {
     }
     return csrfToken;
 }
+
 </script>
 {% block extra_js %}{% endblock %}
 </body>
