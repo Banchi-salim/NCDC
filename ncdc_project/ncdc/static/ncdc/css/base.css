@@ -264,6 +264,11 @@ body {
     z-index: 1001; /* Higher than chatbot icon to stay on top */
 }
 
+
+#Chatbot-icon{
+    width:60px;
+    height:60px;
+}
 .chatbot-hidden {
     display: none;
 }
