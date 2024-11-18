@@ -1,0 +1,406 @@
+/* General Section Styling */
+section {
+    width: 100%;
+}
+
+/* Hero Section */
+.hero-section {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+
+.hero-overlay h1 {
+    color: white;
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin: 0;
+    animation: slideInFromLeft 1.5s ease-in-out;
+}
+
+/* About Section */
+.about-section {
+    background-color: #f5f5f5;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    /*align-items: center;*/
+    text-align: left;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+.hierarchy-container {
+    margin-bottom: 20px;
+    animation: zoomIn 1.5s ease-in-out;
+    align-self: center;
+}
+
+.hierarchy-container img {
+    max-width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.hierarchy-container h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.about-text h3 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #2d572c;
+    margin-bottom: 10px;
+    animation: slideInFromRight 1.5s ease-in-out;
+}
+
+.about-text p {
+    color: #555;
+    font-size: 1rem;
+    max-width: 700px;
+    line-height: 1.6;
+    margin: 0 auto;
+    animation: fadeInText 2s ease-in-out;
+    text-align: left;
+}
+
+/* Section Styling */
+.mission-vision-functions-section {
+    display: flex;
+    justify-content: space-around;
+    background-color: #204d40; /* Dark green background */
+    padding: 40px 20px;
+    gap: 20px;
+    flex-wrap: wrap;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+/* Card Styling */
+.card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 20px;
+    max-width: 300px;
+    flex: 1 1 300px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    animation: slideUp 1.5s ease-in-out;
+}
+
+.card h3 {
+    font-size: 1.5rem;
+    color: #204d40; /* Matching the section background */
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.card p {
+    font-size: 0.9rem;
+    color: #555;
+    line-height: 1.6;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideInFromLeft {
+    from { transform: translateX(-100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideInFromRight {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes zoomIn {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes fadeInText {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero-section {
+        height: 200px;
+    }
+
+    .hero-overlay h1 {
+        font-size: 1.8rem;
+    }
+
+    .about-section {
+        padding: 20px;
+    }
+
+    .about-text h3 {
+        font-size: 1.5rem;
+    }
+
+    .about-text p {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-overlay h1 {
+        font-size: 1.5rem;
+    }
+
+    .hierarchy-container h2 {
+        font-size: 1.5rem;
+    }
+
+    .about-text h3 {
+        font-size: 1.3rem;
+    }
+
+    .about-text p {
+        font-size: 0.85rem;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .mission-vision-functions-section {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card {
+        max-width: 90%;
+    }
+}
+
+@media (max-width: 480px) {
+    .card h3 {
+        font-size: 1.3rem;
+    }
+
+    .card p {
+        font-size: 0.85rem;
+    }
+}
+/* About Organization Section */
+.about-organization {
+    padding: 40px 20px;
+    background-color: #ffffff;
+    color: #204d40;
+    text-align: center;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+.about-organization h2 {
+    font-size: 1.8rem;
+    color: #204d40;
+    margin-bottom: 20px;
+}
+
+.about-organization p {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 0 auto 20px;
+}
+
+/* Blog Slider Section */
+.blog-section {
+    padding: 40px 20px;
+    background-color: #204d40;
+    color: #ffffff;
+    text-align: left;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+.blog-section h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+}
+
+.blog-slider {
+    display: flex;
+    overflow-x: auto;
+    gap: 20px;
+}
+
+.blog-card {
+    flex: 0 0 300px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    text-align: center;
+}
+
+.blog-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px 8px 0 0;
+}
+
+.blog-card h3 {
+    font-size: 1.2em;
+    margin: 15px 0 10px;
+}
+
+.blog-card p {
+    font-size: 0.9em;
+    color: #555;
+    margin: 0 0 15px;
+}
+
+.blog-card a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .about-organization h2, .blog-section h2 {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .about-organization p, .blog-card p {
+        font-size: 0.85rem;
+    }
+}
+
+/* Basic styling for modal overlay */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
+}
+
+/* Modal content container */
+.modal-content {
+    background-color: #fff;
+    margin: 5% auto;
+    padding: 20px;
+    border-radius: 8px;
+    width: 70%;
+    max-width: 900px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+/* Header section */
+.modal-header {
+    background-color: #1E4D3A; /* Dark green */
+    color: #fff;
+    padding: 15px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Close button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Content layout */
+.modal-body {
+    display: flex;
+    padding: 20px;
+}
+
+.modal-image {
+    width: 40%;
+    max-width: 300px;
+    border-radius: 8px;
+    background-color: #f0f0f0; /* Placeholder background */
+    margin-right: 20px;
+}
+
+.modal-text {
+    flex: 1;
+    font-size: 1rem;
+    color: #333;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .modal-content {
+        width: 90%;
+    }
+    .modal-body {
+        flex-direction: column;
+    }
+    .modal-image {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 15px;
+    }
+    .modal-text {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .modal-content {
+        padding: 15px;
+    }
+    .modal-header {
+        font-size: 1.2rem;
+        padding: 10px;
+    }
+    .modal-text {
+        font-size: 0.85rem;
+    }
+}

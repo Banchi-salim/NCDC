@@ -1,0 +1,164 @@
+.hero-section {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+.departments-section {
+    text-align: center;
+    padding: 80px;
+}
+
+.departments-section h2 {
+    font-size: 2rem;
+    color: #1d3b32; /* Change to match your theme */
+}
+
+.departments-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    margin-top: 20px;
+}
+
+.department-card {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.department-card:hover {
+    transform: scale(1.05);
+}
+
+.department-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed; /* Fixed positioning to keep it centered on screen */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Center horizontally and vertically */
+    width: 90%;
+    max-width: 600px;
+    max-height: 90vh; /* Limit max height to prevent it from overflowing */
+    z-index: 1000;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    overflow-y: auto; /* Enable scrolling inside the modal */
+    padding: 20px;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    width: 90%;
+    max-width: 600px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-height: 80%; /* Limit height to 80% of the screen */
+    overflow-y: auto; /* Enable scrolling inside the modal */
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.5rem;
+    color: #1d3b32;
+}
+
+.modal-header .close {
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.modal-body {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.modal-image {
+    width: 100%;
+    border-radius: 8px;
+    flex-shrink: 0; /* Prevent the image from shrinking */
+}
+
+.modal-text {
+    width: 100%;
+    font-size: 1rem;
+    color: #555;
+    max-height: 100%;
+    overflow-y: auto; /* Allow scrolling if the text is too long */
+}
+
+
+/* Responsive Media Queries */
+@media (max-width: 768px) {
+    .departments-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .modal-body {
+        flex-direction: column;
+    }
+
+    .modal-image {
+        width: 100%;
+    }
+
+    .modal-content {
+        width: 95%;
+        margin: 10% auto;
+        max-height: 90%; /* Adjust for mobile screen height */
+    }
+}
+
+@media (max-width: 480px) {
+    .departments-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* Responsive Media Queries */
+@media (max-width: 768px) {
+    .departments-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .modal-body {
+        flex-direction: column;
+    }
+
+    .modal-image {
+        width: 100%;
+    }
+
+    .modal-content {
+        width: 95%;
+        margin: 15% auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .departments-grid {
+        grid-template-columns: 1fr;
+    }
+}
