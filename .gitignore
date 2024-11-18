@@ -1,6 +1,7 @@
 ncdc_project/rasa_ai/.rasa/cache/
 db.sqlite3
 venv/
+rasa_venv/
 __pycache__/
 *.pyc
 secrets.py
