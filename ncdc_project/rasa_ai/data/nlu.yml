@@ -9,15 +9,14 @@ nlu:
       - hello there
       - good morning
       - good evening
-      - moin
       - hey there
       - let's go
+      - hi there
       - hey dude
-      - good morning
-      - good evening
       - good afternoon
-      - 
-      -
+      - greetings
+      - what's up
+
   - intent: ask_disease_information
     examples: |
       - What are the symptoms of malaria?
@@ -25,18 +24,33 @@ nlu:
       - How does COVID-19 spread?
       - What is the treatment for cholera?
       - How can I prevent typhoid?
+      - What causes dengue fever?
+      - Symptoms of measles?
+      - How does tuberculosis spread?
+      - What is the cure for yellow fever?
+      - Can you explain HIV/AIDS symptoms?
 
   - intent: ask_protective_measures
     examples: |
       - How can I protect myself from malaria?
       - What precautions should I take for COVID-19?
       - How to avoid getting infected by Lassa fever?
+      - What are protective measures for cholera?
+      - How do I stay safe from dengue fever?
+      - What precautions are recommended for typhoid?
+      - How to prevent the spread of tuberculosis?
+      - Tips for staying safe during a disease outbreak?
 
   - intent: ask_outbreak_alerts
     examples: |
       - Are there any disease outbreaks near me?
       - What outbreaks are currently reported?
       - Is there an alert for Lassa fever?
+      - Any current outbreaks in my area?
+      - What disease alerts are active now?
+      - Are there alerts for malaria in my location?
+      - What is the latest outbreak update?
+      - Any health warnings for today?
 
   - intent: thank_you
     examples: |
@@ -44,6 +58,9 @@ nlu:
       - Thanks a lot
       - I appreciate it
       - Thanks
+      - Thank you very much
+      - Cheers
+      - Many thanks
 
   - intent: goodbye
     examples: |
@@ -51,3 +68,6 @@ nlu:
       - See you later
       - Bye
       - Take care
+      - Have a nice day
+      - Bye bye
+      - Talk to you soon

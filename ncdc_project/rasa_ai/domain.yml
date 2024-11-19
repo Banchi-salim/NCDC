@@ -1,4 +1,4 @@
-version: "3.1"
+version: "3.0"
 
 entities:
   - disease
@@ -8,8 +8,7 @@ slots:
     type: text
     mappings:
       - type: from_text
-        conditions:
-          - active_loop: null
+
 intents:
   - greet
   - ask_disease_information
@@ -17,8 +16,6 @@ intents:
   - ask_outbreak_alerts
   - thank_you
   - goodbye
-
-
 
 responses:
   utter_greet:
@@ -43,7 +40,6 @@ actions:
   - action_disease_info
   - action_protective_measures
   - action_outbreak_alerts
-
 
 session_config:
   session_expiration_time: 60

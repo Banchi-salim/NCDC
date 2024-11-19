@@ -1,17 +1,17 @@
 version: "3.0"
 
 rules:
-  - rule: greet user
+  - rule: Greet the user
     steps:
       - intent: greet
       - action: utter_greet
 
-  - rule: thank user
+  - rule: Respond to user thanks
     steps:
       - intent: thank_you
       - action: utter_thanks
 
-  - rule: goodbye
+  - rule: Say goodbye
     steps:
       - intent: goodbye
       - action: utter_goodbye

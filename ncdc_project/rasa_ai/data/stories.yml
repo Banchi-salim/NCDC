@@ -1,8 +1,7 @@
 version: "3.0"
 
-
 stories:
-  - story: greet and ask disease info
+  - story: greet and ask disease information
     steps:
       - intent: greet
       - action: utter_greet
@@ -28,4 +27,3 @@ stories:
     steps:
       - intent: goodbye
       - action: utter_goodbye
-
