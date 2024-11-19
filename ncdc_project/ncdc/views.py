@@ -35,7 +35,7 @@ def chatbot_api(request):
 
                 if reply and isinstance(reply, list) and len(reply) > 0:
                     bot_reply = reply[0].get("text", "Sorry, I couldn't understand that.")
-                    return JsonResponse({"reply": reply}, status=200)
+                    return JsonResponse({"reply": bot_reply}, status=200)
                 else:
                     return JsonResponse({"reply": "Sorry, I couldn't understand that."}, status=200)
             else:
