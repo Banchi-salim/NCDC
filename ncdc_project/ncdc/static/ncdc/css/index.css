@@ -337,7 +337,9 @@
     .hero-subtitle {
         font-size: 1.1rem;
     }
-
+    .hero-image{
+        margin:5px;
+    }
     .partners-p-title,
     .partners-title {
         font-size: 1.8rem;
@@ -387,7 +389,9 @@
     .hero-image {
         max-width: 100%;
     }
-
+    .hero-image{
+        margin:5px;
+    }
     .hero-title {
         font-size: 2rem;
         margin-bottom: 0.8rem;
@@ -565,47 +569,5 @@
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
-/* Base styles for the hero image */
-.hero-image {
-    max-width: 40%;
-    animation: fadeInRight 1.5s ease;
-    text-align: center;
-}
 
-.hero-image img {
-    width: 100%;
-    height: auto; /* Maintain aspect ratio */
-    border-radius: 10px;
-}
 
-/* Adjustments for medium-sized devices */
-@media screen and (max-width: 992px) {
-    .hero-image {
-        margin: 5px;
-        max-width: 50%;
-    }
-}
-
-/* Adjustments for smaller devices */
-@media screen and (max-width: 768px) {
-    .hero-image {
-        max-width: 70%;
-        margin: 5px
-    }
-
-    .hero-image img {
-        border-radius: 8px; /* Slightly smaller border-radius for compact view */
-    }
-}
-
-/* Adjustments for very small devices */
-@media screen and (max-width: 480px) {
-    .hero-image {
-        max-width: 90%;
-        margin: 20px auto; /* Center the image for narrow screens */
-    }
-
-    .hero-image img {
-        border-radius: 5px; /* Minimal rounding for smaller images */
-    }
-}
