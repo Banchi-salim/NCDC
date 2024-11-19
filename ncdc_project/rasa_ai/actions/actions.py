@@ -40,9 +40,7 @@ class ActionOutbreakAlerts(Action):
     def name(self) -> Text:
         return "action_outbreak_alerts"
 
-    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: DomainDict) -> List[Dict[Text, Any]]:
-        # Example: Replace with real outbreak data or API integration
-        dispatcher.utter_message(
-            text="Currently, there are no active outbreaks reported in your area. Stay informed and practice safety measures."
-        )
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        # Example implementation
+        dispatcher.utter_message(text="Currently, there are no active outbreaks in your area.")
         return []
