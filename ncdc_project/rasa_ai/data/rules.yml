@@ -1,15 +1,17 @@
 version: "3.1"
 
 rules:
+  - rule: greet user
+    steps:
+      - intent: greet
+      - action: utter_greet
 
+  - rule: thank user
+    steps:
+      - intent: thank_you
+      - action: utter_thanks
 
-  - rule: Say goodbye anytime the user says goodbye
+  - rule: goodbye
     steps:
       - intent: goodbye
       - action: utter_goodbye
-
-  - rule: Say 'I am a bot' anytime the user challenges
-    steps:
-      - intent: bot_challenge
-      - action: utter_iamabot
->>>>>>> a66b8e049a4b58b69a1ff05cab90ca8efc2bf7dc

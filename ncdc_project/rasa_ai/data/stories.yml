@@ -1,20 +1,31 @@
 version: "3.1"
 
+
 stories:
-  - story: greet and ask about health
+  - story: greet and ask disease info
     steps:
       - intent: greet
       - action: utter_greet
-      - intent: ask_health_issue
-      - action: utter_ask_health_issue
-
-  - story: ask about disease prevention
-    steps:
-      - intent: ask_disease_prevention
-      - action: utter_ask_disease_prevention
-
-  - story: ask about disease information
-    steps:
       - intent: ask_disease_information
-      - action: utter_ask_disease_information
->>>>>>> a66b8e049a4b58b69a1ff05cab90ca8efc2bf7dc
+      - action: action_disease_info
+
+  - story: ask protective measures
+    steps:
+      - intent: ask_protective_measures
+      - action: action_protective_measures
+
+  - story: ask about outbreak alerts
+    steps:
+      - intent: ask_outbreak_alerts
+      - action: action_outbreak_alerts
+
+  - story: thank the bot
+    steps:
+      - intent: thank_you
+      - action: utter_thanks
+
+  - story: say goodbye
+    steps:
+      - intent: goodbye
+      - action: utter_goodbye
+

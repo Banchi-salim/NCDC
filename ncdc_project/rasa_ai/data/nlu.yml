@@ -16,55 +16,40 @@ nlu:
       - goodmorning
       - goodevening
       - good afternoon
+      - 
+      - 
 
-  - intent: goodbye
-    examples: |
-      - cu
-      - good by
-      - cee you later
-      - good night
-      - bye
-      - goodbye
-      - have a nice day
-      - see you around
-      - bye bye
-      - see you later
-
-  - intent: affirm
-    examples: |
-      - yes
-      - y
-      - indeed
-      - of course
-      - that sounds good
-      - correct
-
-  - intent: deny
-    examples: |
-      - no
-      - n
-      - never
-      - I don't think so
-      - don't like that
-      - no way
-      - not reallynlu:
-
-  - intent: ask_health_issue
-    examples: |
-      - I have a fever
-      - I'm coughing a lot
-
-  - intent: ask_disease_prevention
-    examples: |
-      - How can I prevent malaria?
-      - Tips for preventing diseases
 
   - intent: ask_disease_information
     examples: |
-      - Tell me about malaria
-      - What are the symptoms of diabetes?
-      - Can you give me information about tuberculosis?
-      - What is cholera?
-      - How does HIV affect the body?
-      - I need details about asthma
->>>>>>> a66b8e049a4b58b69a1ff05cab90ca8efc2bf7dc
+      - What are the symptoms of malaria?
+      - Tell me about Lassa fever.
+      - How does COVID-19 spread?
+      - What is the treatment for cholera?
+      - How can I prevent typhoid?
+
+  - intent: ask_protective_measures
+    examples: |
+      - How can I protect myself from malaria?
+      - What precautions should I take for COVID-19?
+      - How to avoid getting infected by Lassa fever?
+
+  - intent: ask_outbreak_alerts
+    examples: |
+      - Are there any disease outbreaks near me?
+      - What outbreaks are currently reported?
+      - Is there an alert for Lassa fever?
+
+  - intent: thank_you
+    examples: |
+      - Thank you
+      - Thanks a lot
+      - I appreciate it
+      - Thanks
+
+  - intent: goodbye
+    examples: |
+      - Goodbye
+      - See you later
+      - Bye
+      - Take care
