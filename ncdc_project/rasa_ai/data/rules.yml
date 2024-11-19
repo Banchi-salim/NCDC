@@ -1,17 +1,36 @@
 version: "3.0"
 
 rules:
-  - rule: Greet the user
+  - rule: Greet user
     steps:
       - intent: greet
       - action: utter_greet
-
-  - rule: Respond to user thanks
-    steps:
-      - intent: thank_you
-      - action: utter_thanks
 
   - rule: Say goodbye
     steps:
       - intent: goodbye
       - action: utter_goodbye
+
+  - rule: Thank the bot
+    steps:
+      - intent: thank_you
+      - action: utter_thanks
+
+  - rule: Provide disease information
+    steps:
+      - intent: ask_disease_information
+      - slot_was_set:
+          - disease: null
+      - action: action_disease_info
+
+  - rule: Provide protective measures
+    steps:
+      - intent: ask_protective_measures
+      - slot_was_set:
+          - disease: null
+      - action: action_protective_measures
+
+  - rule: Provide outbreak alerts
+    steps:
+      - intent: ask_outbreak_alerts
+      - action: action_outbreak_alerts
