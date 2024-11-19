@@ -1,5 +1,15 @@
 version: "3.1"
 
+entities:
+  - disease
+
+slots:
+  disease:
+    type: text
+    mappings:
+      - type: from_text
+        conditions:
+          - active_loop: null
 intents:
   - greet
   - ask_disease_information
@@ -8,12 +18,7 @@ intents:
   - thank_you
   - goodbye
 
-entities:
-  - disease
 
-slots:
-  disease:
-    type: text
 
 responses:
   utter_greet:
