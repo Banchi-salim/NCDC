@@ -1,6 +1,12 @@
 version: "3.0"
 
 nlu:
+  - regex: disease_name
+    examples: |
+      - [a-zA-Z]+ fever
+      - malaria
+      - typhoid
+
   - intent: greet
     examples: |
       - hey
