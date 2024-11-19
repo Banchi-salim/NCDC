@@ -19,10 +19,10 @@ nlu:
 
   - intent: ask_disease_information
     examples: |
-      - What are the symptoms of malaria?
-      - Tell me about Lassa fever.
-      - How does COVID-19 spread?
-      - What is the treatment for cholera?
+      - What are the symptoms of [disease]?
+      - Tell me about [disease].
+      - How does [COVID-19] spread?
+      - What is the treatment for [disease]?
       - How can I prevent typhoid?
       - What causes dengue fever?
       - Symptoms of measles?
