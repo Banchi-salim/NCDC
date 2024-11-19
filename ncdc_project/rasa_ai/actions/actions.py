@@ -12,7 +12,7 @@ class ActionDiseaseInfo(Action):
         if disease:
             # Replace with actual disease data or API integration
             dispatcher.utter_message(
-                text=f"The symptoms of {covid-19} include fever, headache, and fatigue. For detailed information, please consult your healthcare provider."
+                text=f"The symptoms of {disease} include fever, headache, and fatigue. For detailed information, please consult your healthcare provider."
             )
         else:
             dispatcher.utter_message(
