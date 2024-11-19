@@ -230,8 +230,8 @@ function getCsrfToken() {
     return csrfToken;
 }
 
-    // function for alert
-    document.addEventListener("DOMContentLoaded", () => {
+// Function to handle location alerts
+document.addEventListener("DOMContentLoaded", () => {
     if (navigator.geolocation) {
         // Check if the location permission is already granted
         navigator.permissions.query({ name: "geolocation" }).then((result) => {
@@ -240,6 +240,8 @@ function getCsrfToken() {
             } else if (result.state === "prompt") {
                 // Ask for permission if not granted
                 requestLocationPermission();
+            } else {
+                alert("Location access is required for personalized alerts.");
             }
         });
     } else {
@@ -259,14 +261,17 @@ function requestLocationPermission() {
 }
 
 function trackUserLocation() {
-    navigator.geolocation.getCurrentPosition(
-        (position) => {
-            sendLocationToServer(position.coords.latitude, position.coords.longitude);
-        },
-        (error) => {
-            console.error("Error retrieving location:", error);
-        }
-    );
+    // Keep tracking the user's location every 5 minutes
+    setInterval(() => {
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                sendLocationToServer(position.coords.latitude, position.coords.longitude);
+            },
+            (error) => {
+                console.error("Error retrieving location:", error);
+            }
+        );
+    }, 300000); // 300000 ms = 5 minutes
 }
 
 function sendLocationToServer(lat, lng) {
@@ -274,14 +279,16 @@ function sendLocationToServer(lat, lng) {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
-            "X-CSRFToken": document.querySelector("[name=csrfmiddlewaretoken]").value,
+            "X-CSRFToken": getCsrfToken(),
         },
         body: JSON.stringify({ latitude: lat, longitude: lng }),
     })
         .then((response) => response.json())
         .then((data) => {
             if (data.alert) {
-                alert(data.alert); // Display the alert to the user
+                alert(data.alert); // Display the outbreak alert
+            } else {
+                alert("There are no current disease outbreaks in your area."); // Alert if no outbreaks
             }
         })
         .catch((error) => console.error("Error sending location:", error));

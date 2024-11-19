@@ -34,7 +34,7 @@ def chatbot_api(request):
                 print("Rasa Response:", reply)
 
                 if reply and isinstance(reply, list) and len(reply) > 0:
-                    bot_reply = reply[0].get("text", "")#Sorry, I couldn't understand that.
+                    bot_reply = reply[0].get("text", "Sorry, I couldn't understand that.")
                     return JsonResponse({"reply": bot_reply}, status=200)
                 else:
                     return JsonResponse({"reply": "Sorry, I couldn't understand that."}, status=200)
