@@ -581,7 +581,7 @@
 /* Adjustments for medium-sized devices */
 @media screen and (max-width: 992px) {
     .hero-image {
-        margin: 10px;
+        margin: 5px;
         max-width: 50%;
     }
 }
@@ -590,7 +590,7 @@
 @media screen and (max-width: 768px) {
     .hero-image {
         max-width: 70%;
-        margin: 20px auto; /* Center the image */
+        margin: 5px
     }
 
     .hero-image img {
