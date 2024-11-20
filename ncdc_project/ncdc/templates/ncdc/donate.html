@@ -14,15 +14,22 @@
         <p>Your contribution makes a difference.</p>
 
         <form id="donation-form">
-            <label for="name">Full Name</label>
-            <input type="text" id="name" name="name" placeholder="Your Name" required>
+            <select id="donor-type" name="donor_type" required>
+                <option value="" disabled selected>Select Donor Type</option>
+                <option value="individual">Individual</option>
+                <option value="organization">Organization</option>
+            </select>
+            <input type="text" id="name" name="name" placeholder="Your Name" required/>
+            <input type="email" id="email" name="email" placeholder="Your Email" required/>
+            <select id="currency" name="currency" required>
+                <option value="" disabled selected>Select Currency</option>
+                <option value="USD">USD</option>
+                <option value="NGN">NGN</option>
+                <option value="EUR">EUR</option>
+                <option value="GBP">GBP</option>
+            </select>
 
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" placeholder="Your Email" required>
-
-            <label for="amount">Donation Amount</label>
-            <input type="number" id="amount" name="amount" placeholder="Enter Amount (NGN)" required>
-
+            <input type="number" id="amount" name="amount" placeholder="Donation Amount" required/>
             <button type="button" id="donate-button">Donate</button>
         </form>
     </div>
