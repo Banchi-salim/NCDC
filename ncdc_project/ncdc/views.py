@@ -102,3 +102,32 @@ def update_location(request):
         return JsonResponse({"alert": None})
 
     return JsonResponse({"error": "Invalid request method."}, status=400)
+
+
+def process_donation(request):
+    if request.method == "POST":
+        try:
+            data = json.loads(request.body)
+            transaction_id = data.get("transaction_id")
+            name = data.get("name")
+            email = data.get("email")
+            amount = data.get("amount")
+
+            if not (transaction_id and name and email and amount):
+                return JsonResponse({"error": "Missing required fields"}, status=400)
+
+            # Save the donation details
+            donation = Donation.objects.create(
+                name=name,
+                email=email,
+                amount=amount,
+                transaction_id=transaction_id,
+                status="Success",
+            )
+            return JsonResponse({"message": "Donation processed successfully."})
+        except Exception as e:
+            return JsonResponse({"error": str(e)}, status=500)
+    return JsonResponse({"error": "Invalid request method"}, status=405)
+
+def donate_page(request):
+    return render(request, "ncdc/donate.html")
