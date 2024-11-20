@@ -388,9 +388,7 @@
     .hero-content,
     .hero-image {
         max-width: 100%;
-    }
-    .hero-image{
-        margin:5px;
+        margin: 10px;
     }
     .hero-title {
         font-size: 2rem;
