@@ -8,6 +8,7 @@
 {%endblock%}
 
 {% block content %}
+<section class="donate-section">
     <div class="donate-container">
         <h1>Support Our Cause</h1>
         <p>Your contribution makes a difference.</p>
@@ -25,50 +26,51 @@
             <button type="button" id="donate-button">Donate</button>
         </form>
     </div>
+</section>
 
-    <script>
-        document.getElementById('donate-button').addEventListener('click', function (e) {
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const amount = document.getElementById('amount').value;
+<script>
+    document.getElementById('donate-button').addEventListener('click', function (e) {
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const amount = document.getElementById('amount').value;
 
-            if (!name || !email || !amount) {
-                alert('Please fill out all fields.');
-                return;
-            }
+        if (!name || !email || !amount) {
+            alert('Please fill out all fields.');
+            return;
+        }
 
-            FlutterwaveCheckout({
-                public_key: 'FLWPUBK_TEST-xxxxxxxxxxxxxxxxxxxxx-X', // Replace with your Flutterwave public key
-                tx_ref: 'donation_' + Math.floor(Math.random() * 1000000000 + 1),
-                amount: amount,
-                currency: 'NGN',
-                payment_options: 'card, mobilemoney, ussd',
-                customer: {
-                    email: email,
-                    name: name,
-                },
-                callback: function (data) {
-                    console.log(data);
-                    alert('Donation successful. Thank you!');
-                    // Redirect to thank-you page or store payment data via a server call
-                    fetch('/process-donation/', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'X-CSRFToken': '{{ csrf_token }}'
-                        },
-                        body: JSON.stringify({
-                            transaction_id: data.transaction_id,
-                            amount: amount,
-                            email: email,
-                            name: name
-                        })
-                    }).then(res => res.json()).then(data => console.log(data));
-                },
-                onclose: function () {
-                    alert('Transaction was not completed. Please try again.');
-                },
-            });
+        FlutterwaveCheckout({
+            public_key: 'FLWPUBK_TEST-xxxxxxxxxxxxxxxxxxxxx-X', // Replace with your Flutterwave public key
+            tx_ref: 'donation_' + Math.floor(Math.random() * 1000000000 + 1),
+            amount: amount,
+            currency: 'NGN',
+            payment_options: 'card, mobilemoney, ussd',
+            customer: {
+                email: email,
+                name: name,
+            },
+            callback: function (data) {
+                console.log(data);
+                alert('Donation successful. Thank you!');
+                // Redirect to thank-you page or store payment data via a server call
+                fetch('/process-donation/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': '{{ csrf_token }}'
+                    },
+                    body: JSON.stringify({
+                        transaction_id: data.transaction_id,
+                        amount: amount,
+                        email: email,
+                        name: name
+                    })
+                }).then(res => res.json()).then(data => console.log(data));
+            },
+            onclose: function () {
+                alert('Transaction was not completed. Please try again.');
+            },
         });
-    </script>
+    });
+</script>
 {% endblock%}
