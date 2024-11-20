@@ -233,13 +233,18 @@ function getCsrfToken() {
 // Function to handle location alerts
 document.addEventListener("DOMContentLoaded", () => {
     if (navigator.geolocation) {
-        // Check if the location permission is already granted
+        // Check if the location permission is already granted or prompt
         navigator.permissions.query({ name: "geolocation" }).then((result) => {
-            if (result.state === "granted") {
-                trackUserLocation(); // Automatically track if permission is granted
-            } else if (result.state === "prompt") {
-                // Ask for permission if not granted
-                requestLocationPermission();
+            if (result.state === "granted" || result.state === "prompt") {
+                // Retrieve location on page load
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        sendLocationToServer(position.coords.latitude, position.coords.longitude);
+                    },
+                    (error) => {
+                        alert("Unable to access location. Location access is required for personalized alerts.");
+                    }
+                );
             } else {
                 alert("Location access is required for personalized alerts.");
             }
@@ -248,31 +253,6 @@ document.addEventListener("DOMContentLoaded", () => {
         alert("Geolocation is not supported by your browser.");
     }
 });
-
-function requestLocationPermission() {
-    navigator.geolocation.getCurrentPosition(
-        (position) => {
-            sendLocationToServer(position.coords.latitude, position.coords.longitude);
-        },
-        (error) => {
-            alert("Location access is required for personalized alerts.");
-        }
-    );
-}
-
-function trackUserLocation() {
-    // Keep tracking the user's location every 5 minutes
-    setInterval(() => {
-        navigator.geolocation.getCurrentPosition(
-            (position) => {
-                sendLocationToServer(position.coords.latitude, position.coords.longitude);
-            },
-            (error) => {
-                console.error("Error retrieving location:", error);
-            }
-        );
-    }, 300000); // 300000 ms = 5 minutes
-}
 
 function sendLocationToServer(lat, lng) {
     fetch("/update-location/", {
@@ -292,6 +272,15 @@ function sendLocationToServer(lat, lng) {
             }
         })
         .catch((error) => console.error("Error sending location:", error));
+}
+
+// Utility function to retrieve CSRF token
+function getCsrfToken() {
+    const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+    if (!csrfToken) {
+        console.error("CSRF token not found. Ensure your HTML includes a CSRF token.");
+    }
+    return csrfToken;
 }
 
 </script>
