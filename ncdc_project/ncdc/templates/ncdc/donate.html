@@ -44,18 +44,38 @@
     const amount = parseFloat(document.getElementById("amount").value);
 
     // Validation
-    if (!donorType || !currency || !name || !email || isNaN(amount) || amount <= 0) {
-        alert("Please fill out all fields correctly.");
+    if (!donorType) {
+        alert("Please select whether you are an individual or an organization.");
+        return;
+    }
+    if (!currency) {
+        alert("Please select the currency for your donation.");
+        return;
+    }
+    if (!name) {
+        alert("Please enter your name.");
+        return;
+    }
+    if (!email || !/\S+@\S+\.\S+/.test(email)) {
+        alert("Please enter a valid email address.");
+        return;
+    }
+    if (isNaN(amount) || amount <= 0) {
+        alert("Please enter a valid donation amount.");
         return;
     }
 
-    // Flutterwave payment
+    // Display a loader or feedback
+    const loader = document.getElementById("loader");
+    if (loader) loader.style.display = "block";
+
+    // Initialize Flutterwave payment
     FlutterwaveCheckout({
         public_key: "FLWPUBK_TEST-de625cfb4e3a22955286c155e1593f93-X", // Replace with your public key
         tx_ref: `donation_${Date.now()}`,
         amount: amount,
         currency: currency,
-        payment_options: "card, mobilemoney, ussd",
+        payment_options: "card, mobilemoneyghana, ussd", // Adjust based on your needs
         customer: {
             email: email,
             name: name,
@@ -63,19 +83,50 @@
         customizations: {
             title: "Donation",
             description: `Donation as a ${donorType}`,
-            logo: "YOUR_LOGO_URL", // Replace with your logo URL
+            logo: "https://via.placeholder.com/100", // Replace with your actual logo URL
         },
         callback: function (data) {
+            // Hide loader
+            if (loader) loader.style.display = "none";
+
             // Payment successful
-            alert("Thank you for your donation!");
-            console.log("Payment data:", data);
+            if (data.status === "successful") {
+                alert("Thank you for your donation!");
+                console.log("Payment successful:", data);
+                // Optionally, send the payment confirmation to your server
+                sendPaymentDataToServer(data);
+            } else {
+                alert("Payment was not successful. Please try again.");
+                console.error("Payment failed:", data);
+            }
         },
         onclose: function () {
+            // Hide loader
+            if (loader) loader.style.display = "none";
+
             // Handle payment closed without completion
             alert("Payment process was not completed.");
         },
     });
 });
+
+function sendPaymentDataToServer(paymentData) {
+    fetch("/save-donation/", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "X-CSRFToken": document.querySelector('[name=csrfmiddlewaretoken]').value,
+        },
+        body: JSON.stringify(paymentData),
+    })
+        .then((response) => response.json())
+        .then((data) => {
+            console.log("Server response:", data);
+        })
+        .catch((error) => {
+            console.error("Error saving payment data:", error);
+        });
+}
 
 </script>
 {% endblock%}
