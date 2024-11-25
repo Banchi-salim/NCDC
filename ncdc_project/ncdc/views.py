@@ -131,3 +131,24 @@ def process_donation(request):
 
 def donate_page(request):
     return render(request, "ncdc/donate.html")
+
+
+def weekly_reports(request):
+    # Fetch all reports from the database
+    reports = Weekly_Epidemiological_Report.objects.prefetch_related('diseases').order_by('-year', '-month', '-week')
+
+    # Generate filter options dynamically
+    years = sorted(set(report.year for report in reports))
+    months = [
+        "January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+    ]
+    weeks = ["1", "2", "3", "4"]
+
+    context = {
+        "reports": reports,
+        "years": years,
+        "months": months,
+        "weeks": weeks,
+    }
+    return render(request, "ncdc/Weekly_Epidemiological_Report.html", context)

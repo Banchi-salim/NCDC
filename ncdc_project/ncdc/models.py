@@ -56,3 +56,23 @@ class Donation(models.Model):
 
     def __str__(self):
         return f"Donation from {self.name} - {self.amount} NGN"
+
+
+class Disease(models.Model):
+    name = models.CharField(max_length=100)
+    points = models.TextField(help_text="Key points about the disease")
+    image = models.ImageField(upload_to='disease_images/', null=True, blank=True)
+
+    def __str__(self):
+        return self.name
+
+class Weekly_Epidemiological_Report(models.Model):
+    year = models.PositiveIntegerField()
+    month = models.CharField(max_length=20)
+    week = models.PositiveIntegerField()
+    summary = models.TextField()
+    diseases = models.ManyToManyField(Disease, related_name='reports')
+
+    def __str__(self):
+        return f"Week {self.week} of {self.month}, {self.year}"
+

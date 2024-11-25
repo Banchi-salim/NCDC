@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-j3c==(+bsnhrbl+s^bq&bebmd6pflv(b#c3ouffj&!0$_5^q6n
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['82.180.154.35', 'eminencegsl.com', 'www.eminencegsl.com']
+ALLOWED_HOSTS = ['82.180.154.35', 'eminencegsl.com', 'www.eminencegsl.com', '127.0.0.1']
 
 
 # Application definition
