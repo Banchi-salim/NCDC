@@ -13,7 +13,7 @@ class Blog(models.Model):
         return self.title
 
     class Meta:
-        ordering = ['-created_at']  # Order by most recent
+        ordering = ['-created_at']
 
 
 class Department(models.Model):
@@ -58,7 +58,7 @@ class Donation(models.Model):
         return f"Donation from {self.name} - {self.amount} NGN"
 
 
-class Disease(models.Model):
+class Report_disease_weekly(models.Model):
     name = models.CharField(max_length=100)
     points = models.TextField(help_text="Key points about the disease")
     image = models.ImageField(upload_to='disease_images/', null=True, blank=True)
@@ -71,7 +71,7 @@ class Weekly_Epidemiological_Report(models.Model):
     month = models.CharField(max_length=20)
     week = models.PositiveIntegerField()
     summary = models.TextField()
-    diseases = models.ManyToManyField(Disease, related_name='reports')
+    diseases = models.ManyToManyField(Report_disease_weekly, related_name='reports')
 
     def __str__(self):
         return f"Week {self.week} of {self.month}, {self.year}"
