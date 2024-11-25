@@ -92,8 +92,8 @@ def update_location(request):
 
         # Logic to check if there's an outbreak near the user's location
         nearby_alert = DiseaseAlert.objects.filter(
-            latitude__range=(latitude - 0.05, latitude + 0.5),
-            longitude__range=(longitude - 0.05, longitude + 0.5)
+            latitude__range=(latitude - 0.5, latitude + 0.5),
+            longitude__range=(longitude - 0.5, longitude + 0.5)
         ).first()
 
         if nearby_alert:
