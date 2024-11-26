@@ -12,7 +12,7 @@
         {% for report in reports %}
         <div class="report-card">
             <div class="report-cover">
-                <img src="{% static 'ncdc/images/report-placeholder.png' %}" alt="Report Cover">
+                <img src="{% static 'ncdc/images/cover.jpg' %}" alt="Report Cover">
             </div>
             <div class="report-title"><a href="{% url 'report_details' report.id %}">{{ report.title }}</a></div>
         </div>
