@@ -1,0 +1,22 @@
+{% extends "ncdc/base.html" %}
+{% load static %}
+{% block title %}Situation Report - NCDC{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" url="{static 'ncdc/css/situation_report.css'}">{% endblock %}
+
+{% block content %}
+<section class="hero-section" style="background-image:url({% static 'ncdc/images/department_hero.png' %})">
+    <div class="reports-grid">
+        {% for report in reports %}
+        <div class="report-card">
+            <div class="report-cover">
+                <img src="{% static 'ncdc/images/report-placeholder.png' %}" alt="Report Cover">
+            </div>
+            <div class="report-title"><a href="{% url 'report_details' report.id %}">{{ report.title }}</a></div>
+        </div>
+        {% empty %}
+        <p>No reports available at the moment.</p>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

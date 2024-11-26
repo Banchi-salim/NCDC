@@ -13,4 +13,6 @@ urlpatterns = [
     path('donate/', views.donate_page, name='donate_page'),
     path('process-donation/', views.process_donation, name='process_donation'),
     path('weekly-epidemiological-reports/', views.weekly_reports, name='weekly_reports'),
+    path('Situation-reports/', views.situation_report_list, name='situation_report_list'),
+    path('situation-report/<int:report_id>/', views.situation_report_details, name='situation_report_details'),
 ]

@@ -76,3 +76,18 @@ class Weekly_Epidemiological_Report(models.Model):
     def __str__(self):
         return f"Week {self.week} of {self.month}, {self.year}"
 
+
+
+class Situation_Report(models.Model):
+    title = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.title
+
+class SituationReportFile(models.Model):
+    situation_report = models.ForeignKey(Situation_Report, on_delete=models.CASCADE, related_name="reports")
+    pdf_file = models.FileField(upload_to="reports/")
+    date_uploaded = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.situation_report.title} - {self.pdf_file.name}"

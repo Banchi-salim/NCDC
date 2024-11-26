@@ -1,0 +1,34 @@
+.report-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+.report-table th,
+.report-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.report-table th {
+    background-color: #004d40;
+    color: white;
+}
+
+.report-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.report-table tr:hover {
+    background-color: #ddd;
+}
+
+.report-table a {
+    text-decoration: none;
+    color: #004d40;
+}
+
+.report-table a:hover {
+    text-decoration: underline;
+}

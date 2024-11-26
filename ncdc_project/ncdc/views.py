@@ -2,7 +2,7 @@ import json
 
 import requests
 from django.http import JsonResponse
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
 
 from .models import *
@@ -152,3 +152,21 @@ def weekly_reports(request):
         "weeks": weeks,
     }
     return render(request, "ncdc/Weekly_Epidemiological_Report.html", context)
+
+
+def situation_report_list(request):
+    reports = Situation_Report.objects.all()
+    print(reports)# Display reports in descending order of date
+    return render(request, 'ncdc/situation_report.html', {'reports': reports})
+
+
+def situation_report_details(request, report_id):
+    situation_report = get_object_or_404(Situation_Report, id=report_id)
+    reports = situation_report.reports.all()  # Get all linked reports
+    return render(
+        request,
+        "ncdc/situation_report_details.html",
+        {"situation_report": situation_report, "reports": reports},
+    )
+
+

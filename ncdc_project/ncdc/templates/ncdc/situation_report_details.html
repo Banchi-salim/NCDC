@@ -1,0 +1,34 @@
+{% extends 'ncdc/base.html' %}
+{% load static %}
+{% block title %}Situation Report files- NCDC{% endblock %}
+{% block extra_css %}<link rel="stylesheet" href="{% static 'ncdc/css/srd.css' %}">{% endblock %}
+
+{% block content %}
+<section>
+    <h1>{{ situation_report.title }}</h1>
+    <table class="report-table">
+        <thead>
+            <tr>
+                <th>S/N</th>
+                <th>PDF File</th>
+                <th>Date Uploaded</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for report in reports %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>
+                    <a href="{{ report.pdf_file.url }}" target="_blank" rel="noopener noreferrer">{{ report.pdf_file.name }}</a>
+                </td>
+                <td>{{ report.date_uploaded|date:"F j, Y" }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="3">No reports available for this situation.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+{% endblock %}
