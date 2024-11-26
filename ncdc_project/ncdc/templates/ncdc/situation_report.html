@@ -14,7 +14,7 @@
             <div class="report-cover">
                 <img src="{% static 'ncdc/images/cover.jpg' %}" alt="Report Cover">
             </div>
-            <div class="report-title"><a href="{% url 'report_details' report.id %}">{{ report.title }}</a></div>
+            <div class="report-title"><a href="{% url 'situation_report_details' report.id %}">{{ report.title }}</a></div>
         </div>
         {% empty %}
         <p>No reports available at the moment.</p>
