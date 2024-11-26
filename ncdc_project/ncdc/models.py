@@ -66,6 +66,7 @@ class Report_disease_weekly(models.Model):
     def __str__(self):
         return self.name
 
+
 class Weekly_Epidemiological_Report(models.Model):
     year = models.PositiveIntegerField()
     month = models.CharField(max_length=20)
@@ -77,12 +78,12 @@ class Weekly_Epidemiological_Report(models.Model):
         return f"Week {self.week} of {self.month}, {self.year}"
 
 
-
 class Situation_Report(models.Model):
     title = models.CharField(max_length=200)
 
     def __str__(self):
         return self.title
+
 
 class SituationReportFile(models.Model):
     situation_report = models.ForeignKey(Situation_Report, on_delete=models.CASCADE, related_name="reports")
@@ -91,3 +92,11 @@ class SituationReportFile(models.Model):
 
     def __str__(self):
         return f"{self.situation_report.title} - {self.pdf_file.name}"
+
+
+class ProjectReport(models.Model):
+    file_name = models.CharField(max_length=255)
+    pdf_file = models.FileField(upload_to='project_reports/')
+
+    def __str__(self):
+        return self.file_name

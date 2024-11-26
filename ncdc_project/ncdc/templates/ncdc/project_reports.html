@@ -1,0 +1,26 @@
+{% extends 'ncdc/base.html'%}
+{% load static %}
+{% block title %}Project Reports - NCDC{% endblock %}
+{% block extra_css %}<link rel="stylesheet" href="{% static 'ncdc/css/project_report.css' %}">{% endblock %}
+
+{% block content %}
+<section class="hero-section">
+  <h1>Project Reports</h1>
+</section>
+<section>
+  <div class="reports-container">
+    <h1>Project Reports</h1>
+    <div class="reports-grid">
+      {% for report in reports %}
+      <div class="report-card">
+        <div class="report-content">
+          <h3>{{ report.file_name }}</h3>
+          <a href="{{ report.pdf_file.url }}" target="_blank" class="view-button">View PDF</a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% endblock %}

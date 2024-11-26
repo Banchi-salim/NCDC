@@ -170,3 +170,7 @@ def situation_report_details(request, report_id):
     )
 
 
+def project_reports(request):
+    reports = ProjectReport.objects.all()
+    return render(request, 'ncdc/project_reports.html', {'reports': reports})
+

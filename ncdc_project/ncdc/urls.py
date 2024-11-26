@@ -15,4 +15,5 @@ urlpatterns = [
     path('weekly-epidemiological-reports/', views.weekly_reports, name='weekly_reports'),
     path('Situation-reports/', views.situation_report_list, name='situation_report_list'),
     path('situation-report/<int:report_id>/', views.situation_report_details, name='situation_report_details'),
+    path('project-reports/', views.project_reports, name='project_reports'),
 ]
