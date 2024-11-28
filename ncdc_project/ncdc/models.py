@@ -144,3 +144,12 @@ class ResearchWork(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class StateIncidentActionPlan(models.Model):
+    title = models.CharField(max_length=255)
+    pdf_file = models.FileField(upload_to='incident_action_plans/')
+    upload_date = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return self.title

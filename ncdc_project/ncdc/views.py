@@ -192,6 +192,7 @@ def guideline_files(request, pk):
     files = [{'name': f.file_name, 'url': f.pdf_file.url} for f in guideline.files.all()]
     return JsonResponse({'files': files})
 
+
 def establishment_documents_list(request):
     documents = EstablishmentDocument.objects.all()
     return render(request, 'ncdc/establishment.html', {'documents': documents})
@@ -200,3 +201,8 @@ def establishment_documents_list(request):
 def research_list(request):
     research_works = ResearchWork.objects.all().order_by('-date')
     return render(request, 'ncdc/research_list.html', {'research_works': research_works})
+
+
+def state_incident_action_plans(request):
+    plans = StateIncidentActionPlan.objects.all().order_by('-upload_date')
+    return render(request, 'ncdc/state_incident_action_plans.html', {'plans': plans})

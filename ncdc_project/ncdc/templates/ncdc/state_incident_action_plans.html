@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}States Incident Action Plans- NCDC{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'ncdc/css/siap.css' %}">{% endblock %}
+
+{% block content %}
+<section class="incident-action-plan">
+    <h1>States Incident Action Plans</h1>
+    <p class="intro">As part of the response to the COVID-19 pandemic, NCDC and World Bank through the REDISSE project, are supporting all states with 100 million naira to implement their Incident Action Plan (IAP). This page includes the IAP for every state in Nigeria</p>
+
+    <div class="plans-grid">
+        {% for plan in plans %}
+        <div class="plan-card">
+            <a href="{{ plan.pdf_file.url }}" target="_blank">
+                <div class="plan-cover">
+                    <img src="{% static 'ncdc/images/incident_action_plan_cover.png' %}" alt="PDF Cover">
+                </div>
+                <div class="plan-title">{{ plan.title }}</div>
+                <div class="plan-date">Uploaded on: {{ plan.upload_date|date:"F j, Y" }}</div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}
