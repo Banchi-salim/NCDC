@@ -195,3 +195,8 @@ def guideline_files(request, pk):
 def establishment_documents_list(request):
     documents = EstablishmentDocument.objects.all()
     return render(request, 'ncdc/establishment.html', {'documents': documents})
+
+
+def research_list(request):
+    research_works = ResearchWork.objects.all().order_by('-date')
+    return render(request, 'ncdc/research_list.html', {'research_works': research_works})

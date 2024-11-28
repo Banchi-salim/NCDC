@@ -1,0 +1,53 @@
+{% extends 'ncdc/base.html'%}
+{% load static %}
+{% block title %}Research - NCDC{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'ncdc/css/research.css' %}">{% endblock %}
+
+{% block content %}
+<section>
+    <h2>Research</h2>
+</section>
+<section class="research-section">
+    <h1>Research Works</h1>
+    <div class="research-grid">
+        {% for research in research_works %}
+        <div class="research-card">
+            <h2>{{ research.title }}</h2>
+            <p class="authors">Authors: {{ research.authors }}</p>
+            <div class="actions">
+                <button class="btn toggle-abstract" data-id="abstract-{{ research.id }}">Read Abstract</button>
+                <a href="{{ research.article_url }}" target="_blank" class="btn">Read Article</a>
+            </div>
+            <div id="abstract-{{ research.id }}" class="research-abstract hidden">
+                <p>{{ research.abstract }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+    const toggleButtons = document.querySelectorAll(".toggle-abstract");
+
+    toggleButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+            const abstractId = button.getAttribute("data-id");
+            const abstractDiv = document.getElementById(abstractId);
+
+            if (abstractDiv.classList.contains("hidden")) {
+                abstractDiv.classList.remove("hidden");
+                abstractDiv.style.display = "block"; // Ensure it's visible
+                button.textContent = "Close Abstract";
+            } else {
+                abstractDiv.classList.add("hidden");
+                abstractDiv.style.display = "none"; // Hide it
+                button.textContent = "Read Abstract";
+            }
+        });
+    });
+});
+
+</script>
+
+{% endblock %}

@@ -133,3 +133,14 @@ class EstablishmentDocument(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class ResearchWork(models.Model):
+    title = models.CharField(max_length=255)
+    authors = models.TextField()
+    abstract = models.TextField()
+    article_url = models.URLField()
+    date = models.DateField()
+
+    def __str__(self):
+        return self.title
