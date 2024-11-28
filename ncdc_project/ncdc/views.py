@@ -156,13 +156,13 @@ def weekly_reports(request):
 
 def situation_report_list(request):
     reports = Situation_Report.objects.all()
-    print(reports)# Display reports in descending order of date
+    print(reports)
     return render(request, 'ncdc/situation_report.html', {'reports': reports})
 
 
 def situation_report_details(request, report_id):
     situation_report = get_object_or_404(Situation_Report, id=report_id)
-    reports = situation_report.reports.all()  # Get all linked reports
+    reports = situation_report.reports.all()
     return render(
         request,
         "ncdc/situation_report_details.html",
@@ -174,3 +174,7 @@ def project_reports(request):
     reports = ProjectReport.objects.all()
     return render(request, 'ncdc/project_reports.html', {'reports': reports})
 
+
+def annual_reports(request):
+    reports = AnnualReport.objects.all().order_by('-uploaded_at')
+    return render(request, 'ncdc/annual_reports.html', {'reports': reports})

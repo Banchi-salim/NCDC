@@ -1,0 +1,26 @@
+{% extends 'ncdc/base.html'%}
+{% load static %}
+{% block title %}Annual Reports - NCDC{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'ncdc/css/annual_report.css' %}">{% endblock %}
+
+{% block content %}
+<section class="hero-section">
+    <h2>Annual Reports</h2>
+</section>
+<section class="reports-container">
+    <div class="reports-grid">
+        {% for report in reports %}
+        <div class="report-card">
+            <a href="{{ report.pdf.url }}" target="_blank">
+                <div class="report-cover">
+                    <img src="{% static 'ncdc/images/annual-report-cover.jpg' %}" alt="Annual Report">
+                </div>
+                <div class="report-title">{{ report.title }}</div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+{% endblock %}

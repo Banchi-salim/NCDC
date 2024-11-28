@@ -16,4 +16,5 @@ urlpatterns = [
     path('Situation-reports/', views.situation_report_list, name='situation_report_list'),
     path('situation-report/<int:report_id>/', views.situation_report_details, name='situation_report_details'),
     path('project-reports/', views.project_reports, name='project_reports'),
+    path('annual-reports/', views.annual_reports, name='annual_reports'),
 ]

@@ -100,3 +100,12 @@ class ProjectReport(models.Model):
 
     def __str__(self):
         return self.file_name
+
+
+class AnnualReport(models.Model):
+    title = models.CharField(max_length=255)
+    pdf = models.FileField(upload_to='annual_reports/')
+    uploaded_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.title
