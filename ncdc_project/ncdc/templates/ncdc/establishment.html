@@ -1,0 +1,23 @@
+{% extends 'ncdc/base.html'%}
+{% load static %}
+{% block title %}Establishment Documents - NCDC{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'ncdc/css/establishment.css' %}">{% endblock %}
+
+{% block content %}
+<section>
+    <h2>Establishment Documents</h2>
+</section>
+<div class="documents-grid">
+    {% for document in documents %}
+    <div class="document-card">
+        <a href="{{ document.pdf_file.url }}" target="_blank">
+            <div class="document-cover">
+                <img src="{% static 'ncdc/images/establishment-documents-cover.png' %}" alt="Document Cover">
+            </div>
+            <div class="document-title">{{ document.title }}</div>
+        </a>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -191,3 +191,7 @@ def guideline_files(request, pk):
     guideline = get_object_or_404(Guideline, pk=pk)
     files = [{'name': f.file_name, 'url': f.pdf_file.url} for f in guideline.files.all()]
     return JsonResponse({'files': files})
+
+def establishment_documents_list(request):
+    documents = EstablishmentDocument.objects.all()
+    return render(request, 'ncdc/establishment_documents.html', {'documents': documents})
