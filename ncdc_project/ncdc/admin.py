@@ -13,4 +13,10 @@ admin.site.register(Situation_Report)
 admin.site.register(SituationReportFile)
 admin.site.register(ProjectReport)
 admin.site.register(AnnualReport)
+admin.site.register(Guideline)
+admin.site.register(GuidelineFile)
+admin.site.register(EstablishmentDocument)
+admin.site.register(ResearchWork)
+admin.site.register(StateIncidentActionPlan)
+
 
