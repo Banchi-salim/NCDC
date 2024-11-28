@@ -177,4 +177,4 @@ def project_reports(request):
 
 def annual_reports(request):
     reports = AnnualReport.objects.all().order_by('-uploaded_at')
-    return render(request, 'ncdc/annual_reports.html', {'reports': reports})
+    return render(request, 'ncdc/annual_report.html', {'reports': reports})
