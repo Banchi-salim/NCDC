@@ -20,4 +20,5 @@ urlpatterns = [
     path('guidelines/', views.guidelines_list, name='guidelines_list'),
     path('guidelines/<int:pk>/files/', views.guideline_files, name='guideline_files'),
     path('establishment-documents/', views.establishment_documents_list, name='establishment_documents_list'),
+    path('research/', views.research_list, name='research_list'),
 ]
