@@ -11,3 +11,6 @@ admin.site.register(Report_disease_weekly)
 admin.site.register(Weekly_Epidemiological_Report)
 admin.site.register(Situation_Report)
 admin.site.register(SituationReportFile)
+admin.site.register(ProjectReport)
+admin.site.register(AnnualReport)
+
