@@ -109,3 +109,19 @@ class AnnualReport(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Guideline(models.Model):
+    title = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.title
+
+
+class GuidelineFile(models.Model):
+    guideline = models.ForeignKey(Guideline, related_name='files', on_delete=models.CASCADE)
+    file_name = models.CharField(max_length=255)
+    pdf_file = models.FileField(upload_to='guidelines/')
+
+    def __str__(self):
+        return self.file_name

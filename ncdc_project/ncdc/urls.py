@@ -17,4 +17,6 @@ urlpatterns = [
     path('situation-report/<int:report_id>/', views.situation_report_details, name='situation_report_details'),
     path('project-reports/', views.project_reports, name='project_reports'),
     path('annual-reports/', views.annual_reports, name='annual_reports'),
+    path('guidelines/', views.guidelines_list, name='guidelines_list'),
+    path('guidelines/<int:pk>/files/', views.guideline_files, name='guideline_files'),
 ]

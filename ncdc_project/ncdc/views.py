@@ -7,6 +7,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 from .models import *
 
+
 @csrf_exempt
 def chatbot_api(request):
     if request.method == "POST":
@@ -129,6 +130,7 @@ def process_donation(request):
             return JsonResponse({"error": str(e)}, status=500)
     return JsonResponse({"error": "Invalid request method"}, status=405)
 
+
 def donate_page(request):
     return render(request, "ncdc/donate.html")
 
@@ -178,3 +180,14 @@ def project_reports(request):
 def annual_reports(request):
     reports = AnnualReport.objects.all().order_by('-uploaded_at')
     return render(request, 'ncdc/Annual_Report.html', {'reports': reports})
+
+
+def guidelines_list(request):
+    guidelines = Guideline.objects.all()
+    return render(request, 'ncdc/guidelines.html', {'guidelines': guidelines})
+
+
+def guideline_files(request, pk):
+    guideline = get_object_or_404(Guideline, pk=pk)
+    files = [{'name': f.file_name, 'url': f.pdf_file.url} for f in guideline.files.all()]
+    return JsonResponse({'files': files})
