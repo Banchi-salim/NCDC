@@ -194,4 +194,4 @@ def guideline_files(request, pk):
 
 def establishment_documents_list(request):
     documents = EstablishmentDocument.objects.all()
-    return render(request, 'ncdc/establishment_documents.html', {'documents': documents})
+    return render(request, 'ncdc/establishment.html', {'documents': documents})
