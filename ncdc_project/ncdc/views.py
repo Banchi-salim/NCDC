@@ -217,7 +217,7 @@ def disease_list(request):
     else:
         diseases = Disease.objects.filter(name__istartswith=filter_letter).order_by('name')
 
-    return render(request, 'diseases/disease_list.html', {
+    return render(request, 'ncdc/disease_list.html', {
         'diseases': diseases,
         'filter_letter': filter_letter,
     })
