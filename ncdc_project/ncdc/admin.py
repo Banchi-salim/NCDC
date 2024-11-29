@@ -18,5 +18,6 @@ admin.site.register(GuidelineFile)
 admin.site.register(EstablishmentDocument)
 admin.site.register(ResearchWork)
 admin.site.register(StateIncidentActionPlan)
+admin.site.register(Disease)
 
 

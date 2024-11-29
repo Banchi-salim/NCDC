@@ -22,4 +22,5 @@ urlpatterns = [
     path('establishment-documents/', views.establishment_documents_list, name='establishment_documents_list'),
     path('research/', views.research_list, name='research_list'),
     path('state-incident-action-plans/', views.state_incident_action_plans, name='state_incident_action_plans'),
+    path('diseases/', views.disease_list, name='disease_list'),
 ]

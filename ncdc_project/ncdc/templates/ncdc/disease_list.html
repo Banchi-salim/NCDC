@@ -1,0 +1,57 @@
+{% extends "ncdc/base.html" %}
+{% load static %}
+{% block title %}Diseases - NCDC{% endblock %}
+{% block extra_css %}<link rel="stylesheet" href="{% static 'ncdc/css/disease_list.css' %}" >{% endblock %}
+
+
+{% block content %}
+<section class="disease-section">
+    <h1>Disease Information</h1>
+
+    <!-- Filter Buttons -->
+    <div class="filter-buttons">
+        <button onclick="filterDiseases('All')" class="{% if filter_letter == 'All' %}active{% endif %}">All</button>
+        {% for letter in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' %}
+        <button onclick="filterDiseases('{{ letter }}')" class="{% if filter_letter == letter %}active{% endif %}">{{ letter }}</button>
+        {% endfor %}
+    </div>
+
+    <!-- Disease List -->
+    <div class="disease-list">
+        {% for disease in diseases %}
+        <div class="disease-item" onclick="showDiseaseModal({{ disease.id }})">
+            <h2>{{ disease.name }}</h2>
+        </div>
+
+        <!-- Modal for Disease -->
+        <div id="modal-{{ disease.id }}" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal({{ disease.id }})">&times;</span>
+                <h2>{{ disease.name }}</h2>
+                <p><strong>Background:</strong> {{ disease.background }}</p>
+                <p><strong>Transmission:</strong> {{ disease.transmission }}</p>
+                <p><strong>Symptoms:</strong> {{ disease.symptoms }}</p>
+                <p><strong>Diagnosis:</strong> {{ disease.diagnosis }}</p>
+                <p><strong>Treatments:</strong> {{ disease.treatments }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}
+
+<script>
+    function filterDiseases(letter) {
+        const url = new URL(window.location.href);
+        url.searchParams.set('filter', letter);
+        window.location.href = url.toString();
+    }
+
+    function showDiseaseModal(id) {
+        document.getElementById(`modal-${id}`).style.display = 'block';
+    }
+
+    function closeModal(id) {
+        document.getElementById(`modal-${id}`).style.display = 'none';
+    }
+</script>

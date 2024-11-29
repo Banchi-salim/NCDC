@@ -153,3 +153,15 @@ class StateIncidentActionPlan(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Disease(models.Model):
+    name = models.CharField(max_length=255)
+    background = models.TextField()
+    transmission = models.TextField()
+    symptoms = models.TextField()
+    diagnosis = models.TextField()
+    treatments = models.TextField()
+
+    def __str__(self):
+        return self.name

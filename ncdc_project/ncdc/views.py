@@ -206,3 +206,18 @@ def research_list(request):
 def state_incident_action_plans(request):
     plans = StateIncidentActionPlan.objects.all().order_by('-upload_date')
     return render(request, 'ncdc/state_incident_action_plans.html', {'plans': plans})
+
+
+def disease_list(request):
+    # Get the filter parameter (e.g., A, B, C, or 'All')
+    filter_letter = request.GET.get('filter', 'All')
+
+    if filter_letter == 'All':
+        diseases = Disease.objects.order_by('name')  # Fetch all diseases sorted by name
+    else:
+        diseases = Disease.objects.filter(name__istartswith=filter_letter).order_by('name')
+
+    return render(request, 'diseases/disease_list.html', {
+        'diseases': diseases,
+        'filter_letter': filter_letter,
+    })
