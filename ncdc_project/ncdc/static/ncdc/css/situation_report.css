@@ -1,6 +1,7 @@
 /* Grid styling */
 .hero-section {
     position: relative;
+    background-color : #004d40;
     background-size: cover;
     background-position: center;
     height: 300px;
@@ -8,6 +9,12 @@
     align-items: center;
     justify-content: center;
     animation: fadeIn 1.5s ease-in-out;
+}
+
+.hero-section h2{
+        color: #fff;
+        font-weight: bold;
+        font-size: 64px;
 }
 
 .reports-grid {
