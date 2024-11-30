@@ -192,3 +192,12 @@ class Project(models.Model):
 
     class Meta:
         ordering = ['-date_created']
+
+
+class SecurityRiskDocument(models.Model):
+    title = models.CharField(max_length=255)
+    pdf_file = models.FileField(upload_to='security_risk_documents/')
+    date_uploaded = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.title

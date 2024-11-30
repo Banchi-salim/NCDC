@@ -253,3 +253,8 @@ def ncdc_tour_view(request):
 def project_list(request):
     projects = Project.objects.all()
     return render(request, 'ncdc/projects.html', {'projects': projects})
+
+
+def security_risk_list(request):
+    documents = SecurityRiskDocument.objects.all().order_by('-date_uploaded')
+    return render(request, 'ncdc/security_risk_list.html', {'documents': documents})

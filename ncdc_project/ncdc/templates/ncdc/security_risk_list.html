@@ -1,0 +1,28 @@
+{% extends "ncdc/base.html" %}
+{% load static %}
+{% block title %}SMARF - NCDC{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'ncdc/css/security_risk.css'%}">{% endblock %}
+
+{% block content %}
+<section class="security-risk-section">
+    <h1 class="section-title">Security Risk Assessment and Management Framework</h1>
+    <p class="introduction">
+        As part of requirements for project effectiveness, the Nigeria CoPREP was required to develop and disclose a security risk 
+        assessment and management framework to guide the deployment of security operatives (Nigeria Police Force and Nigeria Civil Defence Corps) 
+        as part of the vaccination team during vaccine deployment across the 36 states and FCT. The safeguard team worked with Spearfish Security West 
+        Africa Limited to conduct the assessment and develop the framework which is available in the link below. The documents are to be disclosed to guide 
+        participating states to develop their site-specific security management plans and to sensitize other stakeholders.
+    </p>
+    <div class="document-grid">
+        {% for document in documents %}
+        <div class="document-card">
+            <a href="{{ document.pdf_file.url }}" target="_blank">
+                <img src="{% static 'ncdc/images/smarf.jpg' %}" alt="{{ document.title }}">
+                <p class="document-title">{{ document.title }}</p>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}
