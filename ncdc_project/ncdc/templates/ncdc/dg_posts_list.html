@@ -1,0 +1,24 @@
+{% extends "ncdc/base.html" %}
+{% block content %}
+<section class="posts-section">
+    <h1>{{ title }}</h1>
+    <div class="grid">
+        {% for post in posts %}
+        <div class="card" onclick="showPostModal('post-{{ post.id }}')">
+            <h3>{{ post.title }}</h3>
+            <p>{{ post.content|truncatechars:100 }}</p>
+            <small>Published on {{ post.date_published }}</small>
+        </div>
+        <!-- Post Modal -->
+        <div id="post-{{ post.id }}" class="modal">
+            <div class="modal-content">
+                <button class="close" onclick="closePostModal('post-{{ post.id }}')">&times;</button>
+                <h2>{{ post.title }}</h2>
+                <p>{{ post.content }}</p>
+                <small>Published on {{ post.date_published }}</small>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}
