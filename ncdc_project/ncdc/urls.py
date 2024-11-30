@@ -26,4 +26,5 @@ urlpatterns = [
     path('news/', views.news_home, name='news_home'),
     path('blogs/', views.blog_posts_list, name='blog_posts_list'),
     path("dg-blogs/", views.dg_posts_list, name='dg_posts_list'),
+    path('training/nfetp/', views.training_nfetp, name='nfetp'),
 ]

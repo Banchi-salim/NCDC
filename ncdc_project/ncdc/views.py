@@ -236,3 +236,7 @@ def blog_posts_list(request):
 def dg_posts_list(request):
     dg_posts = DGPost.objects.order_by('-created_at')
     return render(request, 'ncdc/dg_posts_list.html', {'posts': dg_posts, 'title': "DG's Blog Posts"})
+
+
+def training_nfetp(request):
+    return render(request, 'ncdc/nfetp.html')
