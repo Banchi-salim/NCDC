@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}NFETP - NCDC{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'ncdc/css/internship.css'%}">{% endblock %}
+
+
+{% block content %}
+<section class="hero-section">
+    <h2 class="section-title">The NCDC Post-Baccalaureate Internship Programme</h2>
+</section>
+<section class="internship-section">
+    <div class="container">
+
+        <p>
+            The Nigeria Centre for Disease Control (NCDC) post-baccalaureate internship programme provides short term opportunities for fresh graduates, postgraduate students and interested candidates in the medical and paramedical professions, to broaden their knowledge and build capacities in prevention, detection and control of diseases of public health importance. 
+        </p>
+        <p>
+            The programme offers to interns learning opportunities for hard, soft and professional skills, including improved capacity for report writing, proper meeting documentation, public presentations, disease surveillance, and more. Students in relevant research degree programmes within and outside Nigeria can also participate in short term research projects under direct field supervision at NCDC. The overall aim of the programme is to develop and strengthen public health workforce within and outside Nigeria in line with global best practices.
+        </p>
+
+        <h2>Programme Schedule:</h2>
+        <p>The internship programme admits two cohorts annually:</p>
+        <ul>
+            <li>1st Cohort (May - July)</li>
+            <li>2nd Cohort (September - November)</li>
+        </ul>
+
+        <h2>Programme Duration</h2>
+        <ul>
+            <li>3 months</li>
+        </ul>
+
+        <h2>Selection Criteria:</h2>
+        <p>
+            Applicants must be graduates who have completed the NYSC. Applicants in the following categories are preferable:
+        </p>
+        <ul>
+            <li>Medical and paramedical graduates</li>
+            <li>Public health graduates</li>
+            <li>Biological sciences graduates</li>
+        </ul>
+    </div>
+</section>
+{% endblock %}

@@ -240,3 +240,7 @@ def dg_posts_list(request):
 
 def training_nfetp(request):
     return render(request, 'ncdc/nfetp.html')
+
+
+def internship_view(request):
+    return render(request, 'ncdc/internship.html')
