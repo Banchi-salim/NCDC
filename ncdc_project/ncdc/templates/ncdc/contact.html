@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}CONTACT - NCDC{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'ncdc/css/contact.css'%}">{% endblock %}
+
+
+{% block content %}
+<section class="hero-section">
+    <h2>Contact</h2>
+</section>
+<div class="contact-container">
+    <div class="map-section">
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3914.3886450945187!2d7.4667!3d9.0578!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x104e0956c678aa4b%3A0x5b123456789abcd!2sNCDC%20Headquarters!5e0!3m2!1sen!2sng!4v1698674608892!5m2!1sen!2sng"
+            width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+
+    <div class="contact-info">
+        <div class="info-card">
+            <h3>Administrative Headquarters</h3>
+            <p>Plot 801, Ebitu Ukiwe Street, Jabi, Abuja, Nigeria.</p>
+        </div>
+        <div class="info-card">
+            <h3>National Reference Laboratory</h3>
+            <p>National Reference Laboratory, Gaduwa, Abuja, Nigeria.</p>
+        </div>
+        <div class="info-card">
+            <h3>Central Public Health Laboratory</h3>
+            <p>67 Murtala Mohammed Way, Yaba, Lagos, Nigeria.</p>
+        </div>
+    </div>
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const contactContainer = document.querySelector(".contact-container");
+        contactContainer.classList.add("animate-on-load");
+    });
+</script>
+{% endblock %}

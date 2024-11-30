@@ -263,3 +263,7 @@ def security_risk_list(request):
 def jobs_list(request):
     jobs = Job.objects.all()
     return render(request, 'ncdc/jobs.html', {'jobs': jobs})
+
+
+def contact_page(request):
+    return render(request, 'ncdc/contact.html')
