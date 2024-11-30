@@ -23,4 +23,7 @@ urlpatterns = [
     path('research/', views.research_list, name='research_list'),
     path('state-incident-action-plans/', views.state_incident_action_plans, name='state_incident_action_plans'),
     path('diseases/', views.disease_list, name='disease_list'),
+    path('news/', views.news_home, name='news_home'),
+    path('blogs/', views.blog_posts_list, name='blog_posts_list'),
+    path("dg-blogs/", views.dg_posts_list, name='dg_posts_list'),
 ]

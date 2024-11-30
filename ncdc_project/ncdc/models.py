@@ -16,6 +16,20 @@ class Blog(models.Model):
         ordering = ['-created_at']
 
 
+class DGPost(models.Model):
+    title = models.CharField(max_length=200)
+    content = models.TextField()
+    excerpt = models.TextField(max_length=300, blank=True)  # Excerpt field
+    created_at = models.DateTimeField(default=timezone.now)  # Date created
+    image = models.ImageField(upload_to='dg_blog_images/', blank=True, null=True)  # Optional image field
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        ordering = ['-created_at']
+
+
 class Department(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField()
