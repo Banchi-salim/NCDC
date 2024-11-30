@@ -223,16 +223,16 @@ def disease_list(request):
 
 
 def news_home(request):
-    blog_posts = Blog.objects.order_by('-date_published')[:6]
-    dg_posts = DGPost.objects.order_by('-date_published')[:6]
+    blog_posts = Blog.objects.order_by('-created_at')[:6]
+    dg_posts = DGPost.objects.order_by('-created_at')[:6]
     return render(request, 'ncdc/news_home.html', {'blog_posts': blog_posts, 'dg_posts': dg_posts})
 
 
 def blog_posts_list(request):
-    blog_posts = Blog.objects.order_by('-date_published')
+    blog_posts = Blog.objects.order_by('-created_at')
     return render(request, 'ncdc/blog_posts_list.html', {'posts': blog_posts, 'title': "All Blog Posts"})
 
 
 def dg_posts_list(request):
-    dg_posts = DGPost.objects.order_by('-date_published')
+    dg_posts = DGPost.objects.order_by('-created_at')
     return render(request, 'ncdc/dg_posts_list.html', {'posts': dg_posts, 'title': "DG's Blog Posts"})
