@@ -1,0 +1,55 @@
+{% extends "ncdc/base.html" %}
+{% load static %}
+{% block title %}Projects - NCDC{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'ncdc/css/projects.css'%}">{% endblock %}
+
+{% block content %}
+<section class="hero-section">
+    <h2>Projects</h2>
+</section>
+<section class="projects-section">
+    <h1 class="section-title"></h1>
+    <div class="projects-container">
+        {% for project in projects %}
+        <div class="project-card">
+            <div class="project-image">
+                <img src="{{ project.image.url }}" alt="{{ project.title }}">
+            </div>
+            <div class="project-content">
+                <h2 class="project-title">{{ project.title }}</h2>
+                <p class="project-date">{{ project.date_created|date:"F j, Y" }}</p>
+                <p class="project-text" id="content-{{ forloop.counter }}">
+                    {{ project.content|truncatechars:150 }}
+                </p>
+                <button class="read-more-btn" data-target="content-{{ forloop.counter }}">Read more</button>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const buttons = document.querySelectorAll('.read-more-btn');
+
+        buttons.forEach((button) => {
+            button.addEventListener('click', () => {
+                const targetId = button.getAttribute('data-target');
+                const content = document.getElementById(targetId);
+
+                if (button.textContent === 'Read more') {
+                    content.style.maxHeight = 'none';
+                    content.style.whiteSpace = 'normal';
+                    button.textContent = 'Read less';
+                } else {
+                    content.style.maxHeight = '3em';
+                    content.style.whiteSpace = 'nowrap';
+                    content.style.overflow = 'hidden';
+                    button.textContent = 'Read more';
+                }
+            });
+        });
+    });
+
+</script>
+{% endblock %}

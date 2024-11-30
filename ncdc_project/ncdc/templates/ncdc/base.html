@@ -54,7 +54,13 @@
                     <a href="{% url 'ncdc_tour' %}">TOUR</a>
                 </div>
             </li>
-            <li><a href="#">Projects</a></li>
+            <li class="dropdown">
+                <a href="#">Projects</a>
+                <div>
+                    <a href="{% url 'project_list' %}">Projects</a>
+                    <a href="{% url '' %}">SRAMF</a>
+                </div>
+            </li>
             <li><a href="#">Jobs</a></li>
             <li><a href="#">Dashboard</a></li>
             <li><a href="#">e-Learning</a></li>

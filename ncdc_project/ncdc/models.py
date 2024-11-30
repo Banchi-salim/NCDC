@@ -179,3 +179,16 @@ class Disease(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Project(models.Model):
+    title = models.CharField(max_length=255)
+    content = models.TextField()
+    image = models.ImageField(upload_to='project_images/')
+    date_created = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        ordering = ['-date_created']

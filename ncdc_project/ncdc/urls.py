@@ -29,4 +29,5 @@ urlpatterns = [
     path('training/nfetp/', views.training_nfetp, name='nfetp'),
     path('training/internship/', views.internship_view, name='internship'),
     path('training/tour/', views.ncdc_tour_view, name='ncdc_tour'),
+    path('projects/', views.project_list, name='project_list'),
 ]

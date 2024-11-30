@@ -248,3 +248,8 @@ def internship_view(request):
 
 def ncdc_tour_view(request):
     return render(request, 'ncdc/tour.html')
+
+
+def project_list(request):
+    projects = Project.objects.all()
+    return render(request, 'ncdc/projects.html', {'projects': projects})
