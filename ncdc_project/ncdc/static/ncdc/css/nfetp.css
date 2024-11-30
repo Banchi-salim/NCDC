@@ -1,0 +1,116 @@
+.hero-section {
+    position: relative;
+    background-color : #004d40;
+    background-size: cover;
+    background-position: center;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+.hero-section h2{
+        color: #fff;
+        font-weight: bold;
+        font-size: 64px;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.main-content {
+    width: 70%;
+    padding-right: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.main-content h1 {
+    font-size: 2.5rem;
+    color: #004d40;
+    margin-bottom: 20px;
+}
+
+.main-content p {
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.sidebar {
+    width: 25%;
+    background-color: #fefefe;
+    border-left: 4px solid #004d40;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar h2 {
+    font-size: 1.8rem;
+    color: #004d40;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.announcement {
+    margin-bottom: 20px;
+}
+
+.announcement h3 {
+    font-size: 1.2rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.announcement p {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.announcement a {
+    font-size: 0.9rem;
+    color: #004d40;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.announcement a:hover {
+    color: #00796b;
+}
+
+ table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #fff;
+        }
+
+th {
+    background-color: #004d40; /* Dark green background */
+    color: #fff; /* White text */
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+td {
+    padding: 15px;
+    border: 1px solid #ddd;
+    vertical-align: top;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2; /* Light grey for alternating rows */
+}
