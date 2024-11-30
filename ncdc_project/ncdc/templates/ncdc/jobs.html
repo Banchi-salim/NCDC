@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}JOBS - NCDC{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'ncdc/css/jobs.css'%}">{% endblock %}
+
+{% block content %}
+<section class="hero-section">
+    <h2>Jobs</h2>
+</section>
+<div class="jobs-container">
+    <div class="jobs-grid">
+        {% for job in jobs %}
+        <div class="job-card">
+            <h2 class="job-title">{{ job.title }}</h2>
+            <p class="job-date">{{ job.created_at|date:"D d M Y" }}</p>
+            <p class="job-excerpt">
+                {{ job.content|truncatewords:20 }}
+            </p>
+            <button class="read-more" onclick="toggleContent(this)">Read more</button>
+            <div class="job-content hidden">
+                <p>{{ job.content }}</p>
+                <button class="read-less" onclick="toggleContent(this)">Read less</button>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<script>
+    function toggleContent(button) {
+        const jobCard = button.closest(".job-card");
+        const contentDiv = jobCard.querySelector(".job-content");
+        const isHidden = contentDiv.classList.contains("hidden");
+
+        if (isHidden) {
+            contentDiv.classList.remove("hidden");
+            button.textContent = "Read less";
+        } else {
+            contentDiv.classList.add("hidden");
+            button.textContent = "Read more";
+        }
+    }
+</script>
+
+{% endblock %}

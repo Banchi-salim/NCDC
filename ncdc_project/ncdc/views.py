@@ -258,3 +258,8 @@ def project_list(request):
 def security_risk_list(request):
     documents = SecurityRiskDocument.objects.all().order_by('-date_uploaded')
     return render(request, 'ncdc/security_risk_list.html', {'documents': documents})
+
+
+def jobs_list(request):
+    jobs = Job.objects.all()
+    return render(request, 'ncdc/jobs.html', {'jobs': jobs})

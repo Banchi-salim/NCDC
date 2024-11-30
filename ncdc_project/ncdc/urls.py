@@ -31,4 +31,5 @@ urlpatterns = [
     path('training/tour/', views.ncdc_tour_view, name='ncdc_tour'),
     path('projects/', views.project_list, name='project_list'),
     path('security-risk/', views.security_risk_list, name='security_risk_list'),
+    path('jobs/', views.jobs_list, name='jobs_list'),
 ]
