@@ -1,0 +1,31 @@
+{% extends "ncdc/base.html" %}
+{% load static %}
+{% block title %}TOUR - NCDC{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'ncdc/css/tour.css'%}">{% endblock %}
+
+{% block content %}
+<section class="hero-scetion">
+    <h2>NCDC TOUR</h2>
+</section>
+<section class="ncdc-tour-section">
+    <div class="content-container">
+        <h2>Objective</h2>
+        <p>
+            The NCDC tour is an opportunity for students to better understand the work done by the NCDC in protecting the health of Nigerians. The agency is opening up its National Reference Laboratory in Gaduwa, Abuja so students can learn more about the role the institution plays in detecting, stopping, and preventing infectious disease outbreaks.
+            The NCDC will aim to offer a well-structured learning experience to schools, open to students in primary and secondary schools.
+        </p>
+
+        <h2>Dates</h2>
+        <p>
+            One day every month will be dedicated to the laboratory tour. A maximum of three schools (no more than 30 students per slot) can be accepted in one day, at different time slots. Each tour will last for about 1 hour 30 minutes.
+        </p>
+
+        <h2>Registration</h2>
+        <p>
+            Schools are invited to register for the monthly tour slot through this form:
+        </p>
+        <a href="/register" class="register-link">Register Now</a>
+    </div>
+</section>
+{% endblock %}

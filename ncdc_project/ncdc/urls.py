@@ -28,4 +28,5 @@ urlpatterns = [
     path("dg-blogs/", views.dg_posts_list, name='dg_posts_list'),
     path('training/nfetp/', views.training_nfetp, name='nfetp'),
     path('training/internship/', views.internship_view, name='internship'),
+    path('training/tour/', views.ncdc_tour_view, name='ncdc_tour'),
 ]

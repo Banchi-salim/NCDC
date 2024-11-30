@@ -244,3 +244,7 @@ def training_nfetp(request):
 
 def internship_view(request):
     return render(request, 'ncdc/internship.html')
+
+
+def ncdc_tour_view(request):
+    return render(request, 'ncdc/tour.html')
