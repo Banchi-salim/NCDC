@@ -48,3 +48,108 @@
     font-weight: bold;
     color: #004d40;
 }
+/* Media Queries */
+
+/* For screens 1024px and below */
+@media (max-width: 1024px) {
+    .hero-section h2 {
+        font-size: 48px;
+    }
+
+    .documents-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+        padding: 15px;
+    }
+
+    .document-card {
+        padding: 10px;
+    }
+
+    .document-title {
+        font-size: 14px;
+    }
+}
+
+/* For screens 768px and below */
+@media (max-width: 768px) {
+    .hero-section h2 {
+        font-size: 40px;
+    }
+
+    .documents-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        padding: 10px;
+    }
+
+    .document-card {
+        padding: 8px;
+    }
+
+    .document-title {
+        font-size: 13px;
+    }
+}
+
+/* For screens 420px and below */
+@media (max-width: 420px) {
+    .hero-section {
+        height: 200px;
+        padding: 10px;
+    }
+
+    .hero-section h2 {
+        font-size: 28px;
+    }
+
+    .documents-grid {
+        grid-template-columns: repeat(1, 1fr);
+        gap: 10px;
+        padding: 10px;
+    }
+
+    .document-card {
+        padding: 8px;
+    }
+
+    .document-title {
+        font-size: 12px;
+    }
+
+    .document-cover img {
+        width: 100%;
+        height: auto;
+    }
+}
+
+/* For screens 360px and below */
+@media (max-width: 360px) {
+    .hero-section {
+        height: 180px;
+        padding: 8px;
+    }
+
+    .hero-section h2 {
+        font-size: 24px;
+    }
+
+    .documents-grid {
+        grid-template-columns: repeat(1, 1fr);
+        gap: 8px;
+        padding: 8px;
+    }
+
+    .document-card {
+        padding: 5px;
+    }
+
+    .document-title {
+        font-size: 10px;
+    }
+
+    .document-cover img {
+        width: 100%;
+        height: auto;
+    }
+}

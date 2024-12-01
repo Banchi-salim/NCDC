@@ -53,3 +53,146 @@ li {
     margin-bottom: 10px;
     color: #333;
 }
+
+/* Media Queries */
+
+/* For screens 1024px and below */
+@media (max-width: 1024px) {
+    .hero-section {
+        height: 250px;
+    }
+
+    .hero-section h2 {
+        font-size: 48px;
+    }
+
+    .internship-section {
+        padding: 30px;
+    }
+
+    .container {
+        padding: 15px 25px;
+    }
+
+    .section-title {
+        font-size: 1.8rem;
+    }
+
+    h2 {
+        font-size: 1.3rem;
+    }
+
+    ul {
+        margin-left: 15px;
+    }
+
+    li {
+        font-size: 0.9rem;
+    }
+}
+
+/* For screens 768px and below */
+@media (max-width: 768px) {
+    .hero-section {
+        height: 200px;
+    }
+
+    .hero-section h2 {
+        font-size: 40px;
+    }
+
+    .internship-section {
+        padding: 20px;
+    }
+
+    .container {
+        padding: 15px;
+    }
+
+    .section-title {
+        font-size: 1.6rem;
+    }
+
+    h2 {
+        font-size: 1.2rem;
+    }
+
+    ul {
+        margin-left: 10px;
+    }
+
+    li {
+        font-size: 0.85rem;
+    }
+}
+
+/* For screens 420px and below */
+@media (max-width: 420px) {
+    .hero-section {
+        height: 150px;
+    }
+
+    .hero-section h2 {
+        font-size: 28px;
+    }
+
+    .internship-section {
+        padding: 15px;
+    }
+
+    .container {
+        padding: 10px;
+    }
+
+    .section-title {
+        font-size: 1.4rem;
+    }
+
+    h2 {
+        font-size: 1rem;
+    }
+
+    ul {
+        margin-left: 8px;
+    }
+
+    li {
+        font-size: 0.8rem;
+    }
+}
+
+/* For screens 360px and below */
+@media (max-width: 360px) {
+    .hero-section {
+        height: 120px;
+    }
+
+    .hero-section h2 {
+        font-size: 24px;
+    }
+
+    .internship-section {
+        padding: 10px;
+    }
+
+    .container {
+        padding: 8px;
+    }
+
+    .section-title {
+        font-size: 1.2rem;
+    }
+
+    h2 {
+        font-size: 0.9rem;
+    }
+
+    ul {
+        margin-left: 5px;
+    }
+
+    li {
+        font-size: 0.75rem;
+    }
+}
+

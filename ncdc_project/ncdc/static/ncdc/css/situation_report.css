@@ -89,3 +89,187 @@
 .download-link:hover {
     background-color: #0d7a44;
 }
+
+/* Media Queries */
+
+/* For screens 1024px and below */
+@media (max-width: 1024px) {
+    .hero-section {
+        height: 250px;
+    }
+
+    .hero-section h2 {
+        font-size: 48px;
+    }
+
+    .reports-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+        padding: 15px;
+    }
+
+    .report-card {
+        border-radius: 8px;
+    }
+
+    .report-cover img {
+        height: 200px;
+    }
+
+    .report-title {
+        font-size: 0.9rem;
+        margin: 8px 0;
+    }
+
+    .report-date {
+        font-size: 0.8rem;
+    }
+
+    .report-details h1 {
+        font-size: 1.8rem;
+    }
+
+    .report-details p {
+        font-size: 1rem;
+    }
+}
+
+/* For screens 768px and below */
+@media (max-width: 768px) {
+    .hero-section {
+        height: 200px;
+    }
+
+    .hero-section h2 {
+        font-size: 36px;
+    }
+
+    .reports-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        padding: 10px;
+    }
+
+    .report-card {
+        border-radius: 6px;
+    }
+
+    .report-cover img {
+        height: 180px;
+    }
+
+    .report-title {
+        font-size: 0.85rem;
+    }
+
+    .report-date {
+        font-size: 0.75rem;
+    }
+
+    .report-details h1 {
+        font-size: 1.6rem;
+    }
+
+    .report-details p {
+        font-size: 0.95rem;
+    }
+
+    .download-link {
+        padding: 8px 15px;
+        font-size: 0.9rem;
+    }
+}
+
+/* For screens 420px and below */
+@media (max-width: 420px) {
+    .hero-section {
+        height: 180px;
+    }
+
+    .hero-section h2 {
+        font-size: 28px;
+    }
+
+    .reports-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        padding: 10px;
+    }
+
+    .report-card {
+        border-radius: 5px;
+        box-shadow: none; /* Simplified for smaller screens */
+    }
+
+    .report-cover img {
+        height: 150px;
+    }
+
+    .report-title {
+        font-size: 0.8rem;
+    }
+
+    .report-date {
+        font-size: 0.7rem;
+    }
+
+    .report-details h1 {
+        font-size: 1.4rem;
+    }
+
+    .report-details p {
+        font-size: 0.9rem;
+    }
+
+    .download-link {
+        padding: 6px 12px;
+        font-size: 0.85rem;
+    }
+}
+
+/* For screens 360px and below */
+@media (max-width: 360px) {
+    .hero-section {
+        height: 150px;
+    }
+
+    .hero-section h2 {
+        font-size: 24px;
+    }
+
+    .reports-grid {
+        grid-template-columns: 1fr;
+        gap: 8px;
+        padding: 8px;
+    }
+
+    .report-card {
+        border-radius: 5px;
+    }
+
+    .report-cover img {
+        height: 140px;
+    }
+
+    .report-title {
+        font-size: 0.75rem;
+    }
+
+    .report-date {
+        font-size: 0.65rem;
+    }
+
+    .report-details h1 {
+        font-size: 1.2rem;
+    }
+
+    .report-details p {
+        font-size: 0.85rem;
+    }
+
+    .download-link {
+        padding: 5px 10px;
+        font-size: 0.8rem;
+    }
+}
+

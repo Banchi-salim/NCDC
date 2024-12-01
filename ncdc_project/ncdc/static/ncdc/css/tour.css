@@ -58,3 +58,122 @@
 .register-link:hover {
     background-color: #00392f;
 }
+
+/* Media Queries */
+
+/* For screens 1024px and below */
+@media (max-width: 1024px) {
+    .hero-section {
+        height: 250px;
+    }
+
+    .hero-section h2 {
+        font-size: 48px;
+    }
+
+    .content-container {
+        padding: 15px;
+    }
+
+    .content-container h2 {
+        font-size: 1.6rem;
+    }
+
+    .content-container p {
+        font-size: 1rem;
+    }
+
+    .register-link {
+        padding: 8px 18px;
+        font-size: 0.95rem;
+    }
+}
+
+/* For screens 768px and below */
+@media (max-width: 768px) {
+    .hero-section {
+        height: 200px;
+    }
+
+    .hero-section h2 {
+        font-size: 36px;
+    }
+
+    .content-container {
+        padding: 15px;
+        max-width: 90%;
+    }
+
+    .content-container h2 {
+        font-size: 1.5rem;
+    }
+
+    .content-container p {
+        font-size: 0.95rem;
+    }
+
+    .register-link {
+        padding: 8px 15px;
+        font-size: 0.9rem;
+    }
+}
+
+/* For screens 420px and below */
+@media (max-width: 420px) {
+    .hero-section {
+        height: 180px;
+    }
+
+    .hero-section h2 {
+        font-size: 28px;
+        text-align: center;
+        margin: 0 10px;
+    }
+
+    .content-container {
+        padding: 10px;
+        max-width: 95%;
+    }
+
+    .content-container h2 {
+        font-size: 1.4rem;
+    }
+
+    .content-container p {
+        font-size: 0.85rem;
+    }
+
+    .register-link {
+        padding: 6px 12px;
+        font-size: 0.85rem;
+    }
+}
+
+/* For screens 360px and below */
+@media (max-width: 360px) {
+    .hero-section {
+        height: 150px;
+    }
+
+    .hero-section h2 {
+        font-size: 24px;
+        text-align: center;
+        margin: 0 5px;
+    }
+
+    .content-container {
+        padding: 10px;
+        max-width: 95%;
+    }
+
+    .content-container h2 {
+        font-size: 1.3rem;
+    }
+
+    .content-container p {
+        font-size: 0.8rem;
+    }
+
+    .register-link {
+        padding:
+

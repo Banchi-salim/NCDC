@@ -82,3 +82,150 @@
 .hidden {
     display: none;
 }
+
+/* Media Queries */
+
+/* For screens 1024px and below */
+@media (max-width: 1024px) {
+    .hero-section {
+        height: 250px;
+    }
+
+    .hero-section h2 {
+        font-size: 48px;
+    }
+
+    .research-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 15px;
+    }
+
+    .research-card {
+        padding: 15px;
+    }
+
+    .research-card h2 {
+        font-size: 1.3em;
+    }
+
+    .research-card .btn {
+        padding: 8px 12px;
+        font-size: 0.9em;
+    }
+
+    .research-abstract {
+        font-size: 0.9em;
+    }
+}
+
+/* For screens 768px and below */
+@media (max-width: 768px) {
+    .hero-section {
+        height: 200px;
+    }
+
+    .hero-section h2 {
+        font-size: 36px;
+    }
+
+    .research-section {
+        padding: 15px;
+    }
+
+    .research-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 10px;
+    }
+
+    .research-card {
+        padding: 10px;
+    }
+
+    .research-card h2 {
+        font-size: 1.2em;
+    }
+
+    .research-card .btn {
+        padding: 7px 10px;
+        font-size: 0.8em;
+    }
+
+    .research-abstract {
+        font-size: 0.85em;
+    }
+}
+
+/* For screens 420px and below */
+@media (max-width: 420px) {
+    .hero-section {
+        height: 180px;
+    }
+
+    .hero-section h2 {
+        font-size: 28px;
+    }
+
+    .research-section {
+        padding: 10px;
+    }
+
+    .research-grid {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    .research-card {
+        padding: 8px;
+    }
+
+    .research-card h2 {
+        font-size: 1rem;
+    }
+
+    .research-card .btn {
+        padding: 6px 8px;
+        font-size: 0.7em;
+    }
+
+    .research-abstract {
+        font-size: 0.8em;
+    }
+}
+
+/* For screens 360px and below */
+@media (max-width: 360px) {
+    .hero-section {
+        height: 150px;
+    }
+
+    .hero-section h2 {
+        font-size: 24px;
+    }
+
+    .research-section {
+        padding: 5px;
+    }
+
+    .research-grid {
+        grid-template-columns: 1fr;
+        gap: 6px;
+    }
+
+    .research-card {
+        padding: 5px;
+    }
+
+    .research-card h2 {
+        font-size: 0.9rem;
+    }
+
+    .research-card .btn {
+        padding: 5px 6px;
+        font-size: 0.6em;
+    }
+
+    .research-abstract {
+        font-size: 0.7em;
+    }
+}
+

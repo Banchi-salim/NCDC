@@ -114,3 +114,154 @@ td {
 tr:nth-child(even) {
     background-color: #f2f2f2; /* Light grey for alternating rows */
 }
+
+/* Media Queries */
+
+/* For screens 1024px and below */
+@media (max-width: 1024px) {
+    .hero-section {
+        height: 250px;
+    }
+
+    .hero-section h2 {
+        font-size: 48px;
+    }
+
+    .container {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .main-content, .sidebar {
+        width: 100%;
+        padding: 15px;
+        margin-bottom: 20px;
+    }
+
+    .main-content {
+        padding-right: 0;
+    }
+}
+
+/* For screens 768px and below */
+@media (max-width: 768px) {
+    .hero-section {
+        height: 200px;
+    }
+
+    .hero-section h2 {
+        font-size: 36px;
+    }
+
+    .main-content h1 {
+        font-size: 2rem;
+    }
+
+    .main-content p {
+        font-size: 0.9rem;
+    }
+
+    .sidebar h2 {
+        font-size: 1.5rem;
+    }
+
+    .announcement h3 {
+        font-size: 1rem;
+    }
+
+    .announcement p,
+    .announcement a {
+        font-size: 0.8rem;
+    }
+
+    table th,
+    table td {
+        font-size: 0.9rem;
+        padding: 10px;
+    }
+}
+
+/* For screens 420px and below */
+@media (max-width: 420px) {
+    .hero-section {
+        height: 180px;
+    }
+
+    .hero-section h2 {
+        font-size: 28px;
+    }
+
+    .container {
+        padding: 5px;
+    }
+
+    .main-content h1 {
+        font-size: 1.8rem;
+    }
+
+    .main-content p {
+        font-size: 0.8rem;
+    }
+
+    .sidebar h2 {
+        font-size: 1.3rem;
+    }
+
+    .announcement h3 {
+        font-size: 0.9rem;
+    }
+
+    .announcement p,
+    .announcement a {
+        font-size: 0.7rem;
+    }
+
+    table th,
+    table td {
+        font-size: 0.8rem;
+        padding: 8px;
+    }
+}
+
+/* For screens 360px and below */
+@media (max-width: 360px) {
+    .hero-section {
+        height: 150px;
+    }
+
+    .hero-section h2 {
+        font-size: 24px;
+    }
+
+    .container {
+        padding: 5px;
+    }
+
+    .main-content h1 {
+        font-size: 1.5rem;
+    }
+
+    .main-content p {
+        font-size: 0.75rem;
+    }
+
+    .sidebar h2 {
+        font-size: 1.2rem;
+    }
+
+    .announcement h3 {
+        font-size: 0.8rem;
+    }
+
+    .announcement p,
+    .announcement a {
+        font-size: 0.7rem;
+    }
+
+    table th,
+    table td {
+        font-size: 0.7rem;
+        padding: 5px;
+    }
+}
+

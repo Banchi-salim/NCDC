@@ -86,3 +86,172 @@
     margin-top: 10px;
     overflow: auto;
 }
+/* Media Queries */
+
+/* For screens 1024px and below */
+@media (max-width: 1024px) {
+    .hero-section {
+        height: 250px;
+    }
+
+    .hero-section h2 {
+        font-size: 48px;
+    }
+
+    .jobs-container {
+        padding: 15px;
+    }
+
+    .page-title {
+        font-size: 28px;
+        margin-bottom: 15px;
+    }
+
+    .jobs-grid {
+        gap: 15px;
+    }
+
+    .job-card {
+        padding: 10px;
+    }
+
+    .job-title {
+        font-size: 18px;
+    }
+
+    .job-excerpt {
+        font-size: 14px;
+    }
+
+    .read-more,
+    .read-less {
+        font-size: 12px;
+        padding: 6px 12px;
+    }
+}
+
+/* For screens 768px and below */
+@media (max-width: 768px) {
+    .hero-section {
+        height: 200px;
+    }
+
+    .hero-section h2 {
+        font-size: 40px;
+    }
+
+    .jobs-container {
+        padding: 10px;
+    }
+
+    .page-title {
+        font-size: 24px;
+    }
+
+    .jobs-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 15px;
+    }
+
+    .job-card {
+        padding: 8px;
+    }
+
+    .job-title {
+        font-size: 16px;
+    }
+
+    .job-excerpt {
+        font-size: 13px;
+    }
+
+    .read-more,
+    .read-less {
+        font-size: 12px;
+        padding: 6px 10px;
+    }
+}
+
+/* For screens 420px and below */
+@media (max-width: 420px) {
+    .hero-section {
+        height: 150px;
+    }
+
+    .hero-section h2 {
+        font-size: 32px;
+    }
+
+    .jobs-container {
+        padding: 5px;
+    }
+
+    .page-title {
+        font-size: 20px;
+    }
+
+    .jobs-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .job-card {
+        padding: 5px;
+    }
+
+    .job-title {
+        font-size: 14px;
+    }
+
+    .job-excerpt {
+        font-size: 12px;
+    }
+
+    .read-more,
+    .read-less {
+        font-size: 10px;
+        padding: 5px 8px;
+    }
+}
+
+/* For screens 360px and below */
+@media (max-width: 360px) {
+    .hero-section {
+        height: 120px;
+    }
+
+    .hero-section h2 {
+        font-size: 28px;
+    }
+
+    .jobs-container {
+        padding: 5px;
+    }
+
+    .page-title {
+        font-size: 18px;
+    }
+
+    .jobs-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .job-card {
+        padding: 5px;
+    }
+
+    .job-title {
+        font-size: 12px;
+    }
+
+    .job-excerpt {
+        font-size: 11px;
+    }
+
+    .read-more,
+    .read-less {
+        font-size: 10px;
+        padding: 4px 6px;
+    }
+}

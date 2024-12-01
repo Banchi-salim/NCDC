@@ -67,3 +67,105 @@ button {
 button:hover {
     background-color: #0d7a44;
 }
+/* Media Queries */
+
+/* For screens 1024px and below */
+@media (max-width: 1024px) {
+    .donate-container {
+        width: 80%;
+        margin: 50px auto;
+        padding: 15px 25px;
+    }
+
+    .donate-container h1 {
+        font-size: 1.8rem;
+    }
+
+    .donate-container p {
+        font-size: 0.9rem;
+    }
+
+    input, select, button {
+        font-size: 15px;
+        padding: 10px;
+    }
+}
+
+/* For screens 768px and below */
+@media (max-width: 768px) {
+    .donate-container {
+        width: 90%;
+        margin: 40px auto;
+        padding: 15px 20px;
+    }
+
+    .donate-container h1 {
+        font-size: 1.6rem;
+    }
+
+    .donate-container p {
+        font-size: 0.85rem;
+    }
+
+    input, select, button {
+        font-size: 14px;
+        padding: 8px;
+    }
+}
+
+/* For screens 420px and below */
+@media (max-width: 420px) {
+    .donate-section {
+        padding: 10px 0;
+    }
+
+    .donate-container {
+        width: 95%;
+        margin: 30px auto;
+        padding: 10px 15px;
+    }
+
+    .donate-container h1 {
+        font-size: 1.4rem;
+    }
+
+    .donate-container p {
+        font-size: 0.8rem;
+    }
+
+    input, select, button {
+        font-size: 13px;
+        padding: 7px;
+    }
+
+    button {
+        padding: 10px;
+    }
+}
+
+/* For screens 360px and below */
+@media (max-width: 360px) {
+    .donate-container {
+        width: 100%;
+        margin: 20px auto;
+        padding: 10px;
+    }
+
+    .donate-container h1 {
+        font-size: 1.2rem;
+    }
+
+    .donate-container p {
+        font-size: 0.75rem;
+    }
+
+    input, select, button {
+        font-size: 12px;
+        padding: 6px;
+    }
+
+    button {
+        font-size: 14px;
+        padding: 10px;
+    }
+}

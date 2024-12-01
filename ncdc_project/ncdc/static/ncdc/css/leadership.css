@@ -132,3 +132,117 @@
 .modal-buttons button:hover {
     background-color: #145a40;
 }
+
+/* Media Queries */
+
+/* For screens 1024px and below */
+@media (max-width: 1024px) {
+    .hod-section h2 {
+        font-size: 1.8rem;
+    }
+
+    .hod-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+    .hod-card {
+        margin: 0 auto; /* Center align cards */
+    }
+
+    .modal-content {
+        max-width: 500px;
+    }
+}
+
+/* For screens 768px and below */
+@media (max-width: 768px) {
+    .hod-section h2 {
+        font-size: 1.6rem;
+    }
+
+    .hod-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .hod-card {
+        width: 100%;
+    }
+
+    .modal-content {
+        width: 90%;
+        max-width: 400px;
+    }
+
+    .modal-body {
+        flex-direction: column;
+    }
+
+    .modal-image {
+        width: 100%;
+    }
+
+    .modal-text {
+        font-size: 0.9rem;
+    }
+}
+
+/* For screens 420px and below */
+@media (max-width: 420px) {
+    .hod-section h2 {
+        font-size: 1.4rem;
+    }
+
+    .hod-grid {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    .hod-card {
+        padding: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .modal-content {
+        width: 95%;
+    }
+
+    .modal-header {
+        font-size: 1.2rem;
+    }
+
+    .modal-buttons button {
+        font-size: 0.9rem;
+        padding: 8px 15px;
+    }
+
+    .modal-text {
+        font-size: 0.85rem;
+    }
+}
+
+/* For screens 360px and below */
+@media (max-width: 360px) {
+    .hod-section h2 {
+        font-size: 1.2rem;
+    }
+
+    .hod-card {
+        padding: 8px;
+    }
+
+    .modal-header {
+        font-size: 1rem;
+    }
+
+    .modal-buttons button {
+        font-size: 0.8rem;
+        padding: 6px 12px;
+    }
+
+    .modal-text {
+        font-size: 0.8rem;
+    }
+}
+

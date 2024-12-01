@@ -77,3 +77,133 @@
     background-color: #004d40;
     transform: scale(1.05);
 }
+/* Media Queries */
+
+/* For screens 1024px and below */
+@media (max-width: 1024px) {
+    .hero-section {
+        height: 250px;
+    }
+
+    .hero-section h2 {
+        font-size: 48px;
+    }
+
+    .reports-container {
+        padding: 15px;
+    }
+
+    .reports-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+    }
+
+    .report-card h3 {
+        font-size: 1.1rem;
+    }
+
+    .view-button {
+        font-size: 0.9rem;
+        padding: 8px 12px;
+    }
+}
+
+/* For screens 768px and below */
+@media (max-width: 768px) {
+    .hero-section {
+        height: 200px;
+    }
+
+    .hero-section h2 {
+        font-size: 36px;
+    }
+
+    .reports-container {
+        padding: 10px;
+    }
+
+    .reports-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .report-card {
+        padding: 10px;
+    }
+
+    .report-card h3 {
+        font-size: 1rem;
+    }
+
+    .view-button {
+        font-size: 0.8rem;
+        padding: 7px 10px;
+    }
+}
+
+/* For screens 420px and below */
+@media (max-width: 420px) {
+    .hero-section {
+        height: 180px;
+    }
+
+    .hero-section h2 {
+        font-size: 28px;
+    }
+
+    .reports-container {
+        padding: 5px;
+    }
+
+    .reports-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .report-card {
+        padding: 8px;
+    }
+
+    .report-card h3 {
+        font-size: 0.9rem;
+    }
+
+    .view-button {
+        font-size: 0.7rem;
+        padding: 6px 8px;
+    }
+}
+
+/* For screens 360px and below */
+@media (max-width: 360px) {
+    .hero-section {
+        height: 150px;
+    }
+
+    .hero-section h2 {
+        font-size: 24px;
+    }
+
+    .reports-container {
+        padding: 5px;
+    }
+
+    .reports-grid {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    .report-card {
+        padding: 5px;
+    }
+
+    .report-card h3 {
+        font-size: 0.8rem;
+    }
+
+    .view-button {
+        font-size: 0.6rem;
+        padding: 5px 6px;
+    }
+}
+

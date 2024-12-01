@@ -1,9 +1,7 @@
-/* General Section Styling */
-section {
+.section {
     width: 100%;
 }
 
-/* Hero Section */
 .hero-section {
     position: relative;
     background-size: cover;
@@ -15,7 +13,6 @@ section {
     animation: fadeIn 1.5s ease-in-out;
 }
 
-
 .hero-overlay h1 {
     color: white;
     font-size: 2.5rem;
@@ -24,7 +21,6 @@ section {
     animation: slideInFromLeft 1.5s ease-in-out;
 }
 
-/* About Section */
 .about-section {
     background-color: #f5f5f5;
     padding: 40px 20px;
@@ -71,18 +67,16 @@ section {
     text-align: left;
 }
 
-/* Section Styling */
 .mission-vision-functions-section {
     display: flex;
     justify-content: space-around;
-    background-color: #204d40; /* Dark green background */
+    background-color: #204d40;
     padding: 40px 20px;
     gap: 20px;
     flex-wrap: wrap;
     animation: fadeIn 1.5s ease-in-out;
 }
 
-/* Card Styling */
 .card {
     background-color: #ffffff;
     border-radius: 12px;
@@ -96,7 +90,7 @@ section {
 
 .card h3 {
     font-size: 1.5rem;
-    color: #204d40; /* Matching the section background */
+    color: #204d40;
     font-weight: bold;
     margin-bottom: 15px;
 }
@@ -107,7 +101,6 @@ section {
     line-height: 1.6;
 }
 
-/* Animations */
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
@@ -118,8 +111,6 @@ section {
     to { transform: translateY(0); opacity: 1; }
 }
 
-
-/* Animations */
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
@@ -145,7 +136,6 @@ section {
     to { opacity: 1; }
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
     .hero-section {
         height: 200px;
@@ -186,7 +176,6 @@ section {
     }
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
     .mission-vision-functions-section {
         flex-direction: column;
@@ -207,7 +196,7 @@ section {
         font-size: 0.85rem;
     }
 }
-/* About Organization Section */
+
 .about-organization {
     padding: 40px 20px;
     background-color: #ffffff;
@@ -230,7 +219,6 @@ section {
     margin: 0 auto 20px;
 }
 
-/* Blog Slider Section */
 .blog-section {
     padding: 40px 20px;
     background-color: #204d40;
@@ -282,13 +270,11 @@ section {
     font-weight: bold;
 }
 
-/* Animations */
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
     .about-organization h2, .blog-section h2 {
         font-size: 1.5rem;
@@ -301,9 +287,8 @@ section {
     }
 }
 
-/* Basic styling for modal overlay */
 .modal {
-    display: none; /* Hidden by default */
+    display: none;
     position: fixed;
     z-index: 1000;
     left: 0;
@@ -311,10 +296,9 @@ section {
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
+    background-color: rgba(0, 0, 0, 0.6);
 }
 
-/* Modal content container */
 .modal-content {
     background-color: #fff;
     margin: 5% auto;
@@ -326,9 +310,8 @@ section {
     position: relative;
 }
 
-/* Header section */
 .modal-header {
-    background-color: #1E4D3A; /* Dark green */
+    background-color: #1E4D3A;
     color: #fff;
     padding: 15px;
     border-top-left-radius: 8px;
@@ -338,7 +321,6 @@ section {
     text-align: center;
 }
 
-/* Close button */
 .close {
     color: #aaa;
     float: right;
@@ -354,7 +336,7 @@ section {
     cursor: pointer;
 }
 
-/* Content layout */
+
 .modal-body {
     display: flex;
     padding: 20px;
@@ -364,7 +346,7 @@ section {
     width: 40%;
     max-width: 300px;
     border-radius: 8px;
-    background-color: #f0f0f0; /* Placeholder background */
+    background-color: #f0f0f0;
     margin-right: 20px;
 }
 
@@ -374,7 +356,6 @@ section {
     color: #333;
 }
 
-/* Responsive design */
 @media (max-width: 768px) {
     .modal-content {
         width: 90%;

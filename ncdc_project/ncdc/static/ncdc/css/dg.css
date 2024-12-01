@@ -1,10 +1,9 @@
-/* General Styling */
+
 body {
     font-family: Arial, sans-serif;
     color: #333;
 }
 
-/* Profile Section */
 .profile-section {
     display: flex;
     height: 600px;
@@ -44,7 +43,6 @@ body {
 
 }
 
-/* Office Section */
 .office-section {
     background-color: #ffffff;
     padding: 40px 10%;
@@ -70,7 +68,7 @@ body {
     color: #555;
 }
 
-/* Blog Section */
+
 .dg-blog-section {
     background-color: #e7f0eb;
     padding: 40px 10%;
@@ -156,7 +154,6 @@ body {
     font-weight: bold;
 }
 
-/* Modal Styles */
 .modal {
     display: none;
     position: fixed;
@@ -209,7 +206,7 @@ body {
     border-radius: 8px;
 }
 
-/* Responsive Styles */
+
 @media (max-width: 768px) {
     .profile-section {
         flex-direction: column;
@@ -227,5 +224,179 @@ body {
     .dg-blog-cards {
         flex-direction: column;
         align-items: center;
+    }
+}
+
+@media (max-width: 1024px) {
+    .profile-section {
+        flex-direction: column;
+        height: auto;
+        padding: 20px 5%;
+        text-align: center;
+    }
+
+    .profile-image {
+        margin: 20px 0 0;
+        width: 300px;
+        height: 300px;
+    }
+
+    .profile-text h1 {
+        font-size: 2rem;
+    }
+
+    .profile-text span {
+        font-size: 1.2rem;
+    }
+
+    .office-section {
+        width: 90%;
+    }
+
+    .dg-blog-cards {
+        gap: 15px;
+    }
+}
+
+/* For screens 768px and below */
+@media (max-width: 768px) {
+    .profile-section {
+        flex-direction: column;
+        padding: 20px;
+        height: auto;
+    }
+
+    .profile-image {
+        margin: 10px 0;
+        width: 250px;
+        height: 250px;
+    }
+
+    .office-section {
+        width: 95%;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    .office-content p {
+        font-size: 0.9rem;
+    }
+
+    .dg-blog-header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .dg-blog-header h2 {
+        font-size: 1.5rem;
+    }
+
+    .dg-blog-cards {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .blog-card {
+        width: 100%;
+        max-width: 350px;
+        margin: 0 auto;
+    }
+
+    .modal-content {
+        width: 95%;
+        max-height: 70vh;
+        padding: 15px;
+    }
+}
+
+/* For screens 420px and below */
+@media (max-width: 420px) {
+    .profile-section {
+        padding: 15px;
+    }
+
+    .profile-text h1 {
+        font-size: 1.8rem;
+    }
+
+    .profile-text span {
+        font-size: 1rem;
+    }
+
+    .profile-image {
+        width: 200px;
+        height: 200px;
+    }
+
+    .office-section {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .office-content p {
+        font-size: 0.85rem;
+        line-height: 1.4;
+    }
+
+    .dg-blog-header h2 {
+        font-size: 1.2rem;
+    }
+
+    .blog-card {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .modal-content {
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+
+    .modal-header {
+        font-size: 1.2rem;
+    }
+}
+
+/* For screens 360px and below */
+@media (max-width: 360px) {
+    .profile-text h1 {
+        font-size: 1.5rem;
+    }
+
+    .profile-text span {
+        font-size: 0.9rem;
+    }
+
+    .profile-image {
+        width: 180px;
+        height: 180px;
+    }
+
+    .office-section {
+        width: 100%;
+        padding: 8px;
+    }
+
+    .office-content p {
+        font-size: 0.8rem;
+        line-height: 1.3;
+    }
+
+    .dg-blog-header h2 {
+        font-size: 1rem;
+    }
+
+    .blog-card {
+        width: 100%;
+        max-width: 280px;
+    }
+
+    .modal-content {
+        padding: 8px;
+        font-size: 0.85rem;
+    }
+
+    .modal-header {
+        font-size: 1rem;
     }
 }

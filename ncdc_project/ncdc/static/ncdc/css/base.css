@@ -1,4 +1,4 @@
-/* General Styles */
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -59,7 +59,6 @@ body {
     display: block;
 }
 
-/* Hamburger Menu */
 .hamburger {
     display: none;
     flex-direction: column;
@@ -74,7 +73,6 @@ body {
     transition: 0.4s;
 }
 
-/* Responsive Styles */
 @media screen and (max-width: 1024px) {
     .nav-menu a, .dropbtn {
         padding: 12px;
@@ -127,7 +125,6 @@ body {
     }
 }
 
-/* Footer Styles */
 .footer {
     font-family: Arial, sans-serif;
     color: white;
@@ -150,7 +147,6 @@ body {
         padding-right: 20px;
     }
 
-    /* Contact Info Styles */
     .contact-info p,
     .social-links p {
         margin: 10px 0;
@@ -159,7 +155,6 @@ body {
         gap: 10px;
     }
 
-    /* Newsletter Button */
     .newsletter-btn {
         display: inline-block;
         background-color: #1a5c1a;
@@ -174,7 +169,6 @@ body {
         background-color: #134013;
     }
 
-    /* Mandate Section */
     .mandate-text {
         line-height: 1.6;
         margin-bottom: 20px;
@@ -189,7 +183,6 @@ body {
         text-decoration: underline;
     }
 
-    /* Connect Centre Section */
     .connect-centre {
         background-color: #b8860b;
         padding: 20px 5%;
@@ -213,7 +206,6 @@ body {
         gap: 10px;
     }
 
-    /* Icon placeholders - Replace with actual icons */
     [class*="-icon"] {
         width: 20px;
         height: 20px;
@@ -222,7 +214,6 @@ body {
         border-radius: 50%;
     }
 
-    /* Responsive Design */
     @media (max-width: 768px) {
         .footer-main {
             grid-template-columns: 1fr;
@@ -238,7 +229,6 @@ body {
         }
     }
 
-    /* Chatbot Icon */
 #chatbot-icon {
     position: fixed;
     bottom: 20px;
@@ -246,10 +236,9 @@ body {
     width: 50px;
     height: 50px;
     cursor: pointer;
-    z-index: 1000; /* Ensures it's on top of other content */
+    z-index: 1000;
 }
 
-/* Chatbot Box */
 #chatbot-box {
     position: fixed;
     bottom: 80px;
@@ -261,7 +250,7 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     display: flex;
     flex-direction: column;
-    z-index: 1001; /* Higher than chatbot icon to stay on top */
+    z-index: 1001;
 }
 
 
@@ -275,7 +264,7 @@ body {
 }
 
 .chatbot-header {
-    background-color: #1d3b32; /* Dark green */
+    background-color: #1d3b32;
     color: #fff;
     padding: 10px;
     display: flex;
@@ -333,7 +322,6 @@ body {
     align-self: flex-start;
 }
 
-/* Footer Styles */
     .footer {
         font-family: Arial, sans-serif;
         color: white;
@@ -357,7 +345,6 @@ body {
         padding-right: 20px;
     }
 
-    /* Contact Info Styles */
     .contact-info p,
     .social-links p {
         margin: 10px 0;
@@ -366,7 +353,6 @@ body {
         gap: 10px;
     }
 
-    /* Newsletter Button */
     .newsletter-btn {
         display: inline-block;
         background-color: #1a5c1a;
@@ -381,7 +367,6 @@ body {
         background-color: #134013;
     }
 
-    /* Mandate Section */
     .mandate-text {
         line-height: 1.6;
         margin-bottom: 20px;
@@ -396,7 +381,6 @@ body {
         text-decoration: underline;
     }
 
-    /* Connect Centre Section */
     .connect-centre {
         background-color: #b8860b;
         padding: 20px 5%;
@@ -420,7 +404,6 @@ body {
         gap: 10px;
     }
 
-    /* Icon placeholders - Replace with actual icons */
     [class*="-icon"] {
         width: 20px;
         height: 20px;
@@ -429,7 +412,6 @@ body {
         border-radius: 50%;
     }
 
-    /* Responsive Design */
     @media (max-width: 768px) {
         .footer-main {
             grid-template-columns: 1fr;
@@ -444,3 +426,142 @@ body {
             padding-right: 0;
         }
     }
+
+body {
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+
+@media (max-width: 1024px) {
+    .nav-menu a, .dropbtn {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    .footer-heading {
+        font-size: 20px;
+    }
+
+    .contact-info p,
+    .social-links p {
+        font-size: 14px;
+    }
+}
+
+/* For screens 768px and below */
+@media (max-width: 768px) {
+    .nav-menu {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        margin: 0;
+        padding: 10px 0;
+        background-color: #004d40;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        z-index: 999;
+    }
+
+    .nav-menu.active {
+        display: flex;
+    }
+
+    .hamburger {
+        display: flex;
+        position: absolute;
+        right: 20px;
+    }
+
+    .hero-section h2 {
+        font-size: 36px;
+    }
+
+    .footer-main {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .connect-info {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .footer-section {
+        padding-right: 0;
+    }
+
+    .chatbot-header {
+        font-size: 16px;
+    }
+}
+
+/* For screens 420px and below */
+@media (max-width: 420px) {
+    .nav-menu a, .dropbtn {
+        font-size: 12px;
+        padding: 6px;
+    }
+
+    .hero-section h2 {
+        font-size: 30px;
+        text-align: center;
+        padding: 0 10px;
+    }
+
+    .footer-heading {
+        font-size: 18px;
+    }
+
+    .contact-info p,
+    .social-links p {
+        font-size: 12px;
+    }
+
+    .chatbot-header {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    #chatbot-box {
+        width: 250px;
+        max-height: 300px;
+    }
+}
+
+/* For screens 360px and below */
+@media (max-width: 360px) {
+    .nav-menu a, .dropbtn {
+        font-size: 11px;
+        padding: 5px;
+    }
+
+    .hero-section h2 {
+        font-size: 24px;
+        text-align: center;
+        padding: 0 8px;
+    }
+
+    .footer-heading {
+        font-size: 16px;
+    }
+
+    .contact-info p,
+    .social-links p {
+        font-size: 10px;
+    }
+
+    #chatbot-box {
+        width: 220px;
+        max-height: 250px;
+    }
+}

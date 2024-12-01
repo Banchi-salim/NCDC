@@ -73,3 +73,141 @@
     font-size: 0.9em;
     color: #888;
 }
+
+/* Media Queries */
+
+/* For screens 1024px and below */
+@media (max-width: 1024px) {
+    .hero-section {
+        height: 250px;
+    }
+
+    .hero-section h2 {
+        font-size: 48px;
+    }
+
+    .incident-action-plan {
+        padding: 15px;
+    }
+
+    .incident-action-plan h1 {
+        font-size: 1.8em;
+    }
+
+    .incident-action-plan .intro {
+        font-size: 1.1em;
+    }
+
+    .plans-grid {
+        gap: 15px;
+    }
+}
+
+/* For screens 768px and below */
+@media (max-width: 768px) {
+    .hero-section {
+        height: 200px;
+    }
+
+    .hero-section h2 {
+        font-size: 36px;
+    }
+
+    .incident-action-plan {
+        padding: 10px;
+    }
+
+    .incident-action-plan h1 {
+        font-size: 1.6em;
+    }
+
+    .incident-action-plan .intro {
+        font-size: 1em;
+    }
+
+    .plans-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 10px;
+    }
+
+    .plan-card {
+        padding: 10px;
+    }
+}
+
+/* For screens 420px and below */
+@media (max-width: 420px) {
+    .hero-section {
+        height: 180px;
+    }
+
+    .hero-section h2 {
+        font-size: 28px;
+    }
+
+    .incident-action-plan {
+        padding: 5px;
+    }
+
+    .incident-action-plan h1 {
+        font-size: 1.4em;
+    }
+
+    .incident-action-plan .intro {
+        font-size: 0.9em;
+    }
+
+    .plans-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .plan-card {
+        padding: 8px;
+    }
+
+    .plan-title {
+        font-size: 1em;
+    }
+
+    .plan-date {
+        font-size: 0.85em;
+    }
+}
+
+/* For screens 360px and below */
+@media (max-width: 360px) {
+    .hero-section {
+        height: 150px;
+    }
+
+    .hero-section h2 {
+        font-size: 24px;
+    }
+
+    .incident-action-plan h1 {
+        font-size: 1.2em;
+    }
+
+    .incident-action-plan .intro {
+        font-size: 0.8em;
+    }
+
+    .plans-grid {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    .plan-card {
+        padding: 5px;
+    }
+
+    .plan-title {
+        font-size: 0.9em;
+    }
+
+    .plan-date {
+        font-size: 0.8em;
+    }
+}
+

@@ -91,3 +91,159 @@
 .read-more-btn:hover {
     background-color: #d32f2f;
 }
+/* Media Queries */
+
+/* For screens 1024px and below */
+@media (max-width: 1024px) {
+    .hero-section {
+        height: 250px;
+    }
+
+    .hero-section h2 {
+        font-size: 48px;
+    }
+
+    .projects-section {
+        padding: 15px;
+    }
+
+    .project-card {
+        gap: 15px;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .project-image img {
+        width: 120px;
+    }
+
+    .project-content {
+        text-align: center;
+    }
+
+    .project-title {
+        font-size: 1.3rem;
+    }
+
+    .project-date {
+        font-size: 0.8rem;
+    }
+
+    .read-more-btn {
+        padding: 8px 12px;
+        font-size: 0.9rem;
+    }
+}
+
+/* For screens 768px and below */
+@media (max-width: 768px) {
+    .hero-section {
+        height: 200px;
+    }
+
+    .hero-section h2 {
+        font-size: 36px;
+    }
+
+    .projects-section {
+        padding: 10px;
+    }
+
+    .project-card {
+        flex-direction: column;
+        gap: 10px;
+        padding: 15px;
+    }
+
+    .project-image img {
+        width: 100px;
+    }
+
+    .project-title {
+        font-size: 1.2rem;
+    }
+
+    .project-date {
+        font-size: 0.8rem;
+    }
+
+    .read-more-btn {
+        padding: 7px 10px;
+        font-size: 0.8rem;
+    }
+}
+
+/* For screens 420px and below */
+@media (max-width: 420px) {
+    .hero-section {
+        height: 180px;
+    }
+
+    .hero-section h2 {
+        font-size: 28px;
+    }
+
+    .projects-section {
+        padding: 5px;
+    }
+
+    .project-card {
+        padding: 10px;
+        gap: 8px;
+    }
+
+    .project-image img {
+        width: 80px;
+    }
+
+    .project-title {
+        font-size: 1rem;
+    }
+
+    .project-date {
+        font-size: 0.7rem;
+    }
+
+    .read-more-btn {
+        padding: 6px 8px;
+        font-size: 0.7rem;
+    }
+}
+
+/* For screens 360px and below */
+@media (max-width: 360px) {
+    .hero-section {
+        height: 150px;
+    }
+
+    .hero-section h2 {
+        font-size: 24px;
+    }
+
+    .projects-section {
+        padding: 5px;
+    }
+
+    .project-card {
+        padding: 8px;
+        gap: 6px;
+    }
+
+    .project-image img {
+        width: 70px;
+    }
+
+    .project-title {
+        font-size: 0.9rem;
+    }
+
+    .project-date {
+        font-size: 0.6rem;
+    }
+
+    .read-more-btn {
+        padding: 5px 6px;
+        font-size: 0.6rem;
+    }
+}
+

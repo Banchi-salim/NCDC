@@ -115,3 +115,187 @@
 .close:hover {
     color: #000;
 }
+
+/* Media Queries */
+
+/* For screens 1024px and below */
+@media (max-width: 1024px) {
+    .hero-section {
+        height: 250px;
+    }
+
+    .hero-section h2 {
+        font-size: 48px;
+    }
+
+    .disease-section {
+        padding: 15px;
+    }
+
+    .filter-buttons button {
+        font-size: 14px;
+        padding: 8px 12px;
+    }
+
+    .disease-list {
+        justify-content: space-around;
+    }
+
+    .disease-item {
+        flex: 1 0 30%;
+        margin: 10px;
+    }
+
+    .modal-content {
+        max-width: 500px;
+        padding: 15px;
+    }
+
+    .modal-content h2 {
+        font-size: 20px;
+    }
+
+    .modal-content p {
+        font-size: 14px;
+    }
+}
+
+/* For screens 768px and below */
+@media (max-width: 768px) {
+    .hero-section {
+        height: 200px;
+    }
+
+    .hero-section h2 {
+        font-size: 36px;
+    }
+
+    .filter-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .filter-buttons button {
+        font-size: 14px;
+        width: 90%;
+        margin: 5px auto;
+    }
+
+    .disease-list {
+        justify-content: center;
+    }
+
+    .disease-item {
+        flex: 1 0 45%;
+        margin: 8px;
+    }
+
+    .modal-content {
+        max-width: 90%;
+        padding: 10px;
+    }
+
+    .modal-content h2 {
+        font-size: 18px;
+    }
+
+    .modal-content p {
+        font-size: 13px;
+    }
+}
+
+/* For screens 420px and below */
+@media (max-width: 420px) {
+    .hero-section {
+        height: 150px;
+    }
+
+    .hero-section h2 {
+        font-size: 28px;
+    }
+
+    .disease-section {
+        padding: 10px;
+    }
+
+    .filter-buttons {
+        flex-direction: column;
+    }
+
+    .filter-buttons button {
+        font-size: 12px;
+        width: 100%;
+        margin: 5px 0;
+    }
+
+    .disease-item {
+        flex: 1 0 90%;
+        margin: 5px auto;
+        padding: 10px;
+    }
+
+    .disease-item h2 {
+        font-size: 16px;
+    }
+
+    .modal-content {
+        max-width: 95%;
+        padding: 10px;
+    }
+
+    .modal-content h2 {
+        font-size: 16px;
+    }
+
+    .modal-content p {
+        font-size: 12px;
+    }
+
+    .close {
+        font-size: 24px;
+    }
+}
+
+/* For screens 360px and below */
+@media (max-width: 360px) {
+    .hero-section {
+        height: 120px;
+    }
+
+    .hero-section h2 {
+        font-size: 24px;
+    }
+
+    .filter-buttons button {
+        font-size: 11px;
+        padding: 8px 10px;
+        width: 100%;
+    }
+
+    .disease-item {
+        flex: 1 0 100%;
+        margin: 5px auto;
+    }
+
+    .disease-item h2 {
+        font-size: 14px;
+    }
+
+    .modal-content {
+        max-width: 100%;
+        padding: 8px;
+    }
+
+    .modal-content h2 {
+        font-size: 14px;
+    }
+
+    .modal-content p {
+        font-size: 11px;
+    }
+
+    .close {
+        font-size: 20px;
+    }
+}
+

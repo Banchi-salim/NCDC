@@ -50,3 +50,98 @@
 .report-table a:hover {
     text-decoration: underline;
 }
+
+/* Media Queries */
+
+/* For screens 1024px and below */
+@media (max-width: 1024px) {
+    .hero-section {
+        height: 250px;
+    }
+
+    .hero-section h2 {
+        font-size: 48px;
+    }
+
+    .report-table th,
+    .report-table td {
+        padding: 6px;
+    }
+
+    .report-table {
+        font-size: 0.95rem;
+    }
+}
+
+/* For screens 768px and below */
+@media (max-width: 768px) {
+    .hero-section {
+        height: 200px;
+    }
+
+    .hero-section h2 {
+        font-size: 36px;
+    }
+
+    .report-table th,
+    .report-table td {
+        padding: 5px;
+    }
+
+    .report-table {
+        font-size: 0.9rem;
+    }
+
+    .report-table a {
+        font-size: 0.9rem;
+    }
+}
+
+/* For screens 420px and below */
+@media (max-width: 420px) {
+    .hero-section {
+        height: 180px;
+    }
+
+    .hero-section h2 {
+        font-size: 28px;
+    }
+
+    .report-table th,
+    .report-table td {
+        padding: 4px;
+    }
+
+    .report-table {
+        font-size: 0.85rem;
+    }
+
+    .report-table a {
+        font-size: 0.85rem;
+    }
+}
+
+/* For screens 360px and below */
+@media (max-width: 360px) {
+    .hero-section {
+        height: 150px;
+    }
+
+    .hero-section h2 {
+        font-size: 24px;
+    }
+
+    .report-table th,
+    .report-table td {
+        padding: 3px;
+    }
+
+    .report-table {
+        font-size: 0.8rem;
+    }
+
+    .report-table a {
+        font-size: 0.8rem;
+    }
+}
+
