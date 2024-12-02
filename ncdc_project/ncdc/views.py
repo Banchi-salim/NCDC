@@ -280,12 +280,15 @@ def post_message(request):
         data = json.loads(request.body)
         user = data.get('user', 'Visitor')
         message = data.get('message', '')
+        reply_to_id = data.get('reply_to')
 
         if message:
-            ChatMessage.objects.create(user=user, message=message)
+            parent_message = ChatMessage.objects.filter(id=reply_to_id).first() if reply_to_id else None
+            new_message = ChatMessage.objects.create(user=user, message=message, reply_to=parent_message)
             notify_admin_or_staff(user, message)
-            return JsonResponse({'status': 'success', 'message': 'Message posted!'})
+            return JsonResponse({'status': 'success', 'message': 'Message posted!', 'message_id': new_message.id})
     return JsonResponse({'status': 'error', 'message': 'Invalid request'}, status=400)
+
 
 def notify_admin_or_staff(user, message):
     """Notify admin/staff about a new message."""

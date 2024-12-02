@@ -11,9 +11,20 @@
     </div>
     <div id="chat-messages" class="chat-messages">
         {% for message in messages %}
-        <div class="message">
+        <div class="message" data-id="{{ message.id }}">
             <strong>{{ message.user }}</strong>: {{ message.message }}
             <span class="timestamp">{{ message.timestamp|date:"M d, H:i" }}</span>
+            <button class="reply-button" data-id="{{ message.id }}">Reply</button>
+            {% if message.replies.all %}
+            <div class="replies">
+                {% for reply in message.replies.all %}
+                <div class="reply">
+                    <strong>{{ reply.user }}</strong>: {{ reply.message }}
+                    <span class="timestamp">{{ reply.timestamp|date:"M d, H:i" }}</span>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
         </div>
         {% endfor %}
     </div>
@@ -23,7 +34,25 @@
         <button id="send-button">Send</button>
     </div>
 </div>
+
 <script>
+    let replyingToId = null;  // Keeps track of which message is being replied to
+
+    // Handle reply button clicks
+    document.querySelectorAll('.reply-button').forEach(button => {
+        button.addEventListener('click', () => {
+            const messageId = button.getAttribute('data-id');
+            replyingToId = messageId;
+            const replyUser = document.getElementById("user");
+            const replyMessage = document.getElementById("message");
+
+            replyUser.value = "Admin";  // Auto-fill the admin name if admin replies
+            replyMessage.placeholder = "Type your reply...";
+            replyMessage.focus();
+        });
+    });
+
+    // Handle send button
     document.getElementById("send-button").addEventListener("click", () => {
         const user = document.getElementById("user").value.trim() || "Visitor";
         const message = document.getElementById("message").value.trim();
@@ -35,16 +64,32 @@
                     "Content-Type": "application/json",
                     "X-CSRFToken": document.querySelector('[name=csrfmiddlewaretoken]').value
                 },
-                body: JSON.stringify({ user, message })
+                body: JSON.stringify({ user, message, reply_to: replyingToId })
             })
             .then(response => response.json())
             .then(data => {
                 if (data.status === "success") {
-                    // Reload messages
                     const messageDiv = document.createElement('div');
                     messageDiv.classList.add('message');
-                    messageDiv.innerHTML = `<strong>${user}</strong>: ${message} <span class="timestamp">Just now</span>`;
-                    document.getElementById("chat-messages").appendChild(messageDiv);
+                    messageDiv.innerHTML = `
+                        <strong>${user}</strong>: ${message}
+                        <span class="timestamp">Just now</span>
+                        <button class="reply-button" data-id="${data.message_id}">Reply</button>
+                    `;
+                    if (replyingToId) {
+                        const parentMessage = document.querySelector(`[data-id="${replyingToId}"] .replies`);
+                        if (parentMessage) {
+                            parentMessage.appendChild(messageDiv);
+                        } else {
+                            const repliesDiv = document.createElement('div');
+                            repliesDiv.classList.add('replies');
+                            repliesDiv.appendChild(messageDiv);
+                            document.querySelector(`[data-id="${replyingToId}"]`).appendChild(repliesDiv);
+                        }
+                        replyingToId = null;  // Reset reply
+                    } else {
+                        document.getElementById("chat-messages").appendChild(messageDiv);
+                    }
                     document.getElementById("message").value = "";  // Clear input
                 } else {
                     alert("Error posting message.");

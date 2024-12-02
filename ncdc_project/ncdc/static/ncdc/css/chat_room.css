@@ -61,3 +61,18 @@
 .chat-input button:hover {
     background-color: #00392f;
 }
+
+
+.replies {
+    margin-left: 20px;
+    margin-top: 10px;
+    padding-left: 10px;
+    border-left: 2px solid #ddd;
+}
+
+.reply {
+    background-color: #f0f8ff;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    padding: 5px 10px;
+}

@@ -222,6 +222,9 @@ class ChatMessage(models.Model):
     user = models.CharField(max_length=100, blank=True)  # Visitor or staff/admin name
     message = models.TextField()
     timestamp = models.DateTimeField(auto_now_add=True)
+    reply_to = models.ForeignKey(
+        'self', null=True, blank=True, on_delete=models.CASCADE, related_name='replies'
+    )  # For threaded replies
 
     def __str__(self):
         return f"{self.user}: {self.message[:50]}"
@@ -230,5 +233,3 @@ class ChatMessage(models.Model):
     def clear_old_messages():
         """Clear messages older than 24 hours."""
         ChatMessage.objects.filter(timestamp__lt=now() - timedelta(hours=24)).delete()
-
-
