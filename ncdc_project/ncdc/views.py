@@ -320,12 +320,22 @@ def post_message(request):
     return JsonResponse({'status': 'error', 'message': 'Invalid request'}, status=400)
 
 
+from django.core.mail import send_mail
+from django.core.mail import EmailMessage
+import logging
+
+logger = logging.getLogger(__name__)
+
 def notify_admin_or_staff(user, message):
     """Notify admin/staff about a new message."""
-    send_mail(
-        'New Message in NCDC Chat Room',
-        f'{user} sent a new message: "{message}"',
-        'usmanabdulsalim@gmail.com',  # Replace with your email
-        ['iabdulsalim40@gmail.com', 'mouhdbuharii@gmail.com'],  # Replace with admin email(s)
-        fail_silently=True,
-    )
+    try:
+        send_mail(
+            subject='New Message in NCDC Chat Room',
+            message=f'{user} sent a new message: "{message}"',
+            from_email='your_email@gmail.com',  # Replace with your email
+            recipient_list=['iabdulsalim40@gmail.com', 'mouhdbuharii@gmail.com'],  # Replace with admin email(s)
+            fail_silently=False,  # Use False for debugging
+        )
+        logger.info(f"Notification sent to admin successfully.")
+    except Exception as e:
+        logger.error(f"Error sending notification to admin: {e}")
