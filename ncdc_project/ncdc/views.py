@@ -4,6 +4,7 @@ import requests
 from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.models import User
 from .models import *
 
 
@@ -282,11 +283,40 @@ def post_message(request):
         message = data.get('message', '')
         reply_to_id = data.get('reply_to')
 
+        # Check if the user is authenticated (logged in admin)
+        if request.user.is_authenticated:
+            user = request.user.username  # Use the logged-in admin's username
+
         if message:
+            # Check for parent message if it's a reply
             parent_message = ChatMessage.objects.filter(id=reply_to_id).first() if reply_to_id else None
+
+            # Create a new message in the database
             new_message = ChatMessage.objects.create(user=user, message=message, reply_to=parent_message)
-            notify_admin_or_staff(user, message)
+
+            # Notify the original message poster (if it's a reply and email exists)
+            if parent_message and '@' in parent_message.user:  # Assuming email-like user input
+                try:
+                    send_mail(
+                        subject=f"Reply to your message on NCDC Chat Room",
+                        message=f"Hi {parent_message.user},\n\n"
+                                f"{user} has replied to your message:\n\n"
+                                f"\"{parent_message.message}\"\n\n"
+                                f"Reply:\n\"{message}\"\n\n"
+                                f"Visit the chat room for more details.",
+                        from_email='no-reply@ncdc.gov.ng',
+                        recipient_list=[parent_message.user],
+                        fail_silently=True
+                    )
+                except Exception as e:
+                    print(f"Error sending email: {e}")
+
+            # Notify admin or staff of new messages
+            if not reply_to_id:  # Notify only for new (non-reply) messages
+                notify_admin_or_staff(user, message)
+
             return JsonResponse({'status': 'success', 'message': 'Message posted!', 'message_id': new_message.id})
+
     return JsonResponse({'status': 'error', 'message': 'Invalid request'}, status=400)
 
 
@@ -295,7 +325,7 @@ def notify_admin_or_staff(user, message):
     send_mail(
         'New Message in NCDC Chat Room',
         f'{user} sent a new message: "{message}"',
-        'noreply@ncdc.com',  # Replace with your email
-        ['admin@ncdc.com'],  # Replace with admin email(s)
+        'usmanabdulsalim@gmail.com',  # Replace with your email
+        ['iabdulsalim40@gmail.com', 'mouhdbuharii@gmail.com'],  # Replace with admin email(s)
         fail_silently=True,
     )
