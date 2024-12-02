@@ -1,10 +1,9 @@
 import json
-
+from django.core.mail import send_mail
 import requests
 from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
-
 from .models import *
 
 
@@ -267,3 +266,33 @@ def jobs_list(request):
 
 def contact_page(request):
     return render(request, 'ncdc/contact.html')
+
+
+def chat_room(request):
+    """Renders the chat room page."""
+    messages = ChatMessage.objects.order_by('-timestamp')[:50]  # Load recent 50 messages
+    return render(request, 'chat_room.html', {'messages': messages})
+
+@csrf_exempt
+def post_message(request):
+    """Handles new chat messages."""
+    if request.method == "POST":
+        data = json.loads(request.body)
+        user = data.get('user', 'Visitor')
+        message = data.get('message', '')
+
+        if message:
+            ChatMessage.objects.create(user=user, message=message)
+            notify_admin_or_staff(user, message)
+            return JsonResponse({'status': 'success', 'message': 'Message posted!'})
+    return JsonResponse({'status': 'error', 'message': 'Invalid request'}, status=400)
+
+def notify_admin_or_staff(user, message):
+    """Notify admin/staff about a new message."""
+    send_mail(
+        'New Message in NCDC Chat Room',
+        f'{user} sent a new message: "{message}"',
+        'noreply@ncdc.com',  # Replace with your email
+        ['admin@ncdc.com'],  # Replace with admin email(s)
+        fail_silently=True,
+    )

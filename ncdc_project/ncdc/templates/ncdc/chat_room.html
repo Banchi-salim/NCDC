@@ -1,0 +1,59 @@
+{% extends "ncdc/base.html" %}
+{% load static %}
+{% block title %}Community Chat Room - NCDC{% endblock %}
+{% block extra_css %}<link rel="stylesheet" href="{% static 'ncdc/css/chat_room.css' %}">{% endblock %}
+
+{% block content %}
+<div class="chat-container">
+    <div class="chat-header">
+        <h2>Community Chat Room</h2>
+        <p>Messages will be cleared after 24 hours.</p>
+    </div>
+    <div id="chat-messages" class="chat-messages">
+        {% for message in messages %}
+        <div class="message">
+            <strong>{{ message.user }}</strong>: {{ message.message }}
+            <span class="timestamp">{{ message.timestamp|date:"M d, H:i" }}</span>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="chat-input">
+        <input type="text" id="user" placeholder="Your name">
+        <textarea id="message" placeholder="Type your message..."></textarea>
+        <button id="send-button">Send</button>
+    </div>
+</div>
+<script>
+    document.getElementById("send-button").addEventListener("click", () => {
+        const user = document.getElementById("user").value.trim() || "Visitor";
+        const message = document.getElementById("message").value.trim();
+
+        if (message) {
+            fetch("/post-message/", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRFToken": document.querySelector('[name=csrfmiddlewaretoken]').value
+                },
+                body: JSON.stringify({ user, message })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === "success") {
+                    // Reload messages
+                    const messageDiv = document.createElement('div');
+                    messageDiv.classList.add('message');
+                    messageDiv.innerHTML = `<strong>${user}</strong>: ${message} <span class="timestamp">Just now</span>`;
+                    document.getElementById("chat-messages").appendChild(messageDiv);
+                    document.getElementById("message").value = "";  // Clear input
+                } else {
+                    alert("Error posting message.");
+                }
+            })
+            .catch(error => console.error("Error:", error));
+        } else {
+            alert("Message cannot be empty!");
+        }
+    });
+</script>
+{% endblock %}

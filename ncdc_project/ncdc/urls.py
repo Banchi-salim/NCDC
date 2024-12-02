@@ -33,4 +33,6 @@ urlpatterns = [
     path('security-risk/', views.security_risk_list, name='security_risk_list'),
     path('jobs/', views.jobs_list, name='jobs_list'),
     path('contact/', views.contact_page, name='contact_page'),
+    path('chat-room/', views.chat_room, name='chat_room'),
+    path('post-message/', views.post_message, name='post_message'),
 ]

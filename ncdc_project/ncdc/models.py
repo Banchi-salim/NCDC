@@ -1,5 +1,8 @@
+from datetime import timedelta
+from django.utils.timezone import now
 from django.db import models
 from django.utils import timezone
+from django.utils.timezone import timedelta
 
 
 class Blog(models.Model):
@@ -213,3 +216,19 @@ class Job(models.Model):
 
     class Meta:
         ordering = ['-created_at']
+
+
+class ChatMessage(models.Model):
+    user = models.CharField(max_length=100, blank=True)  # Visitor or staff/admin name
+    message = models.TextField()
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.user}: {self.message[:50]}"
+
+    @staticmethod
+    def clear_old_messages():
+        """Clear messages older than 24 hours."""
+        ChatMessage.objects.filter(timestamp__lt=now() - timedelta(hours=24)).delete()
+
+
