@@ -332,7 +332,7 @@ def notify_admin_or_staff(user, message):
         send_mail(
             subject='New Message in NCDC Chat Room',
             message=f'{user} sent a new message: "{message}"',
-            from_email='your_email@gmail.com',  # Replace with your email
+            from_email='usmanabdulsalim@gmail.com',  # Replace with your email
             recipient_list=['iabdulsalim40@gmail.com', 'mouhdbuharii@gmail.com'],  # Replace with admin email(s)
             fail_silently=False,  # Use False for debugging
         )
