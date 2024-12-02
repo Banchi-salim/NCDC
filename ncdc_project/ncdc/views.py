@@ -271,7 +271,7 @@ def contact_page(request):
 def chat_room(request):
     """Renders the chat room page."""
     messages = ChatMessage.objects.order_by('-timestamp')[:50]  # Load recent 50 messages
-    return render(request, 'chat_room.html', {'messages': messages})
+    return render(request, 'ncdc/chat_room.html', {'messages': messages})
 
 @csrf_exempt
 def post_message(request):
