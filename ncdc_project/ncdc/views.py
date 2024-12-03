@@ -84,22 +84,37 @@ def office_of_dg(request):
     return render(request, 'ncdc/dg.html', {'blogs': blogs})
 
 
+def get_user_lga(latitude, longitude):
+    """
+    Function to find the LGA based on user's latitude and longitude.
+    Assumes LocalGovernmentArea model has latitude and longitude ranges defined.
+    """
+    return LocalGovernmentArea.objects.filter(
+        latitude_min__lte=latitude,
+        latitude_max__gte=latitude,
+        longitude_min__lte=longitude,
+        longitude_max__gte=longitude
+    ).first()
+
 def update_location(request):
     if request.method == "POST":
         data = json.loads(request.body)
         latitude = data.get("latitude")
         longitude = data.get("longitude")
 
-        # Logic to check if there's an outbreak near the user's location
-        nearby_alert = DiseaseAlert.objects.filter(
-            latitude__range=(latitude - 0.5, latitude + 0.5),
-            longitude__range=(longitude - 0.5, longitude + 0.5)
-        ).first()
+        # Determine the user's LGA
+        user_lga = get_user_lga(latitude, longitude)
 
-        if nearby_alert:
-            return JsonResponse({"alert": f"Outbreak Alert: {nearby_alert.title}"})
+        if user_lga:
+            # Fetch any active disease alerts for the user's LGA
+            disease_alerts = DiseaseAlert.objects.filter(lga=user_lga)
+            if disease_alerts.exists():
+                alerts = [alert.title for alert in disease_alerts]
+                return JsonResponse({"alert": f"Disease Outbreaks in {user_lga.name}: {', '.join(alerts)}"})
+            else:
+                return JsonResponse({"alert": f"No disease outbreaks reported in {user_lga.name}."})
 
-        return JsonResponse({"alert": None})
+        return JsonResponse({"alert": "Unable to determine your local government area."})
 
     return JsonResponse({"error": "Invalid request method."}, status=400)
 

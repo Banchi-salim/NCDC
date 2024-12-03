@@ -52,12 +52,21 @@ class HeadOfDepartment(models.Model):
         return f"{self.name} - {self.department}"
 
 
+class LocalGovernmentArea(models.Model):
+    name = models.CharField(max_length=100)
+    latitude_min = models.FloatField()
+    latitude_max = models.FloatField()
+    longitude_min = models.FloatField()
+    longitude_max = models.FloatField()
+
+    def __str__(self):
+        return self.name
+
+
 class DiseaseAlert(models.Model):
-    title = models.CharField(max_length=255)
+    title = models.CharField(max_length=200)
     description = models.TextField()
-    latitude = models.FloatField()
-    longitude = models.FloatField()
-    created_at = models.DateTimeField(auto_now_add=True)
+    lga = models.ForeignKey(LocalGovernmentArea, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.title

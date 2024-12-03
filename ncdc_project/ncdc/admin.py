@@ -6,6 +6,7 @@ from .models import *
 admin.site.register(Blog)
 admin.site.register(Department)
 admin.site.register(HeadOfDepartment)
+admin.site.register(LocalGovernmentArea)
 admin.site.register(DiseaseAlert)
 admin.site.register(Report_disease_weekly)
 admin.site.register(Weekly_Epidemiological_Report)
@@ -20,5 +21,8 @@ admin.site.register(ResearchWork)
 admin.site.register(StateIncidentActionPlan)
 admin.site.register(Disease)
 admin.site.register(DGPost)
+admin.site.register(Project)
+admin.site.register(SecurityRiskDocument)
+admin.site.register(Job)
 
 
