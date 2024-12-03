@@ -345,6 +345,13 @@
     .partners-title {
         font-size: 1.8rem;
     }
+    .section mission{
+        width:80%;
+    }
+
+    .section values{
+        width:80%;
+    }
 }
 
 @media screen and (max-width: 992px) {
