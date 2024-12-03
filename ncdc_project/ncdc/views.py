@@ -96,6 +96,7 @@ def get_user_lga(latitude, longitude):
         longitude_max__gte=longitude
     ).first()
 
+
 def update_location(request):
     if request.method == "POST":
         data = json.loads(request.body)
@@ -289,6 +290,7 @@ def chat_room(request):
     messages = ChatMessage.objects.order_by('-timestamp')[:50]  # Load recent 50 messages
     return render(request, 'ncdc/chat_room.html', {'messages': messages})
 
+
 @csrf_exempt
 def post_message(request):
     """Handles new chat messages."""
@@ -340,6 +342,7 @@ from django.core.mail import EmailMessage
 import logging
 
 logger = logging.getLogger(__name__)
+
 
 def notify_admin_or_staff(user, message):
     """Notify admin/staff about a new message."""
