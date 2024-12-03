@@ -7,6 +7,7 @@
     color: white;
     position: relative;
     overflow: hidden;
+    width:100%;
 }
 
 .hero-content {
@@ -99,6 +100,7 @@
     padding: 60px 20px;
     gap: 60px;
     background-color: #fff;
+    overflow-x:hidden;
 }
 
 /* Our Mission Section */
@@ -110,7 +112,7 @@
     width: 100%;
     text-align: left;
     position: relative;
-    overflow: hidden;
+    overflow-x: hidden;
     animation: fadeInUp 1.5s ease;
 }
 
