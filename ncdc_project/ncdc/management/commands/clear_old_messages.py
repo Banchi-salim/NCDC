@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand
-from ncdc_project.ncdc.models import ChatMessage
+from ncdc.models import ChatMessage
 from datetime import timedelta
 from django.utils.timezone import now
 
