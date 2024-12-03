@@ -370,6 +370,7 @@
 
     .hero-image {
         max-width: 35%;
+        margin:20px;
     }
 
     .section-title {
