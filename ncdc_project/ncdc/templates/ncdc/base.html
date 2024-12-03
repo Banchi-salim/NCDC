@@ -251,59 +251,61 @@ function getCsrfToken() {
     return csrfToken;
 }
 
-// Function to handle location alerts
-document.addEventListener("DOMContentLoaded", () => {
-    if (navigator.geolocation) {
-        // Check if the location permission is already granted or prompt
-        navigator.permissions.query({ name: "geolocation" }).then((result) => {
-            if (result.state === "granted" || result.state === "prompt") {
-                // Retrieve location on page load
-                navigator.geolocation.getCurrentPosition(
-                    (position) => {
-                        sendLocationToServer(position.coords.latitude, position.coords.longitude);
-                    },
-                    (error) => {
-                        alert("Unable to access location. Location access is required for personalized alerts.");
+    // Function to handle location alerts
+    document.addEventListener("DOMContentLoaded", () => {
+        // Check if the page title is "Home - NCDC"
+        if (document.title === "Home - NCDC") {
+            if (navigator.geolocation) {
+                // Check if the location permission is already granted or prompt
+                navigator.permissions.query({ name: "geolocation" }).then((result) => {
+                    if (result.state === "granted" || result.state === "prompt") {
+                        // Retrieve location on page load
+                        navigator.geolocation.getCurrentPosition(
+                            (position) => {
+                                sendLocationToServer(position.coords.latitude, position.coords.longitude);
+                            },
+                            (error) => {
+                                alert("Unable to access location. Location access is required for personalized alerts.");
+                            }
+                        );
+                    } else {
+                        alert("Location access is required for personalized alerts.");
                     }
-                );
+                });
             } else {
-                alert("Location access is required for personalized alerts.");
+                alert("Geolocation is not supported by your browser.");
             }
-        });
-    } else {
-        alert("Geolocation is not supported by your browser.");
-    }
-});
+        }
+    });
 
-function sendLocationToServer(lat, lng) {
-    fetch("/update-location/", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            "X-CSRFToken": getCsrfToken(),
-        },
-        body: JSON.stringify({ latitude: lat, longitude: lng }),
-    })
-        .then((response) => response.json())
-        .then((data) => {
-            if (data.alert) {
-                alert(data.alert); // Display the outbreak alert
-            } else {
-                alert("There are no current disease outbreaks in your area."); // Alert if no outbreaks
-            }
+    function sendLocationToServer(lat, lng) {
+        fetch("/update-location/", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRFToken": getCsrfToken(),
+            },
+            body: JSON.stringify({ latitude: lat, longitude: lng }),
         })
-        .catch((error) => console.error("Error sending location:", error));
-}
-
-// Utility function to retrieve CSRF token
-function getCsrfToken() {
-    const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
-    if (!csrfToken) {
-        console.error("CSRF token not found. Ensure your HTML includes a CSRF token.");
+            .then((response) => response.json())
+            .then((data) => {
+                if (data.alert) {
+                    alert(data.alert); // Display the outbreak alert
+                } else {
+                    alert("There are no current disease outbreaks in your area."); // Alert if no outbreaks
+                }
+            })
+            .catch((error) => console.error("Error sending location:", error));
     }
-    return csrfToken;
-}
 
+    // Utility function to retrieve CSRF token
+    function getCsrfToken() {
+        const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+        if (!csrfToken) {
+            console.error("CSRF token not found. Ensure your HTML includes a CSRF token.");
+        }
+        return csrfToken;
+    }
 </script>
 {% block extra_js %}{% endblock %}
 </body>

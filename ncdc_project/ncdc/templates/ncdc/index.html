@@ -129,49 +129,57 @@
         });
     });
 
+    // First Slideshow
     let slideIndex = 0;
-    showSlides();
-
     function showSlides() {
         const slides = document.getElementsByClassName("slideshow-slide");
+
+        // Hide all slides
         for (let i = 0; i < slides.length; i++) {
             slides[i].style.display = "none";
         }
+
+        // Increment slideIndex and reset if it exceeds the number of slides
         slideIndex++;
         if (slideIndex > slides.length) {
             slideIndex = 1;
         }
+
+        // Show the current slide
         slides[slideIndex - 1].style.display = "block";
-        setTimeout(showSlides, 4000); // Change slide every 4 seconds
+
+        // Change slide every 4 seconds
+        setTimeout(showSlides, 4000);
     }
 
+    // Initialize first slideshow
+    showSlides();
 
-    //second slideshow
+    // Second Slideshow with responsive slides
     let slideIndex1 = 0;
-    let slidesToShow1 = getSlidesToShow(); // Initial setting based on screen size
+    let slidesToShow1 = getSlidesToShow1(); // Initial slides to show based on screen size
 
-    // Function to get the number of slides to show based on screen width
-    function getSlidesToShow() {
+    function getSlidesToShow1() {
         return window.matchMedia("(max-width: 768px)").matches ? 1 : 3;
     }
 
-    // Update slidesToShow on window resize
+    // Update slidesToShow1 on window resize
     window.addEventListener("resize", () => {
-        slidesToShow1 = getSlidesToShow();
+        slidesToShow1 = getSlidesToShow1();
         slideIndex1 = 0; // Reset the slide index on resize
-        showSlides1();
+        showSlides1(); // Refresh the slideshow
     });
 
     function showSlides1() {
         const slides1 = document.getElementsByClassName("slideshow-slide1");
         const totalSlides1 = slides1.length;
 
-        // Hide all slides initially
+        // Hide all slides
         for (let i = 0; i < totalSlides1; i++) {
             slides1[i].style.display = "none";
         }
 
-        // Display the required number of slides based on screen size
+        // Display the required number of slides
         for (let j = 0; j < slidesToShow1; j++) {
             const currentIndex = (slideIndex1 + j) % totalSlides1;
             slides1[currentIndex].style.display = "block";
@@ -181,52 +189,51 @@
         slideIndex1 = (slideIndex1 + slidesToShow1) % totalSlides1;
 
         // Change slides every 4 seconds
-        setTimeout(showSlides, 4000);
+        setTimeout(showSlides1, 4000);
     }
 
-    // Initialize slideshow
+    // Initialize second slideshow
     showSlides1();
 
-
+    // Partner Slideshow with responsive slides
     let partnerSlideIndex = 0;
-let partnerSlidesToShow = getPartnerSlidesToShow(); // Set initial value based on screen width
+    let partnerSlidesToShow = getPartnerSlidesToShow(); // Initial slides to show based on screen size
 
-// Function to determine the number of slides to show based on screen width
-function getPartnerSlidesToShow() {
-    return window.matchMedia("(max-width: 768px)").matches ? 1 : 3;
-}
+    function getPartnerSlidesToShow() {
+        return window.matchMedia("(max-width: 768px)").matches ? 1 : 3;
+    }
 
-// Update slidesToShow on window resize
-window.addEventListener("resize", () => {
-    partnerSlidesToShow = getPartnerSlidesToShow();
-    partnerSlideIndex = 0; // Reset the slide index on resize
+    // Update partnerSlidesToShow on window resize
+    window.addEventListener("resize", () => {
+        partnerSlidesToShow = getPartnerSlidesToShow();
+        partnerSlideIndex = 0; // Reset the slide index on resize
+        showPartnerSlides(); // Refresh the slideshow
+    });
+
+    function showPartnerSlides() {
+        const slides = document.getElementsByClassName("slideshow-slide2");
+        const totalSlides = slides.length;
+
+        // Hide all slides
+        for (let i = 0; i < totalSlides; i++) {
+            slides[i].style.display = "none";
+        }
+
+        // Display the required number of slides
+        for (let j = 0; j < partnerSlidesToShow; j++) {
+            const currentIndex = (partnerSlideIndex + j) % totalSlides;
+            slides[currentIndex].style.display = "block";
+        }
+
+        // Move to the next set of slides
+        partnerSlideIndex = (partnerSlideIndex + partnerSlidesToShow) % totalSlides;
+
+        // Change slides every 4 seconds
+        setTimeout(showPartnerSlides, 4000);
+    }
+
+    // Initialize partner slideshow
     showPartnerSlides();
-});
-
-function showPartnerSlides() {
-    const slides = document.getElementsByClassName("slideshow-slide2");
-    const totalSlides = slides.length;
-
-    // Hide all slides initially
-    for (let i = 0; i < totalSlides; i++) {
-        slides[i].style.display = "none";
-    }
-
-    // Display the required number of slides based on screen size
-    for (let j = 0; j < partnerSlidesToShow; j++) {
-        const currentIndex = (partnerSlideIndex + j) % totalSlides;
-        slides[currentIndex].style.display = "block";
-    }
-
-    // Move to the next set of slides
-    partnerSlideIndex = (partnerSlideIndex + partnerSlidesToShow) % totalSlides;
-
-    // Change slides every 4 seconds
-    setTimeout(showPartnerSlides, 4000);
-}
-
-// Initialize the slideshow
-showPartnerSlides();
 
 
 </script>
