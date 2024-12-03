@@ -345,6 +345,11 @@
     .partners-title {
         font-size: 1.8rem;
     }
+    .mission-values-section{
+        width: 80%;
+        margin: 20% auto;
+    }
+
     .section mission{
         width:80%;
     }
@@ -370,7 +375,10 @@
     .section-title {
         font-size: 1.8rem;
     }
-
+    .mission-values-section{
+        width: 80%;
+        margin: 20% auto;
+    }
     .partnerships {
         height: auto;
         padding: 40px 0;
@@ -419,7 +427,10 @@
         width: 80%;
         align-self: center;
     }
-
+    .mission-values-section{
+        width: 80%;
+        margin: 20% auto;
+    }
     .section {
         padding: 25px;
         width:100%
@@ -492,6 +503,10 @@
         width: 80%;
         text-align: center;
         align-self: center;
+    }
+    .mission-values-section{
+        width: 80%;
+        margin: 20% auto;
     }
 
     .slideshow-container-parastatals,
