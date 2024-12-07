@@ -67,6 +67,30 @@ button {
 button:hover {
     background-color: #0d7a44;
 }
+
+.accounts{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+    margin-top: 20px;
+    background-color: white;
+    padding: 20px 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.card{
+    width: 200px;
+    height: 200px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.head{
+    background-color: #0d7a44;
+    text-align: center;
+}
 /* Media Queries */
 
 /* For screens 1024px and below */
