@@ -6,8 +6,8 @@
 {% endblock %}
 {% block content %}
 <section class="department-detail-section">
-    <div class="department-header"
-         style="background-image: url({% if department.image %}{{ department.image.url }}{% else %}{% static 'path/to/default/image.jpg' %}{% endif %});">
+    <div class="department-header">
+        <img src="{% if department.image %}{{ department.image.url }}{% else %}{% static 'path/to/default/image.jpg' %}{% endif %}">
         <h1>{{ department.name }}</h1>
     </div>
     <div class="department-info">

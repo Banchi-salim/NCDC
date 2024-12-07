@@ -47,7 +47,7 @@ const hodsData = [
     {
         id: "{{ hod.id }}",
         name: "{{ hod.name|escapejs }}",
-        department: "{{ hod.department|escapejs }}",
+        department: "{{ hod.department_name|escapejs }}",
         image: "{% if hod.image %}{{ hod.image.url }}{% else %}{% static 'path/to/default/image.jpg' %}{% endif %}",
         description: "{{ hod.description|escapejs }}"
     },
