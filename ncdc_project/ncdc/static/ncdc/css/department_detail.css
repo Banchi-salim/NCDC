@@ -56,7 +56,10 @@
     .department-header {
         padding: 20px 10px;
     }
-
+    .department-header img {
+        width: 80%;
+        height: 100px;
+    }
     .director-info img {
         width: 120px;
         height: 120px;
