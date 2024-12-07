@@ -35,12 +35,12 @@ class DGPost(models.Model):
 
 class HeadOfDepartment(models.Model):
     name = models.CharField(max_length=100)
-    department = models.CharField(max_length=100)
+    department_name = models.CharField(max_length=100)  # Explicitly store department name
     image = models.ImageField(upload_to='hod_images/', blank=True, null=True)
     description = models.TextField()
 
     def __str__(self):
-        return f"{self.name} - {self.department}"
+        return self.name
 
 
 class Department(models.Model):
