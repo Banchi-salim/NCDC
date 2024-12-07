@@ -1,23 +1,40 @@
 .department-detail-section {
-    padding: 20px;
+    padding: 15px;
     font-family: Arial, sans-serif;
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
 .department-header {
     background-size: cover;
+    background-position: center;
     color: white;
     text-align: center;
-    padding: 50px 0;
+    padding: 30px 15px;
+    width: 100%;
 }
 
-.department-info, .director-info, .department-projects, .department-posts {
-    margin: 20px 0;
+.department-info,
+.director-info,
+.department-projects,
+.department-posts {
+    margin: 15px 0;
+    width: 100%;
+}
+
+.director-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
 }
 
 .director-info img {
     width: 150px;
     height: 150px;
     border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
 }
 
 .project, .post {
@@ -26,4 +43,37 @@
     margin: 10px 0;
     border-radius: 5px;
     background-color: #f9f9f9;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+    .department-detail-section {
+        padding: 10px;
+    }
+
+    .department-header {
+        padding: 20px 10px;
+    }
+
+    .director-info img {
+        width: 120px;
+        height: 120px;
+    }
+
+    .project, .post {
+        padding: 10px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .department-header {
+        padding: 15px 5px;
+    }
+
+    .director-info img {
+        width: 100px;
+        height: 100px;
+    }
 }
