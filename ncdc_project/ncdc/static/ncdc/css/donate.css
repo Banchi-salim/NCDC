@@ -73,7 +73,7 @@ button:hover {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 40px;
-    margin-top: 20px;
+    margin: 40px auto;
     background-color: white;
     padding: 20px 30px;
     border-radius: 10px;
@@ -91,6 +91,10 @@ button:hover {
 .head{
     background-color: #0d7a44;
     text-align: center;
+}
+
+.head h3{
+    color: white;
 }
 /* Media Queries */
 
