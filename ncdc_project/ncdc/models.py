@@ -33,15 +33,6 @@ class DGPost(models.Model):
         ordering = ['-created_at']
 
 
-class Department(models.Model):
-    name = models.CharField(max_length=255)
-    description = models.TextField()
-    image = models.ImageField(upload_to='department_images/', blank=True, null=True)
-
-    def __str__(self):
-        return self.name
-
-
 class HeadOfDepartment(models.Model):
     name = models.CharField(max_length=100)
     department = models.CharField(max_length=100)
@@ -50,6 +41,22 @@ class HeadOfDepartment(models.Model):
 
     def __str__(self):
         return f"{self.name} - {self.department}"
+
+
+class Department(models.Model):
+    name = models.CharField(max_length=255)
+    image = models.ImageField(upload_to="departments/", blank=True, null=True)
+    description = models.TextField()
+    head_of_department = models.OneToOneField(
+        HeadOfDepartment,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="department"
+    )
+
+    def __str__(self):
+        return self.name
 
 
 class LocalGovernmentArea(models.Model):
@@ -242,3 +249,22 @@ class ChatMessage(models.Model):
     def clear_old_messages():
         """Clear messages older than 24 hours."""
         ChatMessage.objects.filter(timestamp__lt=now() - timedelta(hours=24)).delete()
+
+
+class Department_Project(models.Model):
+    title = models.CharField(max_length=255)
+    department = models.ForeignKey(Department, on_delete=models.CASCADE, related_name="projects")
+    description = models.TextField()
+
+    def __str__(self):
+        return self.title
+
+
+class Department_Post(models.Model):
+    title = models.CharField(max_length=255)
+    content = models.TextField()
+    department = models.ForeignKey(Department, on_delete=models.CASCADE, related_name="posts")
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.title

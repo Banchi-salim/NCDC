@@ -357,3 +357,12 @@ def notify_admin_or_staff(user, message):
         logger.info(f"Notification sent to admin successfully.")
     except Exception as e:
         logger.error(f"Error sending notification to admin: {e}")
+
+
+def department_detail(request, department_id):
+    department = get_object_or_404(Department, pk=department_id)
+    return render(request, "ncdc/department_detail.html", {
+        "department": department,
+        "projects": department.projects.all(),
+        "posts": department.posts.all(),
+    })

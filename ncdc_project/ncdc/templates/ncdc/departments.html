@@ -1,81 +1,20 @@
 {% extends "ncdc/base.html" %}
 {% load static %}
-
 {% block title %}Departments - NCDC{% endblock %}
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'ncdc/css/departments.css' %}"> {% endblock %}
+<link rel="stylesheet" href="{% static 'ncdc/css/departments.css' %}">
+{% endblock %}
 {% block content %}
-<section class="hero-section" style="background-image:url({%static 'ncdc/images/department_hero.png'%})">
-
-</section>
 <section class="departments-section">
     <div class="departments-grid">
         {% for department in departments %}
-        <div class="department-card" onclick="openDepartmentModal('{{ department.id }}')">
+        <a href="{% url 'department_detail' department.id %}" class="department-card">
             <div class="department-image">
-                <img src="{% if department.image %}{{ department.image.url }}{% else %}{% static 'path/to/default/image.jpg' %}{% endif %}"
-                     alt="{{ departments.name }}">
-                <h3>{{department.name}}</h3>
+                <img src="{% if department.image %}{{ department.image.url }}{% else %}{% static 'path/to/default/image.jpg' %}{% endif %}" alt="{{ department.name }}">
+                <h3>{{ department.name }}</h3>
             </div>
-        </div>
+        </a>
         {% endfor %}
-    </div>
-
-    <!-- Modal Structure -->
-    <div id="departmentModal" class="modal" style="display:none;">
-        <div class="modal-content">
-            <div class="modal-header">
-                <span class="close" onclick="closeModal()">&times;</span>
-                <h3 id="modalTitle"></h3>
-            </div>
-            <div class="modal-body">
-                <img id="modalImage" class="modal-image" src="" alt="">
-                <div class="modal-text">
-                    <p id="modalContent"></p>
-                </div>
-            </div>
-        </div>
     </div>
 </section>
-
-<script>
-    function openDepartmentModal(departmentId) {
-    const departments = {
-        {% for department in departments %}
-        "{{ department.id }}": {
-            name: "{{ department.name|escapejs }}",
-            image: "{% if department.image %}{{ department.image.url }}{% else %}{% static 'path/to/default/image.jpg' %}{% endif %}",
-            description: "{{ department.description|escapejs }}"
-        },
-        {% endfor %}
-    };
-
-    const department = departments[departmentId];
-    if (department) {
-        document.getElementById("modalTitle").innerText = department.name;
-        document.getElementById("modalImage").src = department.image;
-        document.getElementById("modalImage").alt = department.name;
-        document.getElementById("modalContent").innerText = department.description;
-
-        // Display the modal
-        document.getElementById("departmentModal").style.display = "block";
-    } else {
-        console.error(`Department with ID ${departmentId} not found.`);
-    }
-}
-
-function closeModal() {
-    document.getElementById("departmentModal").style.display = "none";
-}
-
-// Close modal when clicking outside of it
-window.onclick = function(event) {
-    const modal = document.getElementById("departmentModal");
-    if (event.target === modal) {
-        modal.style.display = "none";
-    }
-}
-
-</script>
-
 {% endblock %}

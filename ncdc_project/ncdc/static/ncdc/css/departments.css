@@ -45,69 +45,6 @@
     display: block;
 }
 
-/* Modal Styles */
-.modal {
-    display: none;
-    position: fixed; /* Fixed positioning to keep it centered on screen */
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%); /* Center horizontally and vertically */
-    width: 90%;
-    max-width: 600px;
-    max-height: 90vh; /* Limit max height to prevent it from overflowing */
-    z-index: 1000;
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    overflow-y: auto; /* Enable scrolling inside the modal */
-    padding: 20px;
-}
-
-.modal-content {
-    background-color: white;
-    padding: 20px;
-    width: 90%;
-    max-width: 600px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    max-height: 80%; /* Limit height to 80% of the screen */
-    overflow-y: auto; /* Enable scrolling inside the modal */
-}
-
-.modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 1.5rem;
-    color: #1d3b32;
-}
-
-.modal-header .close {
-    font-size: 1.5rem;
-    cursor: pointer;
-}
-
-.modal-body {
-    display: flex;
-    align-items: flex-start;
-    gap: 20px;
-    flex-wrap: wrap;
-}
-
-.modal-image {
-    width: 100%;
-    border-radius: 8px;
-    flex-shrink: 0; /* Prevent the image from shrinking */
-}
-
-.modal-text {
-    width: 100%;
-    font-size: 1rem;
-    color: #555;
-    max-height: 100%;
-    overflow-y: auto; /* Allow scrolling if the text is too long */
-}
-
 
 /* Responsive Media Queries */
 @media (max-width: 768px) {

@@ -35,4 +35,5 @@ urlpatterns = [
     path('contact/', views.contact_page, name='contact_page'),
     path('chat-room/', views.chat_room, name='chat_room'),
     path('post-message/', views.post_message, name='post_message'),
+    path('departments/<int:department_id>/', views.department_detail, name='department_detail'),
 ]

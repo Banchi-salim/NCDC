@@ -24,5 +24,7 @@ admin.site.register(DGPost)
 admin.site.register(Project)
 admin.site.register(SecurityRiskDocument)
 admin.site.register(Job)
+admin.site.register(Department_Project)
+admin.site.register(Department_Post)
 
 

@@ -1,0 +1,29 @@
+.department-detail-section {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.department-header {
+    background-size: cover;
+    color: white;
+    text-align: center;
+    padding: 50px 0;
+}
+
+.department-info, .director-info, .department-projects, .department-posts {
+    margin: 20px 0;
+}
+
+.director-info img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+
+.project, .post {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
