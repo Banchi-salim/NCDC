@@ -69,6 +69,7 @@ button:hover {
 }
 
 .accounts{
+    max-width: 600px;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 40px;
