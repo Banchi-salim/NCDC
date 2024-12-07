@@ -86,12 +86,14 @@ button:hover {
     text-align: center;
 }
 
-.head{
-    background-color: #0d7a44;
+.card1{
+    background-color: #004d40;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     text-align: center;
 }
 
-.head h3{
+.card1 h3{
     color: white;
 }
 /* Media Queries */
