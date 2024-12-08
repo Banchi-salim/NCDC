@@ -255,7 +255,7 @@ class Department_Project(models.Model):
     title = models.CharField(max_length=255)
     pdf = models.FileField(upload_to='department_project/', null=True)
     uploaded_at = models.DateTimeField(default=timezone.now)
-    department = models.ForeignKey('Department', on_delete=models.CASCADE)
+    department = models.ForeignKey('Department', on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return self.title
