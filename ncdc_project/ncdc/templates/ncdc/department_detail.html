@@ -26,6 +26,7 @@
     </div>
 
     <!-- Research Section -->
+    {% if department.name != "Finance and Accounts" %}
     <div class="department-research">
         <h2>Research</h2>
 
@@ -46,6 +47,7 @@
         <p>No research available.</p>
         {% endfor %}
     </div>
+    {% endif %}
 
     <!-- Projects Section (Only for Finance and Accounts) -->
     {% if department.name == "Finance and Accounts" %}
