@@ -2,13 +2,11 @@ version: "3.1"
 
 rules:
   - rule: Say goodbye anytime the conversation is done
-    conversation_start: true
     steps:
       - intent: goodbye
       - action: utter_goodbye
 
   - rule: Greet the user
-    conversation_start: true
     steps:
       - intent: greet
       - action: utter_greet
@@ -17,6 +15,7 @@ rules:
     steps:
       - intent: emergency_help
       - action: action_emergency_assessment
+      - action: utter_recommend_doctor
 
   - rule: Always respond to disease inquiries
     steps:

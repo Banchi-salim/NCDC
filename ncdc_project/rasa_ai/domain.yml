@@ -1,46 +1,58 @@
 version: "3.1"
 
-entities:
-  - disease
-
-slots:
-  disease:
-    type: text
-    mappings:
-      - type: from_text
-
 intents:
   - greet
-  - ask_disease_information
-  - ask_protective_measures
-  - ask_outbreak_alerts
-  - thank_you
   - goodbye
+  - affirm
+  - deny
+  - temperature_regex
+  - disease_inquiry
+  - symptoms_inquiry
+  - prevention_measures
+  - treatment_advice
+  - risk_groups
+  - vaccination_info
+  - transmission_info
+  - emergency_help
+  - ask_disease_information
+  - ask_outbreak_alerts
+  - ask_protective_measures
+  - thank_you
+
+actions:
+  - action_provide_disease_info
+  - action_symptoms_info
+  - action_prevention_advice
+  - action_emergency_assessment
+  - action_vaccination_details
+  - action_risk_group_info
+  - action_treatment_guidance
 
 responses:
   utter_greet:
-    - text: "Hello! How can I assist you today?"
-
-  utter_thanks:
-    - text: "You're welcome! Stay safe."
+    - text: "Hello! I'm your health information assistant. How can I help you today?"
 
   utter_goodbye:
-    - text: "Goodbye! Take care."
+    - text: "Take care and stay healthy!"
+
+  utter_recommend_doctor:
+    - text: "Based on your symptoms, it's advisable to consult a healthcare professional."
+
+  utter_provide_medical_contact:
+    - text: "Here are some emergency medical contacts for immediate assistance."
 
   utter_ask_disease_information:
-    - text: "Which disease would you like to know about?"
-
-  utter_ask_protective_measures:
-    - text: "Please specify the disease for which you need protective measures."
+    - text: "What specific disease would you like to know about?"
 
   utter_ask_outbreak_alerts:
-    - text: "I can provide information about disease outbreaks. Please allow location tracking for precise alerts."
+    - text: "I can provide information about current disease outbreaks. What region are you interested in?"
 
-actions:
-  - action_disease_info
-  - action_protective_measures
-  - action_outbreak_alerts
+  utter_ask_protective_measures:
+    - text: "I can help you with preventive measures for various diseases. Which disease are you concerned about?"
+
+  utter_thanks:
+    - text: "You're welcome! Always happy to help."
 
 session_config:
-  session_expiration_time: 3
+  session_expiration_time: 60
   carry_over_slots_to_new_session: true
