@@ -104,7 +104,53 @@
         </div>
     </div>
 </section>
+<style>
+    .Advisory-Note{
+    background-color: #ffffff;
+    padding: 40px 10%;
+    margin: 20px auto 0 auto;
+    margin-bottom:20px;
+    width: 100%;
+    }
 
+    .documents-grid{
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+        padding: 20px;
+    }
+    .notecard {
+        text-align: center;
+        background: #fff;
+        padding: 15px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .notecard:hover {
+        transform: scale(1.05);
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .notecover img {
+        width: 100%;
+        max-width: 400px;
+        margin: 0 auto 10px;
+    }
+
+    .notetitle {
+        font-size: 1rem;
+        font-weight: bold;
+        color: #333;
+    }
+
+    .notecard a {
+        text-decoration: none;
+        color: inherit;
+    }
+</style>
 <script>
     function openBlogModal(blogId) {
     // Fetch blog data dynamically from Django template (replace this with your actual data source)
