@@ -68,13 +68,20 @@ body {
     color: #555;
 }
 
-.documents-grid {
+
+.Advisory-Note{
+    background-color: #ffffff;
+    padding: 40px 10%;
+    margin: 20px auto 0 auto;
+    margin-bottom:20px;
+    width: 100%;
+}
+.documents-grid{
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         gap: 20px;
         padding: 20px;
 }
-
 .notecard {
     text-align: center;
     background: #fff;
