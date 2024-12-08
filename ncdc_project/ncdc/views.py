@@ -387,7 +387,7 @@ def department_detail(request, department_id):
     projects = None
     transaction_documents = None
     if department.name == "Finance and Accounts":
-        projects = Project.objects.filter(department=department).prefetch_related('images')
+        projects = Department_Project.objects.filter(department=department).prefetch_related('images')
         transaction_documents = FinanceTransactionDocument.objects.filter(department=department)
 
     context = {
