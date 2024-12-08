@@ -29,5 +29,6 @@ admin.site.register(DepartmentProjectImage)
 admin.site.register(Department_Research)
 admin.site.register(DepartmentResearchImage)
 admin.site.register(FinanceTransactionDocument)
+admin.site.register(Advisory_Note)
 
 

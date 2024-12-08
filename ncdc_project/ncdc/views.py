@@ -80,8 +80,13 @@ def heads_of_departments(request):
 
 
 def office_of_dg(request):
+    notes = Advisory_Note.objects.all()
     blogs = Blog.objects.all()[:3]
-    return render(request, 'ncdc/dg.html', {'blogs': blogs})
+    context = {
+        'notes': notes,
+        'blogs': blogs
+    }
+    return render(request, 'ncdc/dg.html', context)
 
 
 def get_user_lga(latitude, longitude):

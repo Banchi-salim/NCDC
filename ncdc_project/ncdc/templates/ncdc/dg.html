@@ -53,6 +53,28 @@
     </div>
 </section>
 
+
+<section class="Advisory-Note">
+    <h2>Advisory Note</h2>
+    <div class="documents-grid">
+        {% for note in notes %}
+        <div class="document">
+            <div class="note-card">
+                <a href="{{ note.pdf.url }}" target="_blank">
+                    <div class="note-cover">
+                        <img src="{% static 'ncdc/images/annual-report-cover.jpg' %}" alt="Advisory Note">
+                    </div>
+                    <div class="note-title">{{ note.title }}</div>
+                </a>
+            </div>
+        </div>
+        {% empty %}
+        <p>No advisory notes available.</p>
+        {% endfor %}
+    </div>
+</section>
+
+
 <section class="dg-blog-section">
     <div class="dg-blog-intro">
         <h2>Director General's Blog</h2>
