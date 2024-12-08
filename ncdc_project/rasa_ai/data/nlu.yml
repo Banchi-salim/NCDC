@@ -1,10 +1,9 @@
 version: "3.1"
 
 nlu:
-  - regex:
-    - intent: temperature_regex
-      examples: |
-        - /^(3[5-9]|4[0-2])\.[0-9]$/  # Body temperature range
+  - intent: temperature_regex
+    examples: |
+      - /^(3[5-9]|4[0-2])\.[0-9]$/  # Body temperature range
 
   - intent: greet
     examples: |
@@ -94,6 +93,13 @@ nlu:
       - not really
       - I don't think so
 
+  - intent: emergency_help
+    examples: |
+      - I need urgent medical help
+      - When should I go to hospital?
+      - Are my symptoms serious?
+      - Should I see a doctor?
+
   - lookup: disease_names
     examples: |
       - COVID-19
@@ -106,10 +112,3 @@ nlu:
       - Dengue
       - RSV
       - Mumps
-
-  - intent: emergency_help
-    examples: |
-      - I need urgent medical help
-      - When should I go to hospital?
-      - Are my symptoms serious?
-      - Should I see a doctor?
