@@ -41,3 +41,38 @@ stories:
       - action: action_treatment_guidance
       - intent: goodbye
       - action: utter_goodbye
+
+  - story: Provide disease information
+    steps:
+      - intent: ask_disease_information
+      - action: action_provide_disease_information
+
+  - story: Provide outbreak alerts
+    steps:
+      - intent: ask_outbreak_alerts
+      - action: action_provide_outbreak_alerts
+
+  - story: Provide protective measures
+    steps:
+      - intent: ask_protective_measures
+      - action: action_provide_protective_measures
+
+  - story: Thank the bot
+    steps:
+      - intent: thank_you
+      - action: utter_thank_you
+
+  - story: Provide transmission information
+    steps:
+      - intent: transmission_info
+      - action: action_provide_transmission_info
+
+  - story: Deny information
+    steps:
+      - intent: deny
+      - action: utter_deny
+
+  - story: Handle temperature input
+    steps:
+      - intent: temperature_regex
+      - action: action_handle_temperature

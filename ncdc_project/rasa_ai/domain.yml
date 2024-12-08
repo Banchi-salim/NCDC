@@ -53,6 +53,13 @@ responses:
   utter_thanks:
     - text: "You're welcome! Always happy to help."
 
+  utter_thank_you:
+    - text: "You're welcome! Let me know if there's anything else I can assist you with."
+
+  utter_deny:
+    - text: "Alright, let me know if you change your mind."
+
+
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true

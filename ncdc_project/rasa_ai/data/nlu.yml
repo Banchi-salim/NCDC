@@ -100,6 +100,42 @@ nlu:
       - Are my symptoms serious?
       - Should I see a doctor?
 
+  - intent: ask_disease_information
+    examples: |
+      - Tell me about [Lassa fever](disease).
+      - What are the symptoms of [COVID-19](disease)?
+      - Can you provide information about [Malaria](disease)?
+      - I need details about [cholera](disease).
+      - What causes [typhoid](disease)?
+      - How is [HIV](disease) transmitted?
+
+  - intent: ask_outbreak_alerts
+    examples: |
+      - Are there any recent outbreak alerts?
+      - What is the latest disease outbreak?
+      - Any updates on outbreaks in [Nigeria](location)?
+      - Is there an alert for [Ebola](disease)?
+      - Can you tell me about recent epidemic alerts?
+      - What's the situation regarding disease outbreaks?
+
+  - intent: ask_protective_measures
+    examples: |
+      - How can I protect myself from [COVID-19](disease)?
+      - What are the protective measures for [Lassa fever](disease)?
+      - Tips to prevent [cholera](disease)?
+      - How do I stay safe during a [disease outbreak](disease_outbreak)?
+      - What are the precautions for avoiding [malaria](disease)?
+      - Protective measures for [typhoid](disease)?
+
+  - intent: thank_you
+    examples: |
+      - Thank you!
+      - Thanks for the information.
+      - I appreciate your help.
+      - Many thanks!
+      - You're very helpful.
+      - Thanks a lot!
+
   - lookup: disease_names
     examples: |
       - COVID-19

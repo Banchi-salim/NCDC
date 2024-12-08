@@ -36,3 +36,38 @@ rules:
     steps:
       - intent: vaccination_info
       - action: action_vaccination_details
+
+  - rule: Respond to disease information request
+    steps:
+      - intent: ask_disease_information
+      - action: action_provide_disease_information
+
+  - rule: Respond to outbreak alerts
+    steps:
+      - intent: ask_outbreak_alerts
+      - action: action_provide_outbreak_alerts
+
+  - rule: Respond to protective measures
+    steps:
+      - intent: ask_protective_measures
+      - action: action_provide_protective_measures
+
+  - rule: Respond to thank you
+    steps:
+      - intent: thank_you
+      - action: utter_thank_you
+
+  - rule: Respond to transmission information request
+    steps:
+      - intent: transmission_info
+      - action: action_provide_transmission_info
+
+  - rule: Respond to denial
+    steps:
+      - intent: deny
+      - action: utter_deny
+
+  - rule: Handle temperature input
+    steps:
+      - intent: temperature_regex
+      - action: action_handle_temperature
