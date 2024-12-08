@@ -1,79 +1,115 @@
 version: "3.0"
 
 nlu:
-  - regex: disease_name
-    examples: |
-      - [a-zA-Z]+ fever
-      - malaria
-      - typhoid
+  - regex:
+    - intent: temperature_regex
+      examples: |
+        - /^(3[5-9]|4[0-2])\.[0-9]$/  # Body temperature range
 
   - intent: greet
     examples: |
-      - hey
-      - hello
       - hi
-      - hello there
+      - hello
+      - hey
       - good morning
-      - good evening
-      - hey there
-      - let's go
-      - hi there
-      - hey dude
       - good afternoon
       - greetings
-      - what's up
 
-  - intent: ask_disease_information
+  - intent: disease_inquiry
     examples: |
-      - What are the symptoms of [disease]?
-      - Tell me about [disease].
-      - How does [COVID-19] spread?
-      - What is the treatment for [disease]?
-      - How can I prevent typhoid?
-      - What causes dengue fever?
-      - Symptoms of measles?
-      - How does tuberculosis spread?
-      - What is the cure for yellow fever?
-      - Can you explain HIV/AIDS symptoms?
+      - Tell me about COVID-19
+      - What is influenza?
+      - Can you explain hepatitis?
+      - I want to know more about viral diseases
+      - What is HIV?
+      - Tell me about measles
 
-  - intent: ask_protective_measures
+  - intent: symptoms_inquiry
     examples: |
-      - How can I protect myself from malaria?
-      - What precautions should I take for COVID-19?
-      - How to avoid getting infected by Lassa fever?
-      - What are protective measures for cholera?
-      - How do I stay safe from dengue fever?
-      - What precautions are recommended for typhoid?
-      - How to prevent the spread of tuberculosis?
-      - Tips for staying safe during a disease outbreak?
+      - What are the symptoms of flu?
+      - How do I know if I have coronavirus?
+      - List symptoms of hepatitis
+      - What are signs of infection?
+      - Can you describe the symptoms of measles?
 
-  - intent: ask_outbreak_alerts
+  - intent: prevention_measures
     examples: |
-      - Are there any disease outbreaks near me?
-      - What outbreaks are currently reported?
-      - Is there an alert for Lassa fever?
-      - Any current outbreaks in my area?
-      - What disease alerts are active now?
-      - Are there alerts for malaria in my location?
-      - What is the latest outbreak update?
-      - Any health warnings for today?
+      - How can I prevent getting sick?
+      - What are ways to avoid viral infections?
+      - How do I stay healthy?
+      - Give me prevention tips
+      - What precautions should I take?
 
-  - intent: thank_you
+  - intent: treatment_advice
     examples: |
-      - Thank you
-      - Thanks a lot
-      - I appreciate it
-      - Thanks
-      - Thank you very much
-      - Cheers
-      - Many thanks
+      - What should I do if I'm sick?
+      - How to treat viral infections?
+      - Recommended treatment for flu
+      - What medicines help with coronavirus?
+      - How to manage symptoms?
+
+  - intent: risk_groups
+    examples: |
+      - Who is most at risk for this disease?
+      - Are children more vulnerable?
+      - Which age groups are at high risk?
+      - Who should be most careful?
+
+  - intent: vaccination_info
+    examples: |
+      - Tell me about vaccines
+      - Are there vaccines for this disease?
+      - How do vaccines work?
+      - When should I get vaccinated?
+      - Vaccination recommendations
+
+  - intent: transmission_info
+    examples: |
+      - How does this disease spread?
+      - Is it contagious?
+      - How do people get infected?
+      - Can it spread through air?
+      - Transmission methods
 
   - intent: goodbye
     examples: |
-      - Goodbye
-      - See you later
-      - Bye
-      - Take care
-      - Have a nice day
-      - Bye bye
-      - Talk to you soon
+      - bye
+      - goodbye
+      - see you later
+      - take care
+      - exit
+
+  - intent: affirm
+    examples: |
+      - yes
+      - yeah
+      - sure
+      - okay
+      - alright
+
+  - intent: deny
+    examples: |
+      - no
+      - nope
+      - not really
+      - I don't think so
+
+  - lookup: disease_names
+    examples: |
+      - COVID-19
+      - Influenza
+      - HIV
+      - Hepatitis
+      - Measles
+      - Ebola
+      - Zika
+      - Dengue
+      - RSV
+      - Mumps
+
+  - intent: emergency_help
+    examples: |
+      - I need urgent medical help
+      - When should I go to hospital?
+      - Are my symptoms serious?
+      - Should I see a doctor?

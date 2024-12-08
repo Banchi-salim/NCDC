@@ -1,29 +1,43 @@
 version: "3.0"
 
 stories:
-  - story: greet and ask disease information
+  - story: Disease Inquiry Full Flow
     steps:
       - intent: greet
       - action: utter_greet
-      - intent: ask_disease_information
-      - action: action_disease_info
+      - intent: disease_inquiry
+      - action: action_provide_disease_info
+      - intent: symptoms_inquiry
+      - action: action_symptoms_info
+      - intent: prevention_measures
+      - action: action_prevention_advice
+      - intent: goodbye
+      - action: utter_goodbye
 
-  - story: ask protective measures
+  - story: Vaccination Information Flow
     steps:
-      - intent: ask_protective_measures
-      - action: action_protective_measures
+      - intent: greet
+      - action: utter_greet
+      - intent: vaccination_info
+      - action: action_vaccination_details
+      - intent: risk_groups
+      - action: action_risk_group_info
+      - intent: goodbye
+      - action: utter_goodbye
 
-  - story: ask about outbreak alerts
+  - story: Emergency Assessment Flow
     steps:
-      - intent: ask_outbreak_alerts
-      - action: action_outbreak_alerts
+      - intent: emergency_help
+      - action: action_emergency_assessment
+      - action: utter_recommend_doctor
+      - intent: affirm
+      - action: utter_provide_medical_contact
 
-  - story: thank the bot
+  - story: Treatment Advice Flow
     steps:
-      - intent: thank_you
-      - action: utter_thanks
-
-  - story: say goodbye
-    steps:
+      - intent: disease_inquiry
+      - action: action_provide_disease_info
+      - intent: treatment_advice
+      - action: action_treatment_guidance
       - intent: goodbye
       - action: utter_goodbye

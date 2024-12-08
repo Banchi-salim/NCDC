@@ -1,36 +1,39 @@
 version: "3.0"
 
 rules:
-  - rule: Greet user
-    steps:
-      - intent: greet
-      - action: utter_greet
-
-  - rule: Say goodbye
+  - rule: Say goodbye anytime the conversation is done
+    conversation_start: true
     steps:
       - intent: goodbye
       - action: utter_goodbye
 
-  - rule: Thank the bot
+  - rule: Greet the user
+    conversation_start: true
     steps:
-      - intent: thank_you
-      - action: utter_thanks
+      - intent: greet
+      - action: utter_greet
 
-  - rule: Provide disease information
+  - rule: Handle emergency situations
     steps:
-      - intent: ask_disease_information
-      - slot_was_set:
-          - disease: null
-      - action: action_disease_info
+      - intent: emergency_help
+      - action: action_emergency_assessment
 
-  - rule: Provide protective measures
+  - rule: Always respond to disease inquiries
     steps:
-      - intent: ask_protective_measures
-      - slot_was_set:
-          - disease: null
-      - action: action_protective_measures
+      - intent: disease_inquiry
+      - action: action_provide_disease_info
 
-  - rule: Provide outbreak alerts
+  - rule: Provide prevention tips when asked
     steps:
-      - intent: ask_outbreak_alerts
-      - action: action_outbreak_alerts
+      - intent: prevention_measures
+      - action: action_prevention_advice
+
+  - rule: Guide on symptoms
+    steps:
+      - intent: symptoms_inquiry
+      - action: action_symptoms_info
+
+  - rule: Vaccination information
+    steps:
+      - intent: vaccination_info
+      - action: action_vaccination_details

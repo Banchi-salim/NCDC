@@ -1,92 +1,44 @@
 #### This file contains tests to evaluate that your bot behaves as expected.
 #### If you want to learn more, please see the docs: https://rasa.com/docs/rasa/testing-your-assistant
 
-stories:
-  - story: happy path 1
-    steps:
-      - user: |
-          hello there!
-        intent: greet
-      - action: utter_greet
-      - user: |
-          amazing
-        intent: mood_great
-      - action: utter_happy
+version: "3.0"
 
-  - story: happy path 2
+test_stories:
+  - story: Disease Inquiry Basic Flow
     steps:
-      - user: |
-          hello there!
+      - user: hello
         intent: greet
-      - action: utter_greet
-      - user: |
-          amazing
-        intent: mood_great
-      - action: utter_happy
-      - user: |
-          bye-bye!
+      - bot: utter_greet
+      - user: tell me about COVID-19
+        intent: disease_inquiry
+        entities:
+          - disease: COVID-19
+      - bot: action_provide_disease_info
+      - user: what are the symptoms?
+        intent: symptoms_inquiry
+      - bot: action_symptoms_info
+      - user: how can I prevent it?
+        intent: prevention_measures
+      - bot: action_prevention_advice
+      - user: goodbye
         intent: goodbye
-      - action: utter_goodbye
+      - bot: utter_goodbye
 
-  - story: sad path 1
+  - story: Emergency Scenario
     steps:
-      - user: |
-          hello
-        intent: greet
-      - action: utter_greet
-      - user: |
-          not good
-        intent: mood_unhappy
-      - action: utter_cheer_up
-      - action: utter_did_that_help
-      - user: |
-          yes
+      - user: I need urgent medical help
+        intent: emergency_help
+      - bot: action_emergency_assessment
+      - bot: utter_recommend_doctor
+      - user: yes
         intent: affirm
-      - action: utter_happy
+      - bot: utter_provide_medical_contact
 
-  - story: sad path 2
+  - story: Vaccination Information
     steps:
-      - user: |
-          hello
-        intent: greet
-      - action: utter_greet
-      - user: |
-          not good
-        intent: mood_unhappy
-      - action: utter_cheer_up
-      - action: utter_did_that_help
-      - user: |
-          not really
-        intent: deny
-      - action: utter_goodbye
-
-  - story: sad path 3
-    steps:
-      - user: |
-          hi
-        intent: greet
-      - action: utter_greet
-      - user: |
-          very terrible
-        intent: mood_unhappy
-      - action: utter_cheer_up
-      - action: utter_did_that_help
-      - user: |
-          no
-        intent: deny
-      - action: utter_goodbye
-
-  - story: say goodbye
-    steps:
-      - user: |
-          bye-bye!
-        intent: goodbye
-      - action: utter_goodbye
-
-  - story: bot challenge
-    steps:
-      - user: |
-          are you a bot?
-        intent: bot_challenge
-      - action: utter_iamabot
->>>>>>> a66b8e049a4b58b69a1ff05cab90ca8efc2bf7dc
+      - user: tell me about vaccines
+        intent: vaccination_info
+      - bot: action_vaccination_details
+      - user: who is most at risk?
+        intent: risk_groups
+      - bot: action_risk_group_info
