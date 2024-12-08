@@ -40,7 +40,6 @@ body {
 
 .profile-image img {
     border-radius: 8px;
-
 }
 
 .office-section {
@@ -68,7 +67,6 @@ body {
     color: #555;
 }
 
-
 .Advisory-Note{
     background-color: #ffffff;
     padding: 40px 10%;
@@ -76,11 +74,12 @@ body {
     margin-bottom:20px;
     width: 100%;
 }
+
 .documents-grid{
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 20px;
-        padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    padding: 20px;
 }
 .notecard {
     text-align: center;
@@ -99,7 +98,7 @@ body {
 
 .notecover img {
     width: 100%;
-    max-width: 150px;
+    max-width: 400px;
     margin: 0 auto 10px;
 }
 
