@@ -59,12 +59,12 @@
     <div class="documents-grid">
         {% for note in notes %}
         <div class="document">
-            <div class="note-card">
+            <div class="notecard">
                 <a href="{{ note.pdf.url }}" target="_blank">
-                    <div class="note-cover">
+                    <div class="notecover">
                         <img src="{% static 'ncdc/images/annual-report-cover.jpg' %}" alt="Advisory Note">
                     </div>
-                    <div class="note-title">{{ note.title }}</div>
+                    <div class="notetitle">{{ note.title }}</div>
                 </a>
             </div>
         </div>
