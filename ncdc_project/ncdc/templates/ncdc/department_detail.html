@@ -29,18 +29,15 @@
     {% if department.name != "Finance and Accounts" %}
     <div class="department-research">
         <h2>Research</h2>
-
         {% for research in research %}
-        <div class="research-item">
-            <h2>{{ research.title }}</h2>
-            <p>{{ research.description }}</p>
-
-            <div class="images">
-                {% for image in research.images.all %}
-                <img src="{{ image.image.url }}" alt="Image for {{ research.title }}">
-                {% empty %}
-                <p>No images available for this research.</p>
-                {% endfor %}
+        <div class="document">
+            <div class="report-card">
+                <a href="{{ research.pdf.url }}" target="_blank">
+                    <div class="report-cover">
+                        <img src="{% static 'ncdc/images/annual-report-cover.jpg' %}" alt="Annual Report">
+                    </div>
+                    <div class="report-title">{{ research.title }}</div>
+                </a>
             </div>
         </div>
         {% empty %}
@@ -54,16 +51,15 @@
     <div class="department-projects">
         <h2>Projects</h2>
         {% for project in projects %}
-        <div class="project">
-            <h3>{{ project.title }}</h3>
-            <p>{{ project.description }}</p>
-        </div>
-        <div class="images">
-            {% for image in project.images.all %}
-            <img src="{{ image.image.url }}" alt="Image for {{ research.title }}">
-            {% empty %}
-            <p>No images available for this research.</p>
-            {% endfor %}
+        <div class="document">
+            <div class="report-card">
+                <a href="{{ project.pdf.url }}" target="_blank">
+                    <div class="report-cover">
+                        <img src="{% static 'ncdc/images/annual-report-cover.jpg' %}" alt="Annual Report">
+                    </div>
+                    <div class="report-title">{{ project.title }}</div>
+                </a>
+            </div>
         </div>
         {% empty %}
         <p>No projects available.</p>

@@ -253,36 +253,20 @@ class ChatMessage(models.Model):
 
 class Department_Project(models.Model):
     title = models.CharField(max_length=255)
-    department = models.ForeignKey(Department, on_delete=models.CASCADE, related_name="projects")
-    description = models.TextField()
+    pdf = models.FileField(upload_to='department_project/')
+    uploaded_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.title
-
-
-class DepartmentProjectImage(models.Model):
-    research = models.ForeignKey(Department_Project, on_delete=models.CASCADE, related_name="images")
-    image = models.ImageField(upload_to='Department_project_images/')
-
-    def __str__(self):
-        return f"Image for {self.research.title}"
 
 
 class Department_Research(models.Model):
     title = models.CharField(max_length=255)
-    description = models.TextField()
-    department = models.ForeignKey('Department', on_delete=models.CASCADE)
+    pdf = models.FileField(upload_to='Department_research/')
+    uploaded_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.title
-
-
-class DepartmentResearchImage(models.Model):
-    research = models.ForeignKey(Department_Research, on_delete=models.CASCADE, related_name="images")
-    image = models.ImageField(upload_to='Department_research_images/')
-
-    def __str__(self):
-        return f"Image for {self.research.title}"
 
 
 class FinanceTransactionDocument(models.Model):
@@ -297,7 +281,7 @@ class FinanceTransactionDocument(models.Model):
 
 class Advisory_Note(models.Model):
     title = models.CharField(max_length=255)
-    pdf = models.FileField(upload_to='annual_reports/')
+    pdf = models.FileField(upload_to='Advisory_Note/')
     uploaded_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
