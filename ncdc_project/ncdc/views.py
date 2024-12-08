@@ -365,34 +365,15 @@ def notify_admin_or_staff(user, message):
 
 
 def department_detail(request, department_id):
-    department = get_object_or_404(Department, id=department_id)
-    research = Department_Research.objects.filter(department=department)
-
-    projects = None
-    transaction_documents = None
-    if department.name == "Finance and Accounts":
-        projects = Department_Project.objects.filter(department=department)
-        transaction_documents = FinanceTransactionDocument.objects.filter(department=department)
-
-    context = {
-        "department": department,
-        "research": research,
-        "projects": projects,
-        "transaction_documents": transaction_documents,
-    }
-    return render(request, "ncdc/department_detail.html", context)
-
-
-def department_detail(request, department_id):
     # Fetch the department using the ID or return a 404 if not found
     department = get_object_or_404(Department, id=department_id)
-    research = Department_Research.objects.filter(department=department).prefetch_related('images')
+    research = Department_Research.objects.filter(department=department)
 
     # If the department is "Finance and Accounts", fetch projects transaction documents
     projects = None
     transaction_documents = None
     if department.name == "Finance and Accounts":
-        projects = Department_Project.objects.filter(department=department).prefetch_related('images')
+        projects = Department_Project.objects.filter(department=department)
         transaction_documents = FinanceTransactionDocument.objects.filter(department=department)
 
     context = {
