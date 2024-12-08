@@ -25,6 +25,9 @@ admin.site.register(Project)
 admin.site.register(SecurityRiskDocument)
 admin.site.register(Job)
 admin.site.register(Department_Project)
-admin.site.register(Department_Post)
+admin.site.register(DepartmentProjectImage)
+admin.site.register(Department_Research)
+admin.site.register(DepartmentResearchImage)
+admin.site.register(FinanceTransactionDocument)
 
 
