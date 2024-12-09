@@ -90,7 +90,7 @@ def office_of_dg(request):
     }
     return render(request, 'ncdc/dg.html', context)
 
-@csrf_exempt
+
 def update_location(request):
         if request.method == "POST":
             try:
@@ -120,7 +120,7 @@ def update_location(request):
 
                 # Fetch LGA and alerts
                 lga = get_object_or_404(LocalGovernmentArea, name__iexact=lga_name, state__iexact=state_name)
-                alerts = OutbreakAlert.objects.filter(lga=lga).values("title", "description", "date_issued")
+                alerts = DiseaseAlert.objects.filter(lga=lga).values("title", "description", "date_issued")
 
                 return JsonResponse({"alerts": list(alerts)}, status=200)
 

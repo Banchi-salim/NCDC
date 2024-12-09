@@ -66,19 +66,10 @@ class LocalGovernmentArea(models.Model):
         return f"{self.name}, {self.state}"
 
 
-class OutbreakAlert(models.Model):
-    title = models.CharField(max_length=255, null=True)
-    description = models.TextField(null=True)
-    date_issued = models.DateField(auto_now_add=True)
-    lga = models.ForeignKey(LocalGovernmentArea, on_delete=models.CASCADE, related_name="alerts", null=True)
-
-    def __str__(self):
-        return f"{self.title} - {self.lga.name}"
-
-
 class DiseaseAlert(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField()
+    date_issued = models.DateField(auto_now_add=True)
     lga = models.ForeignKey(LocalGovernmentArea, on_delete=models.CASCADE)
 
     def __str__(self):
