@@ -6,6 +6,8 @@ from django.shortcuts import render, get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.models import User
 from .models import *
+from geopy.geocoders import Nominatim
+from geopy.exc import GeopyError
 
 
 @csrf_exempt
@@ -89,53 +91,40 @@ def office_of_dg(request):
     return render(request, 'ncdc/dg.html', context)
 
 
-def get_user_lga(latitude, longitude):
-    """
-    Function to find the LGA based on user's latitude and longitude.
-    Uses a small buffer to account for floating-point imprecision.
-    """
-    buffer = 0.01  # Approximately 1.1 km buffer
+def get_outbreak_alerts(request):
+    try:
+        # Get latitude and longitude from the request
+        latitude = float(request.GET.get("latitude"))
+        longitude = float(request.GET.get("longitude"))
 
-    return LocalGovernmentArea.objects.filter(
-        latitude_min__lte=latitude + buffer,
-        latitude_max__gte=latitude - buffer,
-        longitude_min__lte=longitude + buffer,
-        longitude_max__gte=longitude - buffer
-    ).first()
+        # Reverse geocode to get location
+        geolocator = Nominatim(user_agent="ncdc_alerts")
+        location = geolocator.reverse((latitude, longitude), exactly_one=True)
+        if not location:
+            return JsonResponse({"alerts": [], "message": "Location not found."}, status=404)
 
-import logging
-logger = logging.getLogger(__name__)
+        # Extract LGA and state
+        address = location.raw.get("address", {})
+        lga_name = address.get("county") or address.get("locality")
+        state_name = address.get("state")
 
-def update_location(request):
-    if request.method == "POST":
-        data = json.loads(request.body)
-        latitude = data.get("latitude")
-        longitude = data.get("longitude")
+        if not lga_name or not state_name:
+            return JsonResponse({"alerts": [], "message": "LGA or state not found."}, status=404)
 
-        logger.info(f"Received coordinates: Lat {latitude}, Lon {longitude}")
+        # Match the LGA in the database
+        lga = get_object_or_404(LocalGovernmentArea, name__iexact=lga_name, state__iexact=state_name)
 
-        # Determine the user's LGA
-        user_lga = get_user_lga(latitude, longitude)
+        # Fetch alerts for the LGA
+        alerts = OutbreakAlert.objects.filter(lga=lga).values("title", "description", "date_issued")
+        alerts_list = list(alerts)
 
-        logger.info(f"Matched LGA: {user_lga}")
+        return JsonResponse({"alerts": alerts_list}, status=200)
 
-        if user_lga:
-            # Fetch any active disease alerts for the user's LGA
-            disease_alerts = DiseaseAlert.objects.filter(lga=user_lga)
-            if disease_alerts.exists():
-                alerts = [alert.title for alert in disease_alerts]
-                return JsonResponse({"alert": f"Disease Outbreaks in {user_lga.name}: {', '.join(alerts)}"})
-            else:
-                return JsonResponse({"alert": f"No disease outbreaks reported in {user_lga.name}."})
+    except (ValueError, GeopyError) as e:
+        return JsonResponse({"alerts": [], "message": "Invalid location data."}, status=400)
 
-        # If no LGA found, log the range searches
-        all_lgas = LocalGovernmentArea.objects.all()
-        for lga in all_lgas:
-            logger.info(f"LGA {lga.name}: Lat Range {lga.latitude_min} - {lga.latitude_max}, Lon Range {lga.longitude_min} - {lga.longitude_max}")
-
-        return JsonResponse({"alert": "Unable to determine your local government area."})
-
-    return JsonResponse({"error": "Invalid request method."}, status=400)
+    except LocalGovernmentArea.DoesNotExist:
+        return JsonResponse({"alerts": [], "message": "No alerts for this location."}, status=404)
 
 
 def process_donation(request):

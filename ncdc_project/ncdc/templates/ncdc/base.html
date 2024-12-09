@@ -253,7 +253,7 @@ function getCsrfToken() {
     return csrfToken;
 }
 
-   // Function to handle location alerts
+ // Function to handle location alerts
 document.addEventListener("DOMContentLoaded", () => {
     // Check if the page title is "Home - NCDC"
     if (document.title === "Home - NCDC") {
@@ -264,7 +264,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     // Retrieve location on page load
                     navigator.geolocation.getCurrentPosition(
                         (position) => {
-                            sendLocationToServer(position.coords.latitude, position.coords.longitude);
+                            fetchAlerts(position.coords.latitude, position.coords.longitude);
                         },
                         (error) => {
                             alert("Unable to access location. Location access is required for personalized alerts.");
@@ -280,33 +280,33 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
-function sendLocationToServer(lat, lng) {
-    fetch("/update-location/", {
-        method: "POST",
+// Function to fetch alerts based on location
+function fetchAlerts(lat, lng) {
+    fetch(`/get-outbreak-alerts/?latitude=${lat}&longitude=${lng}`, {
+        method: "GET",
         headers: {
             "Content-Type": "application/json",
-            "X-CSRFToken": getCsrfToken(),
         },
-        body: JSON.stringify({
-            latitude: lat,
-            longitude: lng
-        }),
     })
     .then((response) => {
         if (!response.ok) {
-            throw new Error('Network response was not ok');
+            throw new Error("Network response was not ok");
         }
         return response.json();
     })
     .then((data) => {
-        // Display the alert message from the server
-        if (data.alert) {
-            alert(data.alert);
+        // Display alerts as pop-up messages
+        if (data.alerts && data.alerts.length > 0) {
+            data.alerts.forEach((alert) => {
+                alert(`Alert: ${alert.title}\nDescription: ${alert.description}\nIssued on: ${alert.date_issued}`);
+            });
+        } else {
+            alert("No alerts for your location.");
         }
     })
     .catch((error) => {
-        console.error("Error sending location:", error);
-        alert("An error occurred while checking for disease outbreaks.");
+        console.error("Error fetching alerts:", error);
+        alert("An error occurred while fetching alerts.");
     });
 }
 
@@ -318,6 +318,7 @@ function getCsrfToken() {
     }
     return csrfToken;
 }
+
 </script>
 {% block extra_js %}{% endblock %}
 </body>

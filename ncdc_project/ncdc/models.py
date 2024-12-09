@@ -59,14 +59,21 @@ class Department(models.Model):
 
 
 class LocalGovernmentArea(models.Model):
-    name = models.CharField(max_length=100, null=True)
-    latitude_min = models.FloatField(null=True)
-    latitude_max = models.FloatField(null=True)
-    longitude_min = models.FloatField(null=True)
-    longitude_max = models.FloatField(null=True)
+    name = models.CharField(max_length=255, null=True)
+    state = models.CharField(max_length=255, null=True)
 
     def __str__(self):
-        return self.name
+        return f"{self.name}, {self.state}"
+
+
+class OutbreakAlert(models.Model):
+    title = models.CharField(max_length=255, null=True)
+    description = models.TextField(null=True)
+    date_issued = models.DateField(auto_now_add=True)
+    lga = models.ForeignKey(LocalGovernmentArea, on_delete=models.CASCADE, related_name="alerts", null=True)
+
+    def __str__(self):
+        return f"{self.title} - {self.lga.name}"
 
 
 class DiseaseAlert(models.Model):

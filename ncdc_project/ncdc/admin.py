@@ -28,5 +28,6 @@ admin.site.register(Department_Project)
 admin.site.register(Department_Research)
 admin.site.register(FinanceTransactionDocument)
 admin.site.register(Advisory_Note)
+admin.site.register(OutbreakAlert)
 
 
