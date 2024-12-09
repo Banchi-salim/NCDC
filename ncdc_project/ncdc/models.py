@@ -60,11 +60,11 @@ class Department(models.Model):
 
 
 class LocalGovernmentArea(models.Model):
-    name = models.CharField(max_length=100)
-    latitude_min = models.FloatField()
-    latitude_max = models.FloatField()
-    longitude_min = models.FloatField()
-    longitude_max = models.FloatField()
+    name = models.CharField(max_length=100, null=True)
+    latitude_min = models.FloatField(null=True)
+    latitude_max = models.FloatField(null=True)
+    longitude_min = models.FloatField(null=True)
+    longitude_max = models.FloatField(null=True)
 
     def __str__(self):
         return self.name
