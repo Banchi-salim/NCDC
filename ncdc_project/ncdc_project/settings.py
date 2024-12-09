@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 RASA_SERVER_URL = "http://localhost:5005/webhooks/rest/webhook"
-
+GDAL_LIBRARY_PATH = os.getenv('GDAL_LIBRARY_PATH', '/usr/lib/x86_64-linux-gnu/libgdal.so')
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-j3c==(+bsnhrbl+s^bq&bebmd6pflv(b#c3ouffj&!0$_5^q6n'
