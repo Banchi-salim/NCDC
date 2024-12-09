@@ -264,7 +264,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     // Retrieve location on page load
                     navigator.geolocation.getCurrentPosition(
                         (position) => {
-                            fetchAlerts(position.coords.latitude, position.coords.longitude);
+                            sendLocationToServer(position.coords.latitude, position.coords.longitude);
                         },
                         (error) => {
                             alert("Unable to access location. Location access is required for personalized alerts.");
