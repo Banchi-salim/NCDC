@@ -130,7 +130,7 @@ def update_location(request):
 
         except Exception as e:
             logger.error(f"Error: {str(e)}")
-            return JsonResponse({"alerts": [], "message": "An error occurred." + e}, status=500)
+            return JsonResponse({"alerts": [], "message": "An error occurred."}, status=500)
     else:
         return JsonResponse({"alerts": [], "message": "Invalid request method."}, status=405)
 
