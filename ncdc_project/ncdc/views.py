@@ -91,7 +91,7 @@ def office_of_dg(request):
     return render(request, 'ncdc/dg.html', context)
 
 
-def get_outbreak_alerts(request):
+def update_location(request):
     try:
         # Get latitude and longitude from the request
         latitude = float(request.GET.get("latitude"))
