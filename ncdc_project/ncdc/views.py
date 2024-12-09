@@ -92,15 +92,19 @@ def office_of_dg(request):
 def get_user_lga(latitude, longitude):
     """
     Function to find the LGA based on user's latitude and longitude.
-    Assumes LocalGovernmentArea model has latitude and longitude ranges defined.
+    Uses a small buffer to account for floating-point imprecision.
     """
+    buffer = 0.01  # Approximately 1.1 km buffer
+
     return LocalGovernmentArea.objects.filter(
-        latitude_min__lte=latitude,
-        latitude_max__gte=latitude,
-        longitude_min__lte=longitude,
-        longitude_max__gte=longitude
+        latitude_min__lte=latitude + buffer,
+        latitude_max__gte=latitude - buffer,
+        longitude_min__lte=longitude + buffer,
+        longitude_max__gte=longitude - buffer
     ).first()
 
+import logging
+logger = logging.getLogger(__name__)
 
 def update_location(request):
     if request.method == "POST":
@@ -108,8 +112,12 @@ def update_location(request):
         latitude = data.get("latitude")
         longitude = data.get("longitude")
 
+        logger.info(f"Received coordinates: Lat {latitude}, Lon {longitude}")
+
         # Determine the user's LGA
         user_lga = get_user_lga(latitude, longitude)
+
+        logger.info(f"Matched LGA: {user_lga}")
 
         if user_lga:
             # Fetch any active disease alerts for the user's LGA
@@ -119,6 +127,11 @@ def update_location(request):
                 return JsonResponse({"alert": f"Disease Outbreaks in {user_lga.name}: {', '.join(alerts)}"})
             else:
                 return JsonResponse({"alert": f"No disease outbreaks reported in {user_lga.name}."})
+
+        # If no LGA found, log the range searches
+        all_lgas = LocalGovernmentArea.objects.all()
+        for lga in all_lgas:
+            logger.info(f"LGA {lga.name}: Lat Range {lga.latitude_min} - {lga.latitude_max}, Lon Range {lga.longitude_min} - {lga.longitude_max}")
 
         return JsonResponse({"alert": "Unable to determine your local government area."})
 
