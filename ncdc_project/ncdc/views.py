@@ -1,4 +1,5 @@
 import json
+from django.contrib.gis.geos import Point
 from django.core.mail import send_mail
 import requests
 from django.http import JsonResponse
@@ -92,8 +93,19 @@ def office_of_dg(request):
 def get_user_lga(latitude, longitude):
     """
     Function to find the LGA based on user's latitude and longitude.
-    Assumes LocalGovernmentArea model has latitude and longitude ranges defined.
+
+    First tries to find an exact match using the boundary,
+    falls back to bounding box if no precise boundary is defined.
     """
+    # First, try to find LGAs with a precise boundary
+    lga_with_boundary = LocalGovernmentArea.objects.filter(
+        boundary__contains=Point(longitude, latitude)
+    ).first()
+
+    if lga_with_boundary:
+        return lga_with_boundary
+
+    # Fallback to bounding box method
     return LocalGovernmentArea.objects.filter(
         latitude_min__lte=latitude,
         latitude_max__gte=latitude,
