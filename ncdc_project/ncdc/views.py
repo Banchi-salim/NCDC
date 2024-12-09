@@ -5,7 +5,6 @@ from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.models import User
-from django.views.decorators.http import require_GET
 from .models import *
 from geopy.geocoders import Nominatim
 from geopy.exc import GeopyError
@@ -93,45 +92,46 @@ def office_of_dg(request):
 
 
 def update_location(request):
-    if request.method == "POST":
-        try:
-            data = json.loads(request.body)
-            latitude = data.get("latitude")
-            longitude = data.get("longitude")
+        if request.method == "POST":
+            try:
+                # Parse JSON body
+                data = json.loads(request.body.decode("utf-8"))
+                latitude = float(data.get("latitude"))
+                longitude = float(data.get("longitude"))
 
-            if not latitude or not longitude:
-                return JsonResponse({"message": "Missing latitude or longitude"}, status=400)
+                # Validate latitude and longitude
+                if not (-90 <= latitude <= 90) or not (-180 <= longitude <= 180):
+                    return JsonResponse({"alerts": [], "message": "Invalid coordinates."}, status=400)
 
-            latitude = float(latitude)
-            longitude = float(longitude)
+                # Reverse geocode to get location
+                geolocator = Nominatim(user_agent="ncdc_alerts")
+                location = geolocator.reverse((latitude, longitude), exactly_one=True)
 
-            geolocator = Nominatim(user_agent="ncdc_alerts")
-            location = geolocator.reverse((latitude, longitude), exactly_one=True)
-            if not location:
-                return JsonResponse({"alerts": [], "message": "Location not found."}, status=404)
+                if not location:
+                    return JsonResponse({"alerts": [], "message": "Location not found."}, status=404)
 
-            # Extract LGA and state
-            address = location.raw.get("address", {})
-            lga_name = address.get("county") or address.get("locality")
-            state_name = address.get("state")
+                # Extract address components
+                address = location.raw.get("address", {})
+                lga_name = address.get("county") or address.get("locality")
+                state_name = address.get("state")
 
-            if not lga_name or not state_name:
-                return JsonResponse({"alerts": [], "message": "LGA or state not found."}, status=404)
+                if not lga_name or not state_name:
+                    return JsonResponse({"alerts": [], "message": "LGA or state not found."}, status=404)
 
-            # Match the LGA in the database
-            lga = get_object_or_404(LocalGovernmentArea, name__iexact=lga_name, state__iexact=state_name)
+                # Fetch LGA and alerts
+                lga = get_object_or_404(LocalGovernmentArea, name__iexact=lga_name, state__iexact=state_name)
+                alerts = OutbreakAlert.objects.filter(lga=lga).values("title", "description", "date_issued")
 
-            # Fetch alerts for the LGA
-            alerts = OutbreakAlert.objects.filter(lga=lga).values("title", "description", "date_issued")
-            alerts_list = list(alerts)
+                return JsonResponse({"alerts": list(alerts)}, status=200)
 
-            return JsonResponse({"alerts": alerts_list}, status=200)
-
-        except (ValueError, GeopyError) as e:
-            return JsonResponse({"alerts": [], "message": "Invalid location data."}, status=400)
-
-        except LocalGovernmentArea.DoesNotExist:
-            return JsonResponse({"alerts": [], "message": "No alerts for this location."}, status=404)
+            except json.JSONDecodeError:
+                return JsonResponse({"alerts": [], "message": "Invalid JSON data."}, status=400)
+            except GeopyError as e:
+                return JsonResponse({"alerts": [], "message": f"Geolocation error: {str(e)}"}, status=500)
+            except LocalGovernmentArea.DoesNotExist:
+                return JsonResponse({"alerts": [], "message": "No alerts for this location."}, status=404)
+        else:
+            return JsonResponse({"alerts": [], "message": "Invalid request method."}, status=405)
 
 
 def process_donation(request):

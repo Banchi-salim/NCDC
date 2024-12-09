@@ -266,7 +266,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         (position) => {
                             sendLocationToServer(position.coords.latitude, position.coords.longitude);
                         },
-                        (error) => {
+                        () => {
                             alert("Unable to access location. Location access is required for personalized alerts.");
                         }
                     );
@@ -280,9 +280,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
-// Function to fetch alerts based on location
+// Function to send location data to the server
 function sendLocationToServer(lat, lng) {
-    fetch("update-location/", {
+    fetch("/update-location/", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -290,19 +290,21 @@ function sendLocationToServer(lat, lng) {
         },
         body: JSON.stringify({
             latitude: lat,
-            longitude: lng
+            longitude: lng,
         }),
     })
     .then((response) => {
         if (!response.ok) {
-            throw new Error('Network response was not ok');
+            throw new Error("Network response was not ok");
         }
         return response.json();
     })
     .then((data) => {
-        // Display the alert message from the server
-        if (data.alert) {
-            alert(data.alert);
+        // Handle the alerts received from the server
+        if (data.alerts && data.alerts.length > 0) {
+            alert("Alerts: " + data.alerts.map((alert) => alert.title).join(", "));
+        } else if (data.message) {
+            alert(data.message);
         }
     })
     .catch((error) => {
@@ -310,13 +312,15 @@ function sendLocationToServer(lat, lng) {
         alert("An error occurred while checking for disease outbreaks.");
     });
 }
+
 // Utility function to retrieve CSRF token
 function getCsrfToken() {
-    const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+    const csrfToken = document.querySelector("[name=csrfmiddlewaretoken]");
     if (!csrfToken) {
         console.error("CSRF token not found. Ensure your HTML includes a CSRF token.");
+        return "";
     }
-    return csrfToken;
+    return csrfToken.value;
 }
 
 </script>
