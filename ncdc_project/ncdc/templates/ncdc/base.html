@@ -87,6 +87,7 @@
 <!-- Main Content -->
 <main>
     {% block content %}{% endblock %}
+    <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
 </main>
 
 
@@ -316,11 +317,7 @@ function sendLocationToServer(lat, lng) {
 // Utility function to retrieve CSRF token
 function getCsrfToken() {
     const csrfToken = document.querySelector("[name=csrfmiddlewaretoken]");
-    if (!csrfToken) {
-        console.error("CSRF token not found. Ensure your HTML includes a CSRF token.");
-        return "";
-    }
-    return csrfToken.value;
+    return csrfToken ? csrfToken.value : "";
 }
 
 </script>
