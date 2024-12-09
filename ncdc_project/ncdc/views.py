@@ -94,43 +94,45 @@ def office_of_dg(request):
 
 @csrf_exempt
 def update_location(request):
-    try:
-        latitude = request.GET.get("latitude")
-        longitude = request.GET.get("longitude")
+    if request.method == "POST":
+        try:
+            data = json.loads(request.body)
+            latitude = data.get("latitude")
+            longitude = data.get("longitude")
 
-        if not latitude or not longitude:
-            return JsonResponse({"message": "Missing latitude or longitude"}, status=400)
+            if not latitude or not longitude:
+                return JsonResponse({"message": "Missing latitude or longitude"}, status=400)
 
-        latitude = float(latitude)
-        longitude = float(longitude)
+            latitude = float(latitude)
+            longitude = float(longitude)
 
-        geolocator = Nominatim(user_agent="ncdc_alerts")
-        location = geolocator.reverse((latitude, longitude), exactly_one=True)
-        if not location:
-            return JsonResponse({"alerts": [], "message": "Location not found."}, status=404)
+            geolocator = Nominatim(user_agent="ncdc_alerts")
+            location = geolocator.reverse((latitude, longitude), exactly_one=True)
+            if not location:
+                return JsonResponse({"alerts": [], "message": "Location not found."}, status=404)
 
-        # Extract LGA and state
-        address = location.raw.get("address", {})
-        lga_name = address.get("county") or address.get("locality")
-        state_name = address.get("state")
+            # Extract LGA and state
+            address = location.raw.get("address", {})
+            lga_name = address.get("county") or address.get("locality")
+            state_name = address.get("state")
 
-        if not lga_name or not state_name:
-            return JsonResponse({"alerts": [], "message": "LGA or state not found."}, status=404)
+            if not lga_name or not state_name:
+                return JsonResponse({"alerts": [], "message": "LGA or state not found."}, status=404)
 
-        # Match the LGA in the database
-        lga = get_object_or_404(LocalGovernmentArea, name__iexact=lga_name, state__iexact=state_name)
+            # Match the LGA in the database
+            lga = get_object_or_404(LocalGovernmentArea, name__iexact=lga_name, state__iexact=state_name)
 
-        # Fetch alerts for the LGA
-        alerts = OutbreakAlert.objects.filter(lga=lga).values("title", "description", "date_issued")
-        alerts_list = list(alerts)
+            # Fetch alerts for the LGA
+            alerts = OutbreakAlert.objects.filter(lga=lga).values("title", "description", "date_issued")
+            alerts_list = list(alerts)
 
-        return JsonResponse({"alerts": alerts_list}, status=200)
+            return JsonResponse({"alerts": alerts_list}, status=200)
 
-    except (ValueError, GeopyError) as e:
-        return JsonResponse({"alerts": [], "message": "Invalid location data."}, status=400)
+        except (ValueError, GeopyError) as e:
+            return JsonResponse({"alerts": [], "message": "Invalid location data."}, status=400)
 
-    except LocalGovernmentArea.DoesNotExist:
-        return JsonResponse({"alerts": [], "message": "No alerts for this location."}, status=404)
+        except LocalGovernmentArea.DoesNotExist:
+            return JsonResponse({"alerts": [], "message": "No alerts for this location."}, status=404)
 
 
 def process_donation(request):
