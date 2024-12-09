@@ -92,7 +92,7 @@ def office_of_dg(request):
     return render(request, 'ncdc/dg.html', context)
 
 
-@require_GET
+@csrf_exempt
 def update_location(request):
     try:
         latitude = request.GET.get("latitude")
