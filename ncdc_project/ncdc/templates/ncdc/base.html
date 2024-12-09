@@ -266,6 +266,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     navigator.geolocation.getCurrentPosition(
                         (position) => {
                             sendLocationToServer(position.coords.latitude, position.coords.longitude);
+                            console.log(position.coords.latitude);
+                            console.log(position.coords.longitude);
                         },
                         () => {
                             alert("Unable to access location. Location access is required for personalized alerts.");
