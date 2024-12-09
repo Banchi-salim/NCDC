@@ -94,7 +94,7 @@ def office_of_dg(request):
 def update_location(request):
     try:
         # Get latitude and longitude from the request
-        if request.method == "POST":
+        if request.method == "GET":
             latitude = float(request.GET.get("latitude"))
             longitude = float(request.GET.get("longitude"))
 
