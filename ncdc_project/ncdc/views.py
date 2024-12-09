@@ -92,46 +92,48 @@ def office_of_dg(request):
 
 
 def update_location(request):
-        if request.method == "POST":
-            try:
-                # Parse JSON body
-                data = json.loads(request.body.decode("utf-8"))
-                latitude = float(data.get("latitude"))
-                longitude = float(data.get("longitude"))
+    if request.method == "POST":
+        try:
+            # Parse JSON body
+            data = json.loads(request.body.decode("utf-8"))
+            latitude = float(data.get("latitude"))
+            longitude = float(data.get("longitude"))
 
-                # Validate latitude and longitude
-                if not (-90 <= latitude <= 90) or not (-180 <= longitude <= 180):
-                    return JsonResponse({"alerts": [], "message": "Invalid coordinates."}, status=400)
+            logger.info(f"Received coordinates: Latitude={latitude}, Longitude={longitude}")
 
-                # Reverse geocode to get location
-                geolocator = Nominatim(user_agent="ncdc_alerts")
-                location = geolocator.reverse((latitude, longitude), exactly_one=True)
+            # Validate latitude and longitude
+            if not (-90 <= latitude <= 90) or not (-180 <= longitude <= 180):
+                return JsonResponse({"alerts": [], "message": "Invalid coordinates."}, status=400)
 
-                if not location:
-                    return JsonResponse({"alerts": [], "message": "Location not found."}, status=404)
+            # Reverse geocode to get location
+            geolocator = Nominatim(user_agent="ncdc_alerts")
+            location = geolocator.reverse((latitude, longitude), exactly_one=True)
+            if not location:
+                return JsonResponse({"alerts": [], "message": "Location not found."}, status=404)
 
-                # Extract address components
-                address = location.raw.get("address", {})
-                lga_name = address.get("county") or address.get("locality")
-                state_name = address.get("state")
+            address = location.raw.get("address", {})
+            logger.info(f"Geolocated address: {address}")
 
-                if not lga_name or not state_name:
-                    return JsonResponse({"alerts": [], "message": "LGA or state not found."}, status=404)
+            lga_name = address.get("county") or address.get("locality")
+            state_name = address.get("state")
 
-                # Fetch LGA and alerts
-                lga = get_object_or_404(LocalGovernmentArea, name__iexact=lga_name, state__iexact=state_name)
-                alerts = DiseaseAlert.objects.filter(lga=lga).values("title", "description", "date_issued")
+            logger.info(f"LGA Name: {lga_name}, State Name: {state_name}")
 
-                return JsonResponse({"alerts": list(alerts)}, status=200)
+            if not lga_name or not state_name:
+                return JsonResponse({"alerts": [], "message": "LGA or state not found."}, status=404)
 
-            except json.JSONDecodeError:
-                return JsonResponse({"alerts": [], "message": "Invalid JSON data."}, status=400)
-            except GeopyError as e:
-                return JsonResponse({"alerts": [], "message": f"Geolocation error: {str(e)}"}, status=500)
-            except LocalGovernmentArea.DoesNotExist:
-                return JsonResponse({"alerts": [], "message": "No alerts for this location."}, status=404)
-        else:
-            return JsonResponse({"alerts": [], "message": "Invalid request method."}, status=405)
+            # Fetch LGA and alerts
+            lga = get_object_or_404(LocalGovernmentArea, name__iexact=lga_name, state__iexact=state_name)
+            alerts = DiseaseAlert.objects.filter(lga=lga).values("title", "description", "date_issued")
+
+            return JsonResponse({"alerts": list(alerts)}, status=200)
+
+        except Exception as e:
+            logger.error(f"Error: {str(e)}")
+            return JsonResponse({"alerts": [], "message": "An error occurred."}, status=500)
+    else:
+        return JsonResponse({"alerts": [], "message": "Invalid request method."}, status=405)
+
 
 
 def process_donation(request):
