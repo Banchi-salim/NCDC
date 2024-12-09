@@ -265,12 +265,24 @@ document.addEventListener("DOMContentLoaded", () => {
                     // Retrieve location on page load
                     navigator.geolocation.getCurrentPosition(
                         (position) => {
-                            sendLocationToServer(position.coords.latitude, position.coords.longitude);
-                            console.log(position.coords.latitude);
-                            console.log(position.coords.longitude);
+                            const latitude = position.coords.latitude;
+                            const longitude = position.coords.longitude;
+
+                            // Log latitude and longitude for verification
+                            console.log(`Latitude: ${latitude}`);
+                            console.log(`Longitude: ${longitude}`);
+
+                            // Send location to the server
+                            sendLocationToServer(latitude, longitude);
                         },
-                        () => {
-                            alert("Unable to access location. Location access is required for personalized alerts.");
+                        (error) => {
+                            console.error("Error retrieving location:", error.message);
+                            alert("Unable to access location. Please enable location services.");
+                        },
+                        {
+                            enableHighAccuracy: true, // Request high-accuracy location data
+                            timeout: 10000, // Wait up to 10 seconds for location
+                            maximumAge: 0, // Do not use cached location data
                         }
                     );
                 } else {
