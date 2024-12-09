@@ -92,7 +92,6 @@ def office_of_dg(request):
     return render(request, 'ncdc/dg.html', context)
 
 
-@csrf_exempt
 def update_location(request):
     if request.method == "POST":
         try:
