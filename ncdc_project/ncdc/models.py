@@ -61,38 +61,13 @@ class Department(models.Model):
 
 class LocalGovernmentArea(models.Model):
     name = models.CharField(max_length=100)
-
-    # Optional: Keep bounding box fields for quick filtering
-    latitude_min = models.FloatField(null=True, blank=True)
-    latitude_max = models.FloatField(null=True, blank=True)
-    longitude_min = models.FloatField(null=True, blank=True)
-    longitude_max = models.FloatField(null=True, blank=True)
-
-    # Add a GeoDjango MultiPolygon field for precise boundary representation
-    boundary = gis_models.MultiPolygonField(null=True, blank=True)
+    latitude_min = models.FloatField()
+    latitude_max = models.FloatField()
+    longitude_min = models.FloatField()
+    longitude_max = models.FloatField()
 
     def __str__(self):
         return self.name
-
-    def contains_point(self, longitude, latitude):
-        """
-        Check if a given point is within the LGA boundary.
-
-        :param longitude: Longitude of the point
-        :param latitude: Latitude of the point
-        :return: Boolean indicating if point is within the LGA
-        """
-        from django.contrib.gis.geos import Point
-
-        if not self.boundary:
-            # Fallback to bounding box if no precise boundary
-            return (
-                    self.latitude_min <= latitude <= self.latitude_max and
-                    self.longitude_min <= longitude <= self.longitude_max
-            )
-
-        point = Point(longitude, latitude)
-        return self.boundary.contains(point)
 
 
 class DiseaseAlert(models.Model):
