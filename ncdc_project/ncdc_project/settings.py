@@ -79,7 +79,7 @@ WSGI_APPLICATION = 'ncdc_project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
+        'ENGINE': 'django.contrib.gis.db.backends.mysql',
         'NAME': 'ncdc',
         'USER':'mouhdbuharii',
         'PASSWORD':'Mouhd@pass@123',
