@@ -96,8 +96,8 @@ def update_location(request):
         try:
             # Parse JSON body
             data = json.loads(request.body.decode("utf-8"))
-            latitude = float(data.get("latitude"))
-            longitude = float(data.get("longitude"))
+            latitude = float(data.get("lat"))
+            longitude = float(data.get("lng"))
 
             logger.info(f"Received coordinates: Latitude={latitude}, Longitude={longitude}")
 
