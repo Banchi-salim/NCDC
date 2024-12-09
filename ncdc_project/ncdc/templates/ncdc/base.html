@@ -282,7 +282,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Function to fetch alerts based on location
 function fetchAlerts(lat, lng) {
-    fetch(`https://eminencegsl.com/update-location/?latitude=${lat}&longitude=${lng}`, {
+    fetch(`/update-location/?latitude=${lat}&longitude=${lng}`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
