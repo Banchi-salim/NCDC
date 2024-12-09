@@ -282,7 +282,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Function to fetch alerts based on location
 function sendLocationToServer(lat, lng) {
-    fetch("/update-location/", {
+    fetch("update-location/", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
