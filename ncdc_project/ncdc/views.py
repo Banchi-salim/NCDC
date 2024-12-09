@@ -94,12 +94,13 @@ def office_of_dg(request):
 def update_location(request):
     try:
         # Get latitude and longitude from the request
-        latitude = float(request.GET.get("latitude"))
-        longitude = float(request.GET.get("longitude"))
+        if request.method == "GET":
+            latitude = float(request.GET.get("latitude"))
+            longitude = float(request.GET.get("longitude"))
 
-        # Reverse geocode to get location
-        geolocator = Nominatim(user_agent="ncdc_alerts")
-        location = geolocator.reverse((latitude, longitude), exactly_one=True)
+            # Reverse geocode to get location
+            geolocator = Nominatim(user_agent="ncdc_alerts")
+            location = geolocator.reverse((latitude, longitude), exactly_one=True)
         if not location:
             return JsonResponse({"alerts": [], "message": "Location not found."}, status=404)
 
