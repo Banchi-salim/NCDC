@@ -5,6 +5,7 @@ from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.models import User
+from django.views.decorators.http import require_GET
 from .models import *
 from geopy.geocoders import Nominatim
 from geopy.exc import GeopyError
@@ -91,16 +92,20 @@ def office_of_dg(request):
     return render(request, 'ncdc/dg.html', context)
 
 
+@require_GET
 def update_location(request):
     try:
-        # Get latitude and longitude from the request
-        if request.method == "GET":
-            latitude = float(request.GET.get("latitude"))
-            longitude = float(request.GET.get("longitude"))
+        latitude = request.GET.get("latitude")
+        longitude = request.GET.get("longitude")
 
-            # Reverse geocode to get location
-            geolocator = Nominatim(user_agent="ncdc_alerts")
-            location = geolocator.reverse((latitude, longitude), exactly_one=True)
+        if not latitude or not longitude:
+            return JsonResponse({"message": "Missing latitude or longitude"}, status=400)
+
+        latitude = float(latitude)
+        longitude = float(longitude)
+
+        geolocator = Nominatim(user_agent="ncdc_alerts")
+        location = geolocator.reverse((latitude, longitude), exactly_one=True)
         if not location:
             return JsonResponse({"alerts": [], "message": "Location not found."}, status=404)
 
