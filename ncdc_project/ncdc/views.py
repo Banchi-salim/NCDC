@@ -1,5 +1,4 @@
 import json
-from django.contrib.gis.geos import Point
 from django.core.mail import send_mail
 import requests
 from django.http import JsonResponse
