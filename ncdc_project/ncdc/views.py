@@ -90,6 +90,7 @@ def office_of_dg(request):
     }
     return render(request, 'ncdc/dg.html', context)
 
+
 @csrf_exempt
 def update_location(request):
     if request.method == "POST":
@@ -99,25 +100,17 @@ def update_location(request):
             latitude = data.get("latitude")
             longitude = data.get("longitude")
 
-            logger.info(f"Received coordinates: Latitude={latitude}, Longitude={longitude}")
-
-            # Validate latitude and longitude
-            if not (-90 <= latitude <= 90) or not (-180 <= longitude <= 180):
-                return JsonResponse({"alerts": [], "message": "Invalid coordinates."}, status=400)
-
             # Reverse geocode to get location
             geolocator = Nominatim(user_agent="ncdc_alerts")
             location = geolocator.reverse((latitude, longitude), exactly_one=True)
             if not location:
                 return JsonResponse({"alerts": [], "message": "Location not found."}, status=404)
 
-            address = location.raw.get("address", {})
+            address = location.raw.get("address")
             logger.info(f"Geolocated address: {address}")
 
-            lga_name = address.get("county") or address.get("locality")
+            lga_name = address.get("county")
             state_name = address.get("state")
-
-            logger.info(f"LGA Name: {lga_name}, State Name: {state_name}")
 
             if not lga_name or not state_name:
                 return JsonResponse({"alerts": [], "message": "LGA or state not found."}, status=404)
@@ -133,7 +126,6 @@ def update_location(request):
             return JsonResponse({"alerts": [], "message": f"Geolocation error: {str(e)}"}, status=500)
     else:
         return JsonResponse({"alerts": [], "message": "Invalid request method."}, status=405)
-
 
 
 def process_donation(request):
