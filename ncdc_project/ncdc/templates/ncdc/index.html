@@ -123,7 +123,7 @@
         <div class="event">
             <img src="{% if event.image %}{{ event.image.url }}{% else %}{% static 'path/to/default/image.jpg' %}{% endif %}" alt="{{ event.name }}">
             <div class="event-details">
-                <div class="date&time">
+                <div class="date-time">
                     <h4>{{ event.date }}</h4>
                     <div class="vl"></div>
                     <h4>{{ event.time }}</h4>
@@ -178,13 +178,16 @@
     padding: 40px;
 }
 
-.date&time{
+.date-time{
     display: flex;
     flex-direction: row;
-    border: 1px solid black;
+    border: 0.5px solid black;
     border-radius: 15px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    height: 25px;
+    height: 50px;
+    padding: 8px;
+    width: 40%;
+    gap: 20px;
 }
 
 .vl {
