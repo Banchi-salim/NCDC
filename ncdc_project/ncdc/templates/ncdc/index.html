@@ -124,9 +124,11 @@
             <img src="{% if event.image %}{{ event.image.url }}{% else %}{% static 'path/to/default/image.jpg' %}{% endif %}" alt="{{ event.name }}">
             <div class="event-details">
                 <div class="date-time">
-                    <h4><i class="fas fa-calendar-alt"></i>{{ event.date }}</h4>
+                    <i class="fas fa-calendar-alt"></i>
+                    <h4>{{ event.date }}</h4>
                     <div class="vl"></div>
-                    <h4><i class="fas fa-clock"></i>{{ event.time }}</h4>
+                    <i class="fas fa-clock"></i>
+                    <h4>{{ event.time }}</h4>
                 </div>
                 <div class="event-title">
                     <h2>{{ event.title }}</h2>
