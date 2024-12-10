@@ -284,6 +284,7 @@
     overflow: hidden;
     max-width: 600px;
     margin: 40px;
+    height: 400px;
 }
 
 .slideshow-slide1 {
@@ -311,6 +312,7 @@
     overflow: hidden;
     max-width: 600px; /* Set max-width to keep it small */
     margin: 40px;
+    height: 400px;
 }
 
 .slideshow-slide2, .slideshow-slide1 {
@@ -477,6 +479,7 @@
         grid-template-columns: repeat(2, 1fr);
         max-width: 100%;
         padding: 0 15px;
+        height: 300px;
     }
 }
 
