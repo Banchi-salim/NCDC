@@ -124,7 +124,7 @@
     <div class="grid">
         {% for event in events %}
         <div class="event">
-            <img src="{% if event.image %}{{ event.image.url }}{% else %}{% static 'path/to/default/image.jpg' %}{% endif %}" alt="{{ event.name }}">
+            <img src="{% if event.image %}{{ event.image.url }}{% else %}{% static 'ncdc/images/upcoming.jpeg' %}{% endif %}" alt="{{ event.name }}">
             <div class="event-details">
                 <div class="date-time">
                     <h4>Date: {{ event.date }}</h4>
@@ -240,7 +240,7 @@
 
 /* Event title */
 .upcoming-events .event-title h2 {
-    font-size: 32px;
+    font-size: 42px;
     color: #333;
     margin: 10px 0;
     font-weight: 600;
