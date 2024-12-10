@@ -188,6 +188,8 @@
     padding: 8px;
     width: 40%;
     gap: 20px;
+    align-items: center;
+    text-align: center;
 }
 
 .vl {
@@ -214,19 +216,19 @@
 }
 
 /* Date and time */
-.upcoming-events .date&time {
+.upcoming-events .date-time {
     display: flex;
     align-items: center;
     gap: 10px;
 }
 
-.upcoming-events .date&time h4 {
+.upcoming-events .date-time h4 {
     font-size: 14px;
     color: #555;
     margin: 0;
 }
 
-.upcoming-events .date&time .vl {
+.upcoming-events .date-time .vl {
     width: 2px;
     height: 15px;
     background: #ccc;
@@ -234,7 +236,7 @@
 
 /* Event title */
 .upcoming-events .event-title h2 {
-    font-size: 18px;
+    font-size: 24px;
     color: #333;
     margin: 10px 0;
     font-weight: 600;
@@ -252,6 +254,7 @@
 @media (max-width: 768px) {
     .upcoming-events .event {
         flex-direction: column;
+        height: 300px;
     }
 
     .upcoming-events .event img {
