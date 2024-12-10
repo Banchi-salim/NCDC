@@ -254,8 +254,7 @@ function getCsrfToken() {
     return csrfToken;
 }
 
- // Function to handle location alerts
-document.addEventListener("DOMContentLoaded", () => {
+ document.addEventListener("DOMContentLoaded", () => {
     // Check if the page title is "Home - NCDC"
     if (document.title === "Home - NCDC") {
         if (navigator.geolocation) {
@@ -265,39 +264,10 @@ document.addEventListener("DOMContentLoaded", () => {
                     // Retrieve location on page load
                     navigator.geolocation.getCurrentPosition(
                         (position) => {
-                            const latitude = position.coords.latitude;
-                            const longitude = position.coords.longitude;
-                            const accuracy = position.coords.accuracy;
-
-                            console.log(`Coordinates: ${latitude}, ${longitude}`);
-                            console.log(`Accuracy: ${accuracy} meters`);
-
-                            // Reverse Geocoding to get precise location details
-                            try {
-                                const response = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}&zoom=10&addressdetails=1`);
-                                const data = await response.json();
-
-                                const localDetails = {
-                                    county: data.address.county,
-                                    city: data.address.city,
-                                    state: data.address.state,
-                                    postcode: data.address.postcode,
-                                    full_address: data.display_name
-                                };
-
-                                console.log('Detailed Location:', localDetails);
-
-                            // Send location to the server
-                            sendLocationToServer(latitude, longitude);
+                            sendLocationToServer(position.coords.latitude, position.coords.longitude);
                         },
                         (error) => {
-                            console.error("Error retrieving location:", error.message);
-                            alert("Unable to access location. Please enable location services.");
-                        },
-                        {
-                            enableHighAccuracy: true, // Request high-accuracy location data
-                            timeout: 10000, // Wait up to 10 seconds for location
-                            maximumAge: 0, // Do not use cached location data
+                            alert("Unable to access location. Location access is required for personalized alerts.");
                         }
                     );
                 } else {
@@ -310,7 +280,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
-// Function to send location data to the server
 function sendLocationToServer(lat, lng) {
     fetch("/update-location/", {
         method: "POST",
@@ -320,21 +289,19 @@ function sendLocationToServer(lat, lng) {
         },
         body: JSON.stringify({
             latitude: lat,
-            longitude: lng,
+            longitude: lng
         }),
     })
     .then((response) => {
         if (!response.ok) {
-            throw new Error("Network response was not ok");
+            throw new Error('Network response was not ok');
         }
         return response.json();
     })
     .then((data) => {
-        // Handle the alerts received from the server
-        if (data.alerts && data.alerts.length > 0) {
-            alert("Alerts: " + data.alerts.map((alert) => alert.title).join(", "));
-        } else if (data.message) {
-            alert(data.message);
+        // Display the alert message from the server
+        if (data.alert) {
+            alert(data.alert);
         }
     })
     .catch((error) => {
@@ -343,6 +310,14 @@ function sendLocationToServer(lat, lng) {
     });
 }
 
+// Utility function to retrieve CSRF token
+function getCsrfToken() {
+    const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+    if (!csrfToken) {
+        console.error("CSRF token not found. Ensure your HTML includes a CSRF token.");
+    }
+    return csrfToken;
+}
 // Utility function to retrieve CSRF token
 function getCsrfToken() {
     const csrfToken = document.querySelector("[name=csrfmiddlewaretoken]");
