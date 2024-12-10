@@ -315,10 +315,12 @@
     margin: auto;
 }
 
-.slideshow-slide2 {
-    width: 100%;
-    margin-top:20px;
+.slideshow-slide2, .slideshow-slide1 {
+    height: 100px;
+    padding: 8px;
+    margin: 8px;
     transition: transform 0.5s ease;
+
 }
 
 .slideshow-slide2 img {
@@ -326,6 +328,7 @@
     border-radius: 5px;
     object-fit: cover;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
 }
 
 /* Existing styles remain the same until media queries */
