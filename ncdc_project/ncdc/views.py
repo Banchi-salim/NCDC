@@ -64,7 +64,7 @@ def chatbot_api(request):
 
 def index(request):
     events = Events.objects.all()[:3]
-    return render(request, 'ncdc/index.html', {'context':events})
+    return render(request, 'ncdc/index.html', {'events':events})
 
 
 def about(request):
