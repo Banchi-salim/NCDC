@@ -1,6 +1,5 @@
 {% extends "ncdc/base.html" %}
 {% load static %}
-
 {% block title %}Home - NCDC{% endblock %}
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'ncdc/css/index.css' %}"> {%endblock%}
@@ -17,9 +16,8 @@
             <a href="{% url 'donate_page' %}" class="hero-button donate">Donate</a>
         </div>
     </div>
-    <div class="hero-image">
+    <div class="hero-image" style="margin-top: 10px;">
         <img src="{% static 'ncdc/images/Logo.png'%}" alt="NCDC Image">
-
     </div>
 </section>
 
@@ -116,6 +114,29 @@
                 </div>
             </div>
         </div>
+    </div>
+</section>
+
+<section class="upcoming-events">
+    <div class="grid">
+        {% for event in events %}
+        <div class="event">
+            <img src="{% if event.image %}{{ event.image.url }}{% else %}{% static 'path/to/default/image.jpg' %}{% endif %}" alt="{{ event.name }}">
+            <div class="event-details">
+                <div class="date&time">
+                    <h4>{% event.date %}</h4>
+                    <div class="vl"></div>
+                    <h4>{% event.time %}</h4>
+                </div>
+                <div class="event-title">
+                    <h2>{% event.title %}</h2>
+                </div>
+                <div>
+                    <h4> {% event.location %} </h4>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
     </div>
 </section>
 

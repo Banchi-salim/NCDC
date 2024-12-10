@@ -66,6 +66,17 @@ class LocalGovernmentArea(models.Model):
         return f"{self.name}, {self.state}"
 
 
+class Events(models.Model):
+    title = models.CharField(max_length=255)
+    location = models.CharField(max_length=255)
+    date = models.DateField(default=timezone.now)
+    time = models.TimeField(auto_now_add=True)
+    image = models.ImageField(upload_to='events_images/', blank=True, null=True)
+
+    def __str__(self):
+        return f"{self.title}"
+
+
 class DiseaseAlert(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField()
