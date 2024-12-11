@@ -272,7 +272,6 @@ body {
 .partner_side_image {
     flex: 1;
     max-width: 300px;
-    margin: 10px;
 }
 
 .partner_side_image img {
