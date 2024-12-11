@@ -647,13 +647,13 @@ body {
     gap: 10px;
 }
 
-.upcoming-events .date&time h4 {
+.upcoming-events .date-time h4 {
     font-size: 14px;
     color: #555;
     margin: 0;
 }
 
-.upcoming-events .date&time .vl {
+.upcoming-events .date-time .vl {
     width: 2px;
     height: 15px;
     background: #ccc;
