@@ -244,12 +244,10 @@
     height:600px;
     background-color: #004d40;
     display:flex;
-    gap:40px;
 }
 
 .our_partners{
     padding-top:10px;
-    padding-left:500px;
 }
 
 .partner_side_image img{
@@ -283,7 +281,6 @@
     gap: 10px;
     overflow: hidden;
     max-width: 600px;
-    margin: auto;
 }
 
 .slideshow-slide1 {
