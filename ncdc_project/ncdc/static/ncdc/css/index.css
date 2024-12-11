@@ -1,18 +1,31 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
 .hero-section {
     display: flex;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
     align-items: center;
     justify-content: space-between;
     padding: 60px;
     background-color: #004d40;
     color: white;
-    position: relative;
-    overflow: hidden;
-    width:100%;
+    width: 100%;
+    max-width: 100%;
 }
 
-.hero-content {
-    max-width: 50%;
-    animation: fadeInLeft 1.5s ease;
+.hero-content,
+.hero-image {
+    flex: 1;
+    min-width: 300px; /* Prevent extreme shrinking */
+    margin: 10px;
 }
 
 .hero-title {
@@ -239,21 +252,32 @@
     to { opacity: 1; }
 }
 
-.partnerships{
-    width:100%;
-    height:600px;
+.partnerships {
+    width: 100%;
+    min-height: 600px; /* Use min-height for flexibility */
     background-color: #004d40;
-    display:flex;
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping */
+    align-items: center;
+    justify-content: center;
 }
 
-.our_partners{
-    padding-top:10px;
-    padding-left:500px;
+.our_partners {
+    padding: 20px;
+    text-align: center;
+    flex: 1;
+    min-width: 300px;
 }
 
-.partner_side_image img{
-    width:261px;
-    height:100%;
+.partner_side_image {
+    flex: 1;
+    max-width: 300px;
+    margin: 10px;
+}
+
+.partner_side_image img {
+    max-width: 100%;
+    height: auto;
 }
 
 .partners-p-title{
@@ -271,17 +295,15 @@
     margin: 20px;
 }
 
-.slideshow-container-parastatals{
-     width:100%;
-     height:200px;
-}
-
-.slideshow-container-parastatals {
+.slideshow-container-parastatals,
+.slideshow-container-partners {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     gap: 10px;
-    overflow: hidden;
-    max-width: 600px;
+    max-width: 100%;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 15px;
 }
 
 .slideshow-slide1 {
@@ -295,22 +317,6 @@
     border-radius: 5px;
     object-fit: cover;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-
-.slideshow-container-partners{
-     width:100%;
-     height:100px;
-     margin:10px;
-}
-
-.slideshow-container-partners{
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-    overflow: hidden;
-    max-width: 600px; /* Set max-width to keep it small */
-    margin: auto;
 }
 
 .slideshow-slide2 {
