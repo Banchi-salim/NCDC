@@ -96,7 +96,6 @@ def office_of_dg(request):
 logger = logging.getLogger(__name__)
 
 
-@csrf_exempt
 def update_location(request):
     if request.method == "POST":
         try:
