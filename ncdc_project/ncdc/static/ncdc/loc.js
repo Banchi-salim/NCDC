@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function sendLocationToServer(lat, lng) {
-    fetch("update-location/", {
+    fetch("/update-location/", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -55,9 +55,17 @@ function sendLocationToServer(lat, lng) {
         return response.json();
     })
     .then((data) => {
-        // Display the alert message from the server
-        if (data.alert) {
-            alert(data.alert);
+        // Check for a specific message and display it
+        if (data.message) {
+            alert(data.message); // Display the message from the server
+        }
+
+        // If there are alerts, display them
+        if (data.alerts && data.alerts.length > 0) {
+            const alertMessages = data.alerts.map(alert => `${alert.title}: ${alert.description}`).join("\n");
+            alert(alertMessages);
+        } else if (!data.alerts || data.alerts.length === 0) {
+            alert("No disease in your area."); // Default message if no alerts are found
         }
     })
     .catch((error) => {
