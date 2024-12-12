@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function sendLocationToServer(lat, lng) {
-    fetch("/update-location/", {
+    fetch("update-location/", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",

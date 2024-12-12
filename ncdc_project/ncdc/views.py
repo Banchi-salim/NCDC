@@ -8,7 +8,8 @@ from django.contrib.auth.models import User
 from .models import *
 from geopy.geocoders import Nominatim
 from geopy.exc import GeopyError
-
+from django.core.mail import EmailMessage
+import logging
 
 @csrf_exempt
 def chatbot_api(request):
@@ -64,7 +65,7 @@ def chatbot_api(request):
 
 def index(request):
     events = Events.objects.all()[:3]
-    return render(request, 'ncdc/index.html', {'events':events})
+    return render(request, 'ncdc/index.html', {'events': events})
 
 
 def about(request):
@@ -92,8 +93,16 @@ def office_of_dg(request):
     return render(request, 'ncdc/dg.html', context)
 
 
+logger = logging.getLogger(__name__)
+
+
 @csrf_exempt
 def update_location(request):
+    logger.info(f"Request method: {request.method}")
+    logger.info(f"Request body: {request.body}")
+    logger.info(f"Request headers: {request.headers}")
+
+
     if request.method == "POST":
         try:
             # Parse JSON body
@@ -345,10 +354,6 @@ def post_message(request):
 
     return JsonResponse({'status': 'error', 'message': 'Invalid request'}, status=400)
 
-
-from django.core.mail import send_mail
-from django.core.mail import EmailMessage
-import logging
 
 logger = logging.getLogger(__name__)
 
