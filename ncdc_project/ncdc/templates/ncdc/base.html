@@ -275,6 +275,9 @@ function getCsrfToken() {
                         (error) => {
                             alert("Unable to access location. Location access is required for personalized alerts.");
                         }
+                        enableHighAccuracy: true,
+                        timeout: 10000,
+                        maximumAge: 0
                     );
                 } else {
                     alert("Location access is required for personalized alerts.");
