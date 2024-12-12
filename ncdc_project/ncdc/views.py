@@ -98,19 +98,17 @@ logger = logging.getLogger(__name__)
 
 @csrf_exempt
 def update_location(request):
-    logger.info(f"Request method: {request.method}")
-    logger.info(f"Request body: {request.body}")
-    logger.info(f"Request headers: {request.headers}")
-
-
     if request.method == "POST":
         try:
-            # Parse JSON body
+            # Parse and validate JSON body
             data = json.loads(request.body)
-            latitude = data.get("latitude")
-            longitude = data.get("longitude")
+            try:
+                latitude = float(data.get("latitude"))
+                longitude = float(data.get("longitude"))
+            except (ValueError, TypeError):
+                return JsonResponse({"alerts": [], "message": "Invalid latitude or longitude format."}, status=400)
 
-            # Reverse geocode to get location
+            # Reverse geocode to get location details
             geolocator = Nominatim(user_agent="ncdc_alerts")
             location = geolocator.reverse((latitude, longitude), exactly_one=True)
             if not location:
@@ -125,9 +123,17 @@ def update_location(request):
             if not lga_name or not state_name:
                 return JsonResponse({"alerts": [], "message": "LGA or state not found."}, status=404)
 
-            # Fetch LGA and alerts
-            lga = get_object_or_404(LocalGovernmentArea, name__iexact=lga_name, state__iexact=state_name)
+            # Check if LGA exists in the database
+            try:
+                lga = LocalGovernmentArea.objects.get(name__iexact=lga_name, state__iexact=state_name)
+            except LocalGovernmentArea.DoesNotExist:
+                return JsonResponse({"alerts": [], "message": "No disease in your area."}, status=200)
+
+            # Fetch alerts for the LGA
             alerts = DiseaseAlert.objects.filter(lga=lga).values("title", "description", "date_issued")
+
+            if not alerts:
+                return JsonResponse({"alerts": [], "message": "No disease in your area."}, status=200)
 
             return JsonResponse({"alerts": list(alerts)}, status=200)
 
