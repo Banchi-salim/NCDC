@@ -1,7 +1,7 @@
 import json
 from django.core.mail import send_mail
 import requests
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render, get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.models import User
@@ -97,7 +97,7 @@ def update_location(request):
     if request.method == "POST":
         try:
             # Parse JSON body
-            data = json.loads(request.body.decode("utf-8"))
+            data = json.loads(request.body)
             latitude = data.get("latitude")
             longitude = data.get("longitude")
 
