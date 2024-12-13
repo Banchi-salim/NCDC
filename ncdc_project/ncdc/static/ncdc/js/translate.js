@@ -62,66 +62,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Modify send message functionality to support input language
-    const sendButton = document.getElementById('send-button');
-    const userInput = document.getElementById('user');
-    const messageInput = document.getElementById('message');
-
-    if (sendButton) {
-        sendButton.addEventListener('click', async function() {
-            const user = userInput.value.trim() || 'Visitor';
-            const message = messageInput.value.trim();
-            const inputLanguage = inputLanguageSelect.value;
-
-            if (!message) {
-                alert('Message cannot be empty!');
-                return;
-            }
-
-            try {
-                const response = await fetch('/post-message/', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
-                    },
-                    body: JSON.stringify({
-                        user: user,
-                        message: message,
-                        language: inputLanguage
-                    })
-                });
-
-                const data = await response.json();
-
-                if (data.status === 'success') {
-                    // Create new message element
-                    const chatMessages = document.getElementById('chat-messages');
-                    const newMessageEl = document.createElement('div');
-                    newMessageEl.classList.add('message');
-                    newMessageEl.innerHTML = `
-                        <strong>${user}</strong>:
-                        <span class="message-content" data-original="${message}">
-                            ${message}
-                        </span>
-                        <span class="timestamp">Just now</span>
-                        <button class="reply-button">Reply</button>
-                    `;
-
-                    // Append to chat messages
-                    chatMessages.appendChild(newMessageEl);
-
-                    // Clear inputs
-                    messageInput.value = '';
-                } else {
-                    alert('Error sending message');
-                }
-            } catch (error) {
-                console.error('Message sending error:', error);
-                alert('Error sending message');
-            }
-        });
-    }
 
     // Optional: Auto-translate on page load to selected language
     function initializePageTranslation() {
