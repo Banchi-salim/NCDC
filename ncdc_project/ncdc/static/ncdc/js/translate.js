@@ -1,15 +1,6 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // Language selection elements
+document.addEventListener('DOMContentLoaded', function () {
+    // Language selection dropdown
     const viewLanguageSelect = document.getElementById('language-select');
-    const inputLanguageSelect = document.getElementById('input-language-select');
-
-    // Supported languages
-    const LANGUAGES = {
-        'en': 'English',
-        'ha': 'Hausa',
-        'yo': 'Yoruba',
-        'ig': 'Igbo'
-    };
 
     // Translation function
     async function translateText(text, targetLang) {
@@ -18,12 +9,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+                    'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value,
                 },
                 body: JSON.stringify({
                     text: text,
-                    target_lang: targetLang
-                })
+                    target_lang: targetLang,
+                }),
             });
 
             if (!response.ok) {
@@ -34,11 +25,11 @@ document.addEventListener('DOMContentLoaded', function() {
             return data.translated_text;
         } catch (error) {
             console.error('Translation error:', error);
-            return text;  // Fallback to original text
+            return text; // Fallback to the original text
         }
     }
 
-    // Function to translate all messages
+    // Function to translate all chat messages
     async function translateAllMessages(targetLang) {
         const messageContents = document.querySelectorAll('.message-content');
 
@@ -54,21 +45,19 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Language view selection event listener
+    // Language selection event listener
     if (viewLanguageSelect) {
-        viewLanguageSelect.addEventListener('change', function() {
+        viewLanguageSelect.addEventListener('change', function () {
             const selectedLang = this.value;
             translateAllMessages(selectedLang);
         });
     }
 
-
-    // Optional: Auto-translate on page load to selected language
+    // Auto-translate on page load to the default language
     function initializePageTranslation() {
         const defaultLang = viewLanguageSelect ? viewLanguageSelect.value : 'en';
         translateAllMessages(defaultLang);
     }
 
-    // Initialize page translation
     initializePageTranslation();
 });

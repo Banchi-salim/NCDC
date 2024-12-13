@@ -321,20 +321,24 @@ from deep_translator import GoogleTranslator
 def translate_view(request):
     if request.method == 'POST':
         try:
+            # Parse the request body
             data = json.loads(request.body)
-            text = data.get('text', '')
-            target_lang = data.get('target_lang', 'en')
+            text = data.get('text', '').strip()
+            target_lang = data.get('target_lang', 'en').strip()
 
+            if not text:
+                return JsonResponse({'error': 'Text to translate is required.'}, status=400)
+
+            # Perform the translation
             translated = GoogleTranslator(source='auto', target=target_lang).translate(text)
 
-            return JsonResponse({
-                'translated_text': translated
-            })
+            return JsonResponse({'translated_text': translated})
+        except json.JSONDecodeError:
+            return JsonResponse({'error': 'Invalid JSON format.'}, status=400)
         except Exception as e:
-            return JsonResponse({
-                'error': str(e),
-                'translated_text': text
-            }, status=400)
+            return JsonResponse({'error': f'Translation failed: {str(e)}'}, status=500)
+
+    return JsonResponse({'error': 'Invalid request method. Use POST.'}, status=405)
 
 
 def post_message(request):
