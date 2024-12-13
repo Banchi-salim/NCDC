@@ -1,7 +1,8 @@
 {% extends "ncdc/base.html" %}
 {% load static %}
 {% block title %}Community Chat Room - NCDC{% endblock %}
-{% block extra_css %}<link rel="stylesheet" href="{% static 'ncdc/css/chat_room.css' %}">{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'ncdc/css/chat_room.css' %}">{% endblock %}
 
 {% block content %}
 <div class="chat-container">
@@ -9,6 +10,18 @@
         <h2>Community Chat Room</h2>
         <p>Messages will be cleared after 24 hours.</p>
     </div>
+
+    <div class="language-selector">
+        <label for="language-select">View Language:</label>
+        <select id="language-select">
+            <option value="en">English</option>
+            <option value="ha">Hausa</option>
+            <option value="yo">Yoruba</option>
+            <option value="ig">Igbo</option>
+        </select>
+    </div>
+
+
     <div id="chat-messages" class="chat-messages">
         {% for message in messages %}
         <div class="message" data-id="{{ message.id }}">
@@ -31,10 +44,16 @@
     <div class="chat-input">
         <input type="text" id="user" placeholder="Your Email:">
         <textarea id="message" placeholder="Type your message..."></textarea>
+        <select id="input-language-select">
+            <option value="en">English</option>
+            <option value="ha">Hausa</option>
+            <option value="yo">Yoruba</option>
+            <option value="ig">Igbo</option>
+        </select>
         <button id="send-button">Send</button>
     </div>
 </div>
-
+<script src="{% static 'ncdc/js/translate.js'%}"></script>
 <script>
     let replyingToId = null;  // Keeps track of which message is being replied to
 

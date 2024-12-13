@@ -10,8 +10,9 @@ from geopy.geocoders import Nominatim
 from geopy.exc import GeopyError
 from django.core.mail import EmailMessage
 import logging
+from googletrans import Translator
 
-@csrf_exempt
+
 def chatbot_api(request):
     if request.method == "POST":
         try:
@@ -91,9 +92,6 @@ def office_of_dg(request):
         'blogs': blogs
     }
     return render(request, 'ncdc/dg.html', context)
-
-
-logger = logging.getLogger(__name__)
 
 
 def update_location(request):
@@ -314,7 +312,31 @@ def chat_room(request):
     return render(request, 'ncdc/chat_room.html', {'messages': messages})
 
 
+
+
+
+from deep_translator import GoogleTranslator
+
 @csrf_exempt
+def translate_view(request):
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body)
+            text = data.get('text', '')
+            target_lang = data.get('target_lang', 'en')
+
+            translated = GoogleTranslator(source='auto', target=target_lang).translate(text)
+
+            return JsonResponse({
+                'translated_text': translated
+            })
+        except Exception as e:
+            return JsonResponse({
+                'error': str(e),
+                'translated_text': text
+            }, status=400)
+
+
 def post_message(request):
     """Handles new chat messages."""
     if request.method == "POST":

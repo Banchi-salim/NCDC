@@ -34,6 +34,7 @@ urlpatterns = [
     path('jobs/', views.jobs_list, name='jobs_list'),
     path('contact/', views.contact_page, name='contact_page'),
     path('chat-room/', views.chat_room, name='chat_room'),
+    path('translate/', views.translate_view, name='translate'),
     path('post-message/', views.post_message, name='post_message'),
     path('departments/<int:department_id>/', views.department_detail, name='department_detail'),
 ]
