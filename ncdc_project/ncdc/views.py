@@ -10,7 +10,7 @@ from geopy.geocoders import Nominatim
 from geopy.exc import GeopyError
 from django.core.mail import EmailMessage
 import logging
-from googletrans import Translator
+
 
 
 def chatbot_api(request):
