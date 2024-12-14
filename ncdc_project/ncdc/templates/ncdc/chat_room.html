@@ -68,53 +68,60 @@
         });
     });
 
-    // Handle send button
-    document.getElementById("send-button").addEventListener("click", () => {
+     document.getElementById("send-button").addEventListener("click", async () => {
         const user = document.getElementById("user").value.trim() || "Visitor";
         const message = document.getElementById("message").value.trim();
+        const targetLang = languageSelect.value;
 
         if (message) {
+            // Translate the message before posting
+            const translatedMessage = await translateText(message, targetLang);
+
+            // Send the translated message to the server
             fetch("/post-message/", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                     "X-CSRFToken": document.querySelector('[name=csrfmiddlewaretoken]').value
                 },
-                body: JSON.stringify({ user, message, reply_to: replyingToId })
+                body: JSON.stringify({ user, message: translatedMessage, reply_to: replyingToId })
             })
-            .then(response => response.json())
-            .then(data => {
-                if (data.status === "success") {
-                    const messageDiv = document.createElement('div');
-                    messageDiv.classList.add('message');
-                    messageDiv.innerHTML = `
-                        <strong>${user}</strong>: ${message}
-                        <span class="timestamp">Just now</span>
-                        <button class="reply-button" data-id="${data.message_id}">Reply</button>
-                    `;
-                    if (replyingToId) {
-                        const parentMessage = document.querySelector(`[data-id="${replyingToId}"] .replies`);
-                        if (parentMessage) {
-                            parentMessage.appendChild(messageDiv);
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === "success") {
+                        const messageDiv = document.createElement("div");
+                        messageDiv.classList.add("message");
+                        messageDiv.innerHTML = `
+                            <strong>${user}</strong>: ${translatedMessage}
+                            <span class="timestamp">Just now</span>
+                            <button class="reply-button" data-id="${data.message_id}">Reply</button>
+                        `;
+
+                        if (replyingToId) {
+                            const parentMessage = document.querySelector(`[data-id="${replyingToId}"] .replies`);
+                            if (parentMessage) {
+                                parentMessage.appendChild(messageDiv);
+                            } else {
+                                const repliesDiv = document.createElement("div");
+                                repliesDiv.classList.add("replies");
+                                repliesDiv.appendChild(messageDiv);
+                                document.querySelector(`[data-id="${replyingToId}"]`).appendChild(repliesDiv);
+                            }
+                            replyingToId = null; // Reset reply
                         } else {
-                            const repliesDiv = document.createElement('div');
-                            repliesDiv.classList.add('replies');
-                            repliesDiv.appendChild(messageDiv);
-                            document.querySelector(`[data-id="${replyingToId}"]`).appendChild(repliesDiv);
+                            document.getElementById("chat-messages").appendChild(messageDiv);
                         }
-                        replyingToId = null;  // Reset reply
+
+                        document.getElementById("message").value = ""; // Clear input
                     } else {
-                        document.getElementById("chat-messages").appendChild(messageDiv);
+                        alert("Error posting message.");
                     }
-                    document.getElementById("message").value = "";  // Clear input
-                } else {
-                    alert("Error posting message.");
-                }
-            })
-            .catch(error => console.error("Error:", error));
+                })
+                .catch(error => console.error("Error:", error));
         } else {
             alert("Message cannot be empty!");
         }
     });
+});
 </script>
 {% endblock %}
