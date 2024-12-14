@@ -72,7 +72,7 @@ class Events(models.Model):
     title = models.CharField(max_length=255)
     location = models.CharField(max_length=255)
     date = models.DateField(default=timezone.now)
-    time = models.TimeField(default=timezone.now.time)
+    time = models.TimeField(default=timezone.now().time())
     image = models.ImageField(upload_to='events_images/', blank=True, null=True)
 
     def __str__(self):
