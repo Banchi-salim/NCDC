@@ -133,9 +133,19 @@
                 <p><i class="instagram-icon"></i> NCDCgov</p>
                 <p><i class="telegram-icon"></i> t.me/NCDCgov (Telegram)</p>
             </div>
-            <button onclick="openNEWSLModal()">
-                <a href="#" class="newsletter-btn">Subscribe to Newsletter</a>
-            </button>
+            <button onclick="openNEWSLModal()" class="newsletter-btn">Subscribe to Newsletter</button>
+
+            <div id="NEWSLModal" class="modal" style="display: none;">
+                <div class="modal-content">
+                    <span class="close" onclick="closeModal()">&times;</span>
+                    <h3 id="modalTitle">Subscribe to our newsletter</h3>
+                    <p id="modalDescription">Enter your email in the field below</p>
+                    <div>
+                        <input type="text" placeholder="Enter your Email.....">
+                        <button onclick="closeModal()">Subscribe</button>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="footer-section">
@@ -169,17 +179,7 @@
             reserved.</p>
     </div>
 </footer>
-<div id="NEWSLModal" class="modal" style="display: none;">
-    <div class="modal-content">
-        <span class="close" onclick="closeModal()">&times;</span>
-        <h3 id="modalTitle">Subscribe to our newsletter</h3>
-        <p id="modalDescription">Enter your email in the field below</p>
-        <div>
-            <input type="text" placeholder="Enter your Email.....">
-            <button>Subscribe</button>
-        </div>
-    </div>
-</div>
+
 
 <script>
     function toggleMenu() {
