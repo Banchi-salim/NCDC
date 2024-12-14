@@ -420,3 +420,27 @@ def department_detail(request, department_id):
         'projects': projects,
     }
     return render(request, 'ncdc/department_detail.html', context)
+
+
+@csrf_exempt
+def subscribe_newsletter(request):
+    if request.method == "POST":
+        try:
+            data = json.loads(request.body)
+            email = data.get("email", "").strip()
+
+            if not email:
+                return JsonResponse({"status": "error", "message": "Email is required."}, status=400)
+
+            # Create or get subscriber
+            subscriber, created = NewsletterSubscriber.objects.get_or_create(email=email)
+
+            if created:
+                return JsonResponse({"status": "success", "message": "Successfully subscribed!"})
+            else:
+                return JsonResponse({"status": "info", "message": "Email is already subscribed."})
+
+        except Exception as e:
+            return JsonResponse({"status": "error", "message": str(e)}, status=500)
+    else:
+        return JsonResponse({"status": "error", "message": "Invalid request method."}, status=400)

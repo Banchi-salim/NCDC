@@ -37,4 +37,5 @@ urlpatterns = [
     path('translate/', views.translate_view, name='translate'),
     path('post-message/', views.post_message, name='post_message'),
     path('departments/<int:department_id>/', views.department_detail, name='department_detail'),
+    path("subscribe-newsletter/", views.subscribe_newsletter, name="subscribe_newsletter"),
 ]
