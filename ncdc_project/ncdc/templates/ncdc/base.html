@@ -133,7 +133,9 @@
                 <p><i class="instagram-icon"></i> NCDCgov</p>
                 <p><i class="telegram-icon"></i> t.me/NCDCgov (Telegram)</p>
             </div>
-            <a href="#" class="newsletter-btn">Subscribe to Newsletter</a>
+            <button onclick="openNEWSLModal()">
+                <a href="#" class="newsletter-btn">Subscribe to Newsletter</a>
+            </button>
         </div>
 
         <div class="footer-section">
@@ -167,6 +169,17 @@
             reserved.</p>
     </div>
 </footer>
+<div id="NEWSLModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h3 id="modalTitle">Subscribe to our newsletter</h3>
+        <p id="modalDescription">Enter your email in the field below</p>
+        <div>
+            <input type="text" placeholder="Enter your Email.....">
+            <button>Subscribe</button>
+        </div>
+    </div>
+</div>
 
 <script>
     function toggleMenu() {
@@ -252,6 +265,18 @@ function getCsrfToken() {
         console.error("CSRF token not found. Ensure your HTML includes a CSRF token.");
     }
     return csrfToken;
+}
+
+    function openNEWSLModal(hodId) {
+    const hodIndex = hodsData.findIndex(h => h.id === hodId.toString());
+    if (hodIndex !== -1) {
+        currentHodIndex = hodIndex;
+        displayHodModal();
+    }
+}
+
+    function closeModal() {
+    document.getElementById("hodModal").style.display = "none";
 }
 </script>
 <script src="{% static 'ncdc/loc.js'%}"></script>
