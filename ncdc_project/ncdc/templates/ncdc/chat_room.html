@@ -26,10 +26,7 @@
         {% for message in messages %}
         <div class="message" data-id="{{ message.id }}">
             <strong>{{ message.user }}</strong>:
-            <div class="message-original" data-original="{{ message.message }}">
-                <span class="message-content">{{ message.message }}</span>
-                <!-- other message content -->
-            </div>
+            <span class="message-content" data-original="{{ message.message }}">{{ message.message }}</span>
             <span class="timestamp">{{ message.timestamp|date:"M d, H:i" }}</span>
             <button class="reply-button" data-id="{{ message.id }}">Reply</button>
 
