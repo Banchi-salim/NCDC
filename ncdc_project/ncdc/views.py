@@ -12,7 +12,6 @@ from django.core.mail import EmailMessage
 import logging
 
 
-
 def chatbot_api(request):
     if request.method == "POST":
         try:
@@ -312,32 +311,26 @@ def chat_room(request):
     return render(request, 'ncdc/chat_room.html', {'messages': messages})
 
 
-
-
-
 from deep_translator import GoogleTranslator
+
 
 @csrf_exempt
 def translate_view(request):
     if request.method == 'POST':
         try:
-            # Parse the request body
             data = json.loads(request.body)
-            text = data.get('text', '').strip()
-            target_lang = data.get('target_lang', 'en').strip()
+            text = data.get('text', '')
+            target_lang = data.get('target_lang', 'en')
 
-            if not text:
-                return JsonResponse({'error': 'Text to translate is required.'}, status=400)
-
-            # Perform the translation
+            # Force translation regardless of input language
             translated = GoogleTranslator(source='auto', target=target_lang).translate(text)
 
             return JsonResponse({'translated_text': translated})
-        except json.JSONDecodeError:
-            return JsonResponse({'error': 'Invalid JSON format.'}, status=400)
         except Exception as e:
-            return JsonResponse({'error': f'Translation failed: {str(e)}'}, status=500)
-
+            return JsonResponse({
+                'error': str(e),
+                'translated_text': text
+            }, status=400)
     return JsonResponse({'error': 'Invalid request method. Use POST.'}, status=405)
 
 
