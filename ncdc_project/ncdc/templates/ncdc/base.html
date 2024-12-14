@@ -267,16 +267,13 @@ function getCsrfToken() {
     return csrfToken;
 }
 
-    function openNEWSLModal(hodId) {
-    const hodIndex = hodsData.findIndex(h => h.id === hodId.toString());
-    if (hodIndex !== -1) {
-        currentHodIndex = hodIndex;
-        displayHodModal();
+    function openNEWSLModal() {
+        document.getElementById("NEWSLModal").style.display = "block";
     }
 }
 
     function closeModal() {
-    document.getElementById("hodModal").style.display = "none";
+    document.getElementById("NEWSLModal").style.display = "none";
 }
 </script>
 <script src="{% static 'ncdc/loc.js'%}"></script>
