@@ -1,4 +1,6 @@
 import json
+
+from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
 import requests
 from django.http import JsonResponse, HttpResponse
@@ -444,3 +446,18 @@ def subscribe_newsletter(request):
             return JsonResponse({"status": "error", "message": str(e)}, status=500)
     else:
         return JsonResponse({"status": "error", "message": "Invalid request method."}, status=400)
+
+@login_required
+def create_newsletter(request):
+    if request.method == "POST":
+        subject = request.POST.get("subject", "").strip()
+        content = request.POST.get("content", "").strip()
+
+        if not subject or not content:
+            return JsonResponse({"status": "error", "message": "Subject and content are required."}, status=400)
+
+        # Save newsletter
+        newsletter = Newsletter.objects.create(subject=subject, content=content)
+        return JsonResponse({"status": "success", "message": "Newsletter created and sent to subscribers!"})
+
+    return render(request, "create_newsletter.html")

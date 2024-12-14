@@ -30,4 +30,17 @@ admin.site.register(FinanceTransactionDocument)
 admin.site.register(Advisory_Note)
 admin.site.register(Events)
 
+class NewsletterAdmin(admin.ModelAdmin):
+    list_display = ('subject', 'created_at')
+    search_fields = ('subject', 'content')
+    formfield_overrides = {
+        models.TextField: {'widget': admin.widgets.AdminTextareaWidget(attrs={'style': 'width: 90%; height: 200px;'})},
+    }
+
+class NewsletterSubscriberAdmin(admin.ModelAdmin):
+    list_display = ('email', 'subscribed_at')
+    search_fields = ('email',)
+
+admin.site.register(Newsletter, NewsletterAdmin)
+admin.site.register(NewsletterSubscriber, NewsletterSubscriberAdmin)
 

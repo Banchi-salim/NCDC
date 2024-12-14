@@ -2,6 +2,8 @@ from django.utils.timezone import now
 from django.db import models
 from django.utils import timezone
 from django.utils.timezone import timedelta
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 
 class Blog(models.Model):
@@ -70,7 +72,7 @@ class Events(models.Model):
     title = models.CharField(max_length=255)
     location = models.CharField(max_length=255)
     date = models.DateField(default=timezone.now)
-    time = models.TimeField(default=timezone.now().time())
+    time = models.TimeField(default=timezone.now.time)
     image = models.ImageField(upload_to='events_images/', blank=True, null=True)
 
     def __str__(self):
@@ -305,3 +307,38 @@ class NewsletterSubscriber(models.Model):
     def __str__(self):
         return self.email
 
+
+from django.db import models
+from django.core.mail import send_mail
+from django.utils.html import format_html
+
+
+class Newsletter(models.Model):
+    subject = models.CharField(max_length=255)
+    content = models.TextField(help_text="Enter the formatted HTML content for the newsletter.")
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.subject
+
+    def send_to_subscribers(self):
+        from .models import NewsletterSubscriber  # Import subscriber model
+
+        subscribers = NewsletterSubscriber.objects.all()
+        recipient_list = [subscriber.email for subscriber in subscribers]
+
+        if recipient_list:
+            send_mail(
+                subject=self.subject,
+                message="This newsletter contains HTML content. Please view it in an email client that supports HTML.",
+                html_message=self.content,
+                from_email="noreply@yourdomain.com",  # Change to your sender email
+                recipient_list=recipient_list,
+                fail_silently=False,
+            )
+
+
+@receiver(post_save, sender=Newsletter)
+def send_newsletter(sender, instance, created, **kwargs):
+    if created:
+        instance.send_to_subscribers()
