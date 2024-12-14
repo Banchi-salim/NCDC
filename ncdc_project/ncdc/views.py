@@ -460,4 +460,4 @@ def create_newsletter(request):
         newsletter = Newsletter.objects.create(subject=subject, content=content)
         return JsonResponse({"status": "success", "message": "Newsletter created and sent to subscribers!"})
 
-    return render(request, "create_newsletter.html")
+    return render(request, "ncdc/create_newsletter.html")
