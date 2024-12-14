@@ -329,7 +329,7 @@ class Newsletter(models.Model):
                 subject=self.subject,
                 message="This newsletter contains HTML content. Please view it in an email client that supports HTML.",
                 html_message=self.content,
-                from_email="noreply@yourdomain.com",  # Change to your sender email
+                from_email="iabdulsalim40@gmail.com",  # Change to your sender email
                 recipient_list=recipient_list,
                 fail_silently=False,
             )

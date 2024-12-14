@@ -1,5 +1,5 @@
 import json
-
+from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
 import requests
@@ -447,7 +447,7 @@ def subscribe_newsletter(request):
     else:
         return JsonResponse({"status": "error", "message": "Invalid request method."}, status=400)
 
-@login_required
+@staff_member_required(login_url='/admin/login/')
 def create_newsletter(request):
     if request.method == "POST":
         subject = request.POST.get("subject", "").strip()
