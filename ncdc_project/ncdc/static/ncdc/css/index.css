@@ -631,6 +631,72 @@ body {
     object-fit: cover;
 }
 
+/* General styling for the section */
+.upcoming-events {
+    padding: 20px;
+    background-color: #f0f4ff;
+}
+
+/* Grid container */
+.upcoming-events .grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+.grid{
+    width: 60%;
+    margin: 20px auto;
+}
+
+/* Event card */
+.upcoming-events .event {
+    display: flex;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    gap: 40px;
+}
+
+.upcoming-events .event:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.event{
+    padding: 40px;
+}
+
+.date-time{
+    display: flex;
+    flex-direction: row;
+    border: 0.5px solid black;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    height: 50px;
+    padding: 8px;
+    width: 40%;
+    gap: 20px;
+    align-items: center;
+    text-align: center;
+}
+
+.vl {
+  border-left: 0.8px solid black;
+  height: 20px;
+}
+
+
+/* Event image */
+.upcoming-events .event img {
+    width: 200px;
+    height: auto;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
 /* Event details */
 .upcoming-events .event-details {
     padding: 10px 15px;
@@ -641,7 +707,7 @@ body {
 }
 
 /* Date and time */
-.upcoming-events .date&time {
+.upcoming-events .date-time {
     display: flex;
     align-items: center;
     gap: 10px;
@@ -661,7 +727,7 @@ body {
 
 /* Event title */
 .upcoming-events .event-title h2 {
-    font-size: 18px;
+    font-size: 32px;
     color: #333;
     margin: 10px 0;
     font-weight: 600;
@@ -679,6 +745,8 @@ body {
 @media (max-width: 768px) {
     .upcoming-events .event {
         flex-direction: column;
+        height: 300px;
+        width: 80%;
     }
 
     .upcoming-events .event img {
