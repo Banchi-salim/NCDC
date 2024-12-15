@@ -595,3 +595,130 @@ body {
         max-height: 250px;
     }
 }
+
+
+/* General styles for the modal overlay */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Fixed position to stay in place */
+    z-index: 1000; /* Ensure it appears on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+    overflow: hidden; /* Prevent scrolling */
+}
+
+/* Center the modal content */
+.modal-content {
+    position: absolute;
+    top: 50%; /* Move content halfway down */
+    left: 50%; /* Move content halfway to the right */
+    transform: translate(-50%, -50%); /* Center the content perfectly */
+    background-color: #fff; /* White background */
+    padding: 20px; /* Add some padding */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2); /* Soft shadow effect */
+    width: 90%; /* Default width for small screens */
+    max-width: 400px; /* Max width for larger screens */
+    text-align: center; /* Center align text */
+}
+
+/* Close button style */
+.close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    color: #aaa;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Input field styling */
+#newsletterEmail {
+    width: 100%;
+    padding: 10px;
+    margin: 15px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    outline: none;
+    box-sizing: border-box;
+}
+
+/* Subscribe button styling */
+button {
+    background-color: #007BFF; /* Blue background */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* MEDIA QUERIES */
+
+/* Tablets (landscape and portrait) */
+@media (max-width: 768px) {
+    .modal-content {
+        width: 80%; /* Adjust width for medium screens */
+        padding: 15px;
+        max-width: 350px;
+    }
+
+    #newsletterEmail {
+        font-size: 14px; /* Reduce input font size */
+        padding: 8px; /* Smaller input padding */
+    }
+
+    button {
+        padding: 8px 15px;
+        font-size: 14px; /* Smaller button font */
+    }
+}
+
+/* Mobile devices (smaller screens) */
+@media (max-width: 480px) {
+    .modal-content {
+        width: 95%; /* Wider on small screens */
+        padding: 10px;
+    }
+
+    .close {
+        top: 5px; /* Adjust close button position */
+        right: 10px;
+        font-size: 18px; /* Smaller close button */
+    }
+
+    #modalTitle {
+        font-size: 18px; /* Smaller title */
+    }
+
+    #modalDescription {
+        font-size: 14px; /* Smaller description text */
+    }
+
+    #newsletterEmail {
+        font-size: 12px; /* Smaller input font */
+        padding: 6px; /* Adjust input padding */
+    }
+
+    button {
+        padding: 6px 10px;
+        font-size: 12px; /* Smaller button font size */
+    }
+}
